@@ -19,27 +19,36 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  //get the current path
+  const pathName = usePathname()
+  console.log(pathName)
 
-  const pathname = usePathname()
-  console.log(pathname)
+  //changes the path and link title depending on current page
+  const linkPath: '/' | '/bussines' = pathName === '/bussines' ? '/' : '/bussines'
+  const linkTitle: 'For employees' | 'For Employers' = pathName === '/bussines' ? 'For employees' : 'For Employers'
 
-  
-
-  const linkPath = pathname === '/bussines' ? '/' : '/bussines'
-  const linkTitle = pathname === '/bussines' ? 'For employees' : 'For Employers'
-  console.log(linkPath)
 
   return (
     <html lang="en">
       <body className={inter.className}>
         <nav className='ml-auto  flex justify-between w-full'>
 
+          {pathName === '/bussines' ?
+            <div>
+              <button className='mx-10'>Login bussines</button>
 
+              <Link href='/bussines/bussines-registration'>
+                <p className='inline'>Register bussines</p>
+              </Link>
+            </div>
+            : 
+              <div>
+                <button className='mx-10'>Login</button>
+                <button>Register</button>
+              </div>
 
-          <div>
-            <button className='mx-10'>Login</button>
-            <button>Register</button>
-          </div>
+          }
+
 
           <Link href={linkPath}>
             <p className='w-32 mx-5'>{linkTitle}</p>
