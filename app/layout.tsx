@@ -24,14 +24,14 @@ export default function RootLayout({
   console.log(pathName)
 
   //changes the path and link title depending on current page
-  const linkPath: '/' | '/bussines' = pathName === '/bussines' ? '/' : '/bussines'
-  const linkTitle: 'For employees' | 'For Employers' = pathName === '/bussines' ? 'For employees' : 'For Employers'
+  const linkPath = pathName === '/bussines' ? '/' : '/bussines'
+  const linkTitle = pathName === '/bussines' ? 'For employees' : 'For Employers'
 
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav className='ml-auto  flex justify-between w-full'>
+{/*         <nav className='ml-auto  flex justify-between w-full'>
 
           {pathName === '/bussines' ?
             <div>
@@ -54,7 +54,7 @@ export default function RootLayout({
             <p className='w-32 mx-5'>{linkTitle}</p>
           </Link>
 
-        </nav>
+        </nav> */}
         {children}
       </body>
     </html>
