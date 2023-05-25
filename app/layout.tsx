@@ -2,9 +2,7 @@
 
 import './globals.css'
 import { Inter } from 'next/font/google'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useEffect } from 'react'
+import Provider from './components/Provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,43 +17,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  //get the current path
-  const pathName = usePathname()
-  console.log(pathName)
 
-  //changes the path and link title depending on current page
-  const linkPath = pathName === '/bussines' ? '/' : '/bussines'
-  const linkTitle = pathName === '/bussines' ? 'For employees' : 'For Employers'
-
+  const session = {
+    user: {
+      name: 'John Doe',
+      email: 'john@example.com',
+    },
+    accessToken: 'sample-access-token',
+    expires: '2023-12-31',
+  }
 
   return (
     <html lang="en">
       <body className={inter.className}>
-{/*         <nav className='ml-auto  flex justify-between w-full'>
-
-          {pathName === '/bussines' ?
-            <div>
-              <button className='mx-10'>Login bussines</button>
-
-              <Link href='/bussines/bussines-registration'>
-                <p className='inline'>Register bussines</p>
-              </Link>
-            </div>
-            : 
-              <div>
-                <button className='mx-10'>Login</button>
-                <button>Register</button>
-              </div>
-
-          }
-
-
-          <Link href={linkPath}>
-            <p className='w-32 mx-5'>{linkTitle}</p>
-          </Link>
-
-        </nav> */}
-        {children}
+        <Provider session={session}>
+          {children}
+        </Provider>
       </body>
     </html>
   )

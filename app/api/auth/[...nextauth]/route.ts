@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import EmailProvider from 'next-auth/providers/email';
+import NodeMailer from 'nodemailer'
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 
@@ -39,18 +40,18 @@ const handler = NextAuth({
                 return null;
             },
         }),
-        EmailProvider({
+/*         EmailProvider({
             server: "process.env.EMAIL_SERVER",
             from: "process.env.EMAIL_FROM",
             // maxAge: 24 * 60 * 60, // How long email links are valid for (default 24h)
+        }), */
+        GoogleProvider({
+            clientId: "process.env.GOOGLE_CLIENT_ID",
+            clientSecret: "process.env.GOOGLE_CLIENT_SECRET",
         }),
         GitHubProvider({
             clientId: "process.env.GITHUB_ID",
             clientSecret: "process.env.GITHUB_SECRET",
-        }),
-        GoogleProvider({
-            clientId: "process.env.GOOGLE_CLIENT_ID",
-            clientSecret: "process.env.GOOGLE_CLIENT_SECRET",
         }),
     ],
 });

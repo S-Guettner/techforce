@@ -7,6 +7,7 @@ import Image from 'next/image'
 import logo  from '../public/images/tech-force-high-resolution-logo-color-on-transparent-background.png'
 import LoginModal from './components/LoginModal'
 import RegistrationModal from './components/RegistrationModal'
+import Navbar from './components/Navbar'
 
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
 
   return (
     <div>
+      <Navbar />
       <nav className='flex justify-between items-center p-2'>
         <div>
           <Image 
