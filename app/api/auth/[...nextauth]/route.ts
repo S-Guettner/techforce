@@ -1,13 +1,8 @@
-import NextAuth from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import EmailProvider from 'next-auth/providers/email';
-import NodeMailer from 'nodemailer';
-import GitHubProvider from 'next-auth/providers/github';
+import NextAuth, { AuthOptions, SessionOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
-
-const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID as string;
-const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET as string;
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID as string
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET as string
 
 const handler = NextAuth({
     providers: [
@@ -16,12 +11,7 @@ const handler = NextAuth({
             clientSecret: GOOGLE_CLIENT_SECRET,
         }),
     ],
-    /*     async session({session}){
-
-    },
-    async signIn({profile}){
-
-    } */
+    secret:process.env.JWT_SECRET
 });
 
 export { handler as GET, handler as POST };

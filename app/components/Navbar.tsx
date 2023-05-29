@@ -17,6 +17,8 @@ const Navbar: FC<NavbarProps> = () => {
     const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>()
     console.log(providers)
 
+    const {data: session} = useSession()
+
     useEffect(() => {
         const providers = async () => {
             const response = await getProviders()
@@ -24,6 +26,8 @@ const Navbar: FC<NavbarProps> = () => {
         }
         providers()
     }, [])
+
+    console.log()
 
     return (
         <nav>
@@ -37,10 +41,10 @@ const Navbar: FC<NavbarProps> = () => {
                     >
                         Sign in
                     </button>
-
+    
                 )
             })}
-        </nav>
+        </nav> 
     )
 }
 
