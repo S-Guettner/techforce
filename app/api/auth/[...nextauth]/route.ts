@@ -1,6 +1,5 @@
 import NextAuth, { AuthOptions, SessionOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import mongoose from 'mongoose';
 import userModel from '../../../utils/models/userModel';
 import { connectionToDB } from '@/app/utils/database';
 
@@ -20,11 +19,18 @@ const handler = NextAuth({
             await connectionToDB();
 
             try {
-                // Perform any additional logic or database operations here
-                await userModel.create({
-                    userName: user.name,
-                    email: user.email,
-                });
+                const userEmail = user?.email
+                
+                const userCheck = await userModel.findOne({ email: userEmail });
+
+                if (!userCheck){
+                    await userModel.create({
+                        userName: user.name,
+                        email: userEmail,
+                    });
+                }else{
+                    console.log("User already exists")
+                }
                 return true; // Return true to indicate successful sign-in
             } catch (error) {
                 console.log(error);
