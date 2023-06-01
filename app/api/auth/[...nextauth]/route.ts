@@ -31,6 +31,8 @@ const handler = NextAuth({
                 }else{
                     console.log("User already exists")
                     /* add logic for user login */
+                    /* add logic for user log out */
+                    /* add logic for getting user session */
                 }
                 return true; 
             } catch (error) {
