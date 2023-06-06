@@ -1,12 +1,11 @@
 import NextAuth, { AuthOptions, SessionOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import {userModel} from '../../../utils/models/userModel';
+import userCompany from '../../../utils/models/userModel';
 import { connectionToDB } from '@/app/utils/database';
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID as string;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET as string;
 
-connectionToDB();
 
 const handler = NextAuth({
     providers: [
@@ -19,6 +18,7 @@ const handler = NextAuth({
     callbacks: {
         async signIn({ user, account, profile, email, credentials }) {
             
+            await connectionToDB()
 
             try {
                 const userEmail = user?.email
@@ -26,7 +26,7 @@ const handler = NextAuth({
                 
 
                 
-                    await userModel.create({
+                    await userCompany.create({
                         userName: user.name,
                         email: userEmail,
                     });

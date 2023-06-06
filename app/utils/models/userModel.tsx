@@ -1,10 +1,11 @@
 import mongoose from 'mongoose'
 
-const userSchema = new mongoose.Schema({
+const userCompanySchema = new mongoose.Schema({
     userName:String,
     email:String
 })
 
+//userData = name of collection
+const userCompany = mongoose.model('userCompany', userCompanySchema)
 
-export const userModel = mongoose.model('userData', userSchema)
-
+export default userCompany
