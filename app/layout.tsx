@@ -1,5 +1,6 @@
 "use client"
 
+
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Provider from './components/Provider'
@@ -17,6 +18,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+  
 
   const session = {
     user: {

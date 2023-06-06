@@ -24,6 +24,7 @@ const page: FC<pageProps> = ({ }) => {
           <Link className='mx-2 rounded-lg px-2 bg-[#01bc8d] text-white hover:opacity-40' href='/bussines/bussines-registration'>
             Register
           </Link>
+          <Link href="/">back to Home</Link>
         </div>
       </nav>
     </div>

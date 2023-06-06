@@ -27,7 +27,7 @@ const Navbar: FC<NavbarProps> = () => {
         providers()
     }, [])
 
-    console.log()
+    console.log(session)
 
     return (
         <nav>
@@ -41,7 +41,7 @@ const Navbar: FC<NavbarProps> = () => {
                     >
                         Sign in
                     </button>
-    
+
                 )
             })}
         </nav> 
