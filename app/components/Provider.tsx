@@ -2,25 +2,15 @@
 import { FC , ReactNode} from 'react'
 import { SessionProvider } from 'next-auth/react'
 
-interface User {
-    name: string
-    email: string
+
+
+interface Props {
+    children?: ReactNode
 }
 
-interface Session {
-    user: User
-    expires: string
-    
-}
-
-interface ProviderProps {
-    children: ReactNode
-    session: Session
-}
-
-const Provider: FC<ProviderProps> = ({children,session}) => {
+const Provider = ({ children }: Props) => {
   return (
-    <SessionProvider session = {session}>
+    <SessionProvider>
         {children}
     </SessionProvider>
   )

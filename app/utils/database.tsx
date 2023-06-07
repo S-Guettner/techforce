@@ -2,8 +2,8 @@ import mongoose from 'mongoose'
 
 let isConnected = false
 
-export const connectionToDB = async () => {
-    mongoose.set('strictQuery', true)
+const connectionToDB = async () => {
+    
 
     if (isConnected) {
         console.log("DB is connected")
@@ -19,3 +19,5 @@ export const connectionToDB = async () => {
         console.log(err)
     }
 }
+
+export default connectionToDB
