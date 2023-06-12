@@ -15,29 +15,7 @@ const handler = NextAuth({
         }),
     ],
     secret: process.env.JWT_SECRET,
-    callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
-            
-            await connectionToDB()
 
-            try {
-                const userEmail = user?.email
-                
-                
-
-                
-                    await userCompany.create({
-                        userName: user.name,
-                        email: userEmail,
-                    });
-                
-                return true; 
-            } catch (error) {
-                console.log(error);
-                return false;
-            }
-        },
-    },
 });
 
 export { handler as GET, handler as POST };
