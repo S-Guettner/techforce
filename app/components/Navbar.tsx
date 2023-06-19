@@ -29,6 +29,26 @@ const Navbar: FC<NavbarProps> = () => {
 
     console.log(session)
 
+    
+        const signInHandler = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/userCheck', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: session?.user?.email,
+
+                    }),
+                });
+
+            } catch (err) {
+                console.log(err)
+            }
+        }
+    
+
     return (
         <nav>
             {providers && Object.values(providers).map((provider) => {
@@ -38,7 +58,7 @@ const Navbar: FC<NavbarProps> = () => {
                         <button
                             type='button'
 
-                            onClick={() => signIn(provider.id)}
+                            onClick={() => signInHandler}
                         >
                             Sign in
                         </button>
