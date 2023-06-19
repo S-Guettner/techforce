@@ -5,7 +5,7 @@ const userCompanySchema = new mongoose.Schema({
     email:String
 })
 
-//userData = name of collection
+
 const userCompany = mongoose.model('userCompany', userCompanySchema)
 
 export default userCompany

@@ -1,14 +1,16 @@
-import { NextApiRequest,NextApiResponse } from "next"
-import userModel from "../../utils/models/userModel"
+import { NextApiRequest, NextApiResponse } from 'next';
+import userCompany from '../../utils/models/userModel';
 
-const userCheck = async (req:NextApiRequest, res:NextApiResponse) => {
-    const {email} = req.body
-    const user = await userModel.findOne({email})
-    if(!user){
-        await userModel.create({email})
-    }
-    const response =  user ?  "user found" : "user not found"
-    res.status(200).json(response);
-}
+const userCheck = async (req: NextApiRequest, res: NextApiResponse) => {
+    try {
+        if (req.method === 'POST') {
+            const { email } = req.body;
 
-export default userCheck;
+            res.status(200).json(email);
+        }
+    } catch (error) {}
+};
+
+export default {
+    post: userCheck,
+};

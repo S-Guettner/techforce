@@ -31,6 +31,7 @@ const Navbar: FC<NavbarProps> = () => {
 
     
         const signInHandler = async () => {
+            await signIn()
             try {
                 const response = await fetch('http://localhost:3000/api/userCheck', {
                     method: 'POST',
