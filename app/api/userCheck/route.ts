@@ -1,14 +1,13 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import userCompany from '../../utils/models/userModel';
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: Request) {
     try {
-        const { email } = req.body;
+        const { email } = await req.json();
 
-        res.statusCode = 200;
-        return res.json(email);
-    } catch {
-        res.statusCode = 400;
-        return res.json('not working');
+        return NextResponse.json({email})
+    } catch (err) {
+        console.error(err);
+        return NextResponse.json({ err });
     }
 }
