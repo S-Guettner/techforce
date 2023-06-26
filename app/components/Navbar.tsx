@@ -4,6 +4,7 @@ import { FC } from 'react'
 import { useState, useEffect } from 'react'
 import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralUnion } from 'next-auth/react'
 import { BuiltInProviderType } from 'next-auth/providers'
+import { nanoid } from 'nanoid'
 
 interface NavbarProps {
 
@@ -15,7 +16,7 @@ interface getProviderState {
 const Navbar: FC<NavbarProps> = () => {
 
     const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>()
-    console.log(providers)
+    
 
     const { data: session } = useSession()
 
@@ -30,36 +31,19 @@ const Navbar: FC<NavbarProps> = () => {
     console.log(session)
 
     
-        const signInHandler = async () => {
-            await signIn()
-            try {
-                const response = await fetch('http://localhost:3000/api/userCheck', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: session?.user?.email,
-
-                    }),
-                });
-
-            } catch (err) {
-                console.log(err)
-            }
-        }
+       
     
 
     return (
         <nav>
-            {providers && Object.values(providers).map((provider) => {
-                return (
-                    <nav key={provider.id}>
+            
+                
+            <nav key={nanoid()}>
 
                         <button
                             type='button'
 
-                            onClick={() => signInHandler}
+                            onClick={() => signIn()}
                         >
                             Sign in
                         </button>
@@ -72,8 +56,10 @@ const Navbar: FC<NavbarProps> = () => {
 
                     </nav>
 
-                )
-            })}
+                
+          
+
+            
         </nav>
     )
 }
