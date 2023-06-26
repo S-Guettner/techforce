@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralUnion } from 'next-auth/react'
 import { BuiltInProviderType } from 'next-auth/providers'
 import { nanoid } from 'nanoid'
+import axios from 'axios'
 
 interface NavbarProps {
 
@@ -28,9 +29,21 @@ const Navbar: FC<NavbarProps> = () => {
         providers()
     }, [])
 
-    console.log(session)
+    console.log(session?.user?.email)
 
-    
+    useEffect(() => {
+        
+            axios.post('/api/userCheck', {
+                email:session?.user?.email
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        
+    })
        
     
 
