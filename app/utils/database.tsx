@@ -20,4 +20,4 @@ const connectionToDB = async () => {
     }
 }
 
-export default connectionToDB
+connectionToDB()

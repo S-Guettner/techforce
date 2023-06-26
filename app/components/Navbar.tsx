@@ -34,7 +34,7 @@ const Navbar: FC<NavbarProps> = () => {
     useEffect(() => {
         
             axios.post('/api/userCheck', {
-                email:session?.user?.email
+                userEmail:session?.user?.email
             })
                 .then(function (response) {
                     console.log(response);

@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import userCompany from '../../utils/models/userModel';
+
+import userTest from '@/app/utils/models/userModel';
 
 export async function POST(req: Request) {
-    try {
-        const { email } = await req.json();
+    const { mail } = await req.json();
 
-        return NextResponse.json({email})
+    try {
+        
+        
+        const check = userTest.findOne({ mail });
+
+        return NextResponse.json({ mail});
     } catch (err) {
         console.error(err);
         return NextResponse.json({ err });
