@@ -6,9 +6,10 @@ export async function POST(req: Request) {
     const { mail } = await req.json();
 
     try {
-        
-        
         const check = userTest.findOne({ mail });
+        if(!check){
+            userTest.create({mail})
+        }
 
         return NextResponse.json({ mail});
     } catch (err) {

@@ -43,7 +43,7 @@ const Navbar: FC<NavbarProps> = () => {
                     console.log(error);
                 });
         
-    })
+    }, [session])
        
     
 
