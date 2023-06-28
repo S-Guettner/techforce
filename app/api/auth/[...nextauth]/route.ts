@@ -7,8 +7,8 @@ import connectionToDB from '@/app/utils/database';
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID as string;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET as string;
 
-const GITHUB_ID = process.env.GITHUB_ID as string
-const GITHUB_SECRET = process.env.GITHUB_SECRET as string
+const GITHUB_ID = process.env.GITHUB_ID as string;
+const GITHUB_SECRET = process.env.GITHUB_SECRET as string;
 
 const handler = NextAuth({
     providers: [
@@ -25,15 +25,21 @@ const handler = NextAuth({
 
     callbacks: {
         async signIn({ user, account, profile, email, credentials }) {
-
-            connectionToDB()
+            connectionToDB();
 
             try {
                 const userEmail = user?.email;
 
-                await userTest.create({
-                    email: userEmail,
-                });
+                const userCheck = await userTest.findOne({ email: userEmail });
+
+                if (!userCheck) {
+                    await userTest.create({
+                        email: userEmail,
+                    });
+                    console.log("User not in DB")
+                }else{
+                    console.log("User already in DB")
+                }
 
                 return true;
             } catch (error) {
