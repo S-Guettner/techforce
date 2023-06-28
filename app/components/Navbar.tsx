@@ -58,7 +58,7 @@ const Navbar: FC<NavbarProps> = () => {
                         <button
                             type='button'
 
-                            onClick={() => signIn()}
+                            onClick={() => signIn('google',{callbackUrl:"http://localhost:3000"})}
                         >
                             Sign in
                         </button>
