@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Link from 'next/link'
 import Image from 'next/image'
@@ -14,8 +14,12 @@ export default function Home() {
   const [registrationClicked, setRegistrationClicked] = useState(false)
   const [loginClicked, setLoginClicked] = useState(false)
 
-  console.log(registrationClicked)
-  console.log(loginClicked)
+
+  const [modalStatus, setModalStatus] = useState(false)
+
+  useEffect(() => {
+    console.log(modalStatus, "STATUS MODAL")
+  }, [modalStatus])
 
   return (
     <div>
@@ -30,7 +34,7 @@ export default function Home() {
           />
         </div>
         <div>
-{/*           <button onClick={() => setRegistrationClicked(prev => !prev)} className='mx-2 rounded-lg px-2 bg-[#01bc8d] text-white hover:opacity-40'>
+          {/*           <button onClick={() => setRegistrationClicked(prev => !prev)} className='mx-2 rounded-lg px-2 bg-[#01bc8d] text-white hover:opacity-40'>
             Registration
           </button>
           <button onClick={() => setLoginClicked(prev => !prev)} className='mx-2 rounded-lg px-2 bg-[#01bc8d] text-white hover:opacity-40'>
@@ -42,7 +46,15 @@ export default function Home() {
         </div>
       </nav>
       <main>
-        <RegistrationModal />
+
+        {modalStatus && <RegistrationModal 
+          setModalStatus={setModalStatus}
+        />}
+
+
+        <button onClick={() => { setModalStatus(prev => !prev) }}>
+          Sign up
+        </button>
       </main>
     </div>
 
