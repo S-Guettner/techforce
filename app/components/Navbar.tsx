@@ -29,7 +29,9 @@ const Navbar: FC<NavbarProps> = () => {
         providers()
     }, [])
 
-    console.log(session?.user?.email)
+    console.log(session)
+
+ /*    console.log(session?.user?.email)
 
     useEffect(() => {
         
@@ -43,7 +45,7 @@ const Navbar: FC<NavbarProps> = () => {
                     console.log(error);
                 });
         
-    }, [session])
+    }, [session]) */
        
     
 

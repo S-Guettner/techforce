@@ -1,8 +1,8 @@
 import NextAuth, { AuthOptions, SessionOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import GitHubProvider from 'next-auth/providers/github';
-
-
+import userTest from '@/app/utils/models/userModel';
+import connectionToDB from '@/app/utils/database';
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID as string;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET as string;
@@ -22,6 +22,26 @@ const handler = NextAuth({
         }),
     ],
     secret: process.env.JWT_SECRET,
+
+    callbacks: {
+        async signIn({ user, account, profile, email, credentials }) {
+
+            connectionToDB()
+
+            try {
+                const userEmail = user?.email;
+
+                await userTest.create({
+                    email: userEmail,
+                });
+
+                return true;
+            } catch (error) {
+                console.log(error);
+                return false;
+            }
+        },
+    },
 });
 
 export { handler as GET, handler as POST };
