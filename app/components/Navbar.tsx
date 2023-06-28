@@ -52,7 +52,7 @@ const Navbar: FC<NavbarProps> = () => {
     return (
         <nav>
             
-                
+       {/*          
             <nav key={nanoid()}>
 
                         <button
@@ -70,7 +70,7 @@ const Navbar: FC<NavbarProps> = () => {
                         </button>
 
                     </nav>
-
+ */}
                 
           
 
