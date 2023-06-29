@@ -51,7 +51,7 @@ const Navbar: FC<NavbarProps> = () => {
 
     return (
         <nav>
-            
+            <button onClick={() => signOut()}>Sign out</button>
        {/*          
             <nav key={nanoid()}>
 

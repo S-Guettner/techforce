@@ -4,6 +4,7 @@ import GitHubProvider from 'next-auth/providers/github';
 import EmailProvider from 'next-auth/providers/email';
 import userTest from '@/app/utils/models/userModel';
 import connectionToDB from '@/app/utils/database';
+import mongoose from 'mongoose';
 
 /* google auth */
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID as string;
@@ -14,9 +15,12 @@ const GITHUB_ID = process.env.GITHUB_ID as string;
 const GITHUB_SECRET = process.env.GITHUB_SECRET as string;
 
 /* mail magic link auth */
-const EMAIL_SERVER_HOST = process.env.EMAIL_SERVER_HOST as string
-const EMAIL_SERVER_PORT = process.env.EMAIL_SERVER_PORT ? parseInt(process.env.EMAIL_SERVER_PORT) : undefined
-
+const EMAIL_SERVER_HOST = process.env.EMAIL_SERVER_HOST as string;
+const EMAIL_SERVER_PORT = process.env.EMAIL_SERVER_PORT 
+? parseInt(process.env.EMAIL_SERVER_PORT) 
+: undefined;
+const EMAIL_SERVER_USER = process.env.EMAIL_SERVER_USER as string;
+const EMAIL_SERVER_PASSWORD = process.env.EMAIL_SERVER_PASSWORD as string;
 
 const handler = NextAuth({
     providers: [
@@ -28,19 +32,21 @@ const handler = NextAuth({
             clientId: GITHUB_ID,
             clientSecret: GITHUB_SECRET,
         }),
-        EmailProvider({
+/*         EmailProvider({
             server: {
                 host: EMAIL_SERVER_HOST,
                 port: EMAIL_SERVER_PORT,
                 auth: {
-                    user: process.env.EMAIL_SERVER_USER,
-                    pass: process.env.EMAIL_SERVER_PASSWORD,
+                    user: EMAIL_SERVER_USER,
+                    pass: EMAIL_SERVER_PASSWORD,
                 },
             },
             from: process.env.EMAIL_FROM,
-        }),
+        }), */
     ],
     secret: process.env.JWT_SECRET,
+
+    
 
     callbacks: {
         async signIn({ user, account, profile, email, credentials }) {
