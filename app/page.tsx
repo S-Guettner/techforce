@@ -7,7 +7,7 @@ import Image from 'next/image'
 import logo from '../public/images/tech-force-high-resolution-logo-color-on-transparent-background.png'
 import RegistrationModal from './components/RegistrationModal'
 import Navbar from './components/Navbar'
-
+import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralUnion } from 'next-auth/react'
 
 export default function Home() {
 
@@ -20,6 +20,17 @@ export default function Home() {
   useEffect(() => {
     console.log(modalStatus, "STATUS MODAL")
   }, [modalStatus])
+
+  const { data: session } = useSession()
+  console.log(session)
+
+ 
+  useEffect(() => {
+    if (session) {
+      window.location.href = 'bussines/bussines-dashboard'
+    }
+  },[session])
+
 
   return (
     <div>
@@ -40,7 +51,7 @@ export default function Home() {
           <button onClick={() => setLoginClicked(prev => !prev)} className='mx-2 rounded-lg px-2 bg-[#01bc8d] text-white hover:opacity-40'>
             login
           </button> */}
-          <Link className='underline hover:no-underline' href='/bussines'>
+          <Link className='underline hover:no-underline' href='bussines'>
             For Employers
           </Link>
         </div>

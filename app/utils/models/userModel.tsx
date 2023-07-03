@@ -1,7 +1,15 @@
 import mongoose from 'mongoose'
 
+const jobPostings = new mongoose.Schema({
+    jobTitle:String,
+    shortJobDescription:String,
+    detailedJobDescription:String,
+    contactPerson:String
+})
+
 const userCompanySchema = new mongoose.Schema({
-    email:String
+    email:String,
+    post: jobPostings
 })
 
 

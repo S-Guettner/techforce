@@ -38,8 +38,8 @@ const RegistrationModal: FC<RegistrationModalProps> = ({ setModalStatus }) => {
       </div>
 
       <section className=''>
-  <div className='border-2 border-black p-2'>
-        <h3>currently not working!</h3>
+  <div className='border-2 border-red-600 p-2'>
+        <h3>currently not working!!!!!!</h3>
       <input className='border-2 border-black rounded-md'placeholder='email' type="email" name="" id="" />
       <div className=' w-2/3 flex justify-between cursor-pointer border-2 border-neutral-500 rounded-md p-2 my-2' onClick={() => signIn('github', { callbackUrl: "http://localhost:3000" })}>
         <p>Sign up with email</p>

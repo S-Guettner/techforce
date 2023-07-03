@@ -6,6 +6,7 @@ import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralU
 import { BuiltInProviderType } from 'next-auth/providers'
 import { nanoid } from 'nanoid'
 import axios from 'axios'
+import { redirect } from 'next/dist/server/api-utils'
 
 interface NavbarProps {
 
@@ -21,6 +22,8 @@ const Navbar: FC<NavbarProps> = () => {
 
     const { data: session } = useSession()
 
+    
+
     useEffect(() => {
         const providers = async () => {
             const response = await getProviders()
@@ -29,7 +32,7 @@ const Navbar: FC<NavbarProps> = () => {
         providers()
     }, [])
 
-    console.log(session)
+    /* console.log(session) */
 
  /*    console.log(session?.user?.email)
 
