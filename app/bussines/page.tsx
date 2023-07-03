@@ -7,6 +7,8 @@ import Link from 'next/link'
 import RegistrationModal from '../components/RegistrationModal'
 import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralUnion } from 'next-auth/react'
 import { BuiltInProviderType } from 'next-auth/providers'
+import { useRouter } from 'next/navigation'
+
 
 interface pageProps {
 
@@ -15,7 +17,7 @@ interface pageProps {
 const page: FC<pageProps> = ({ }) => {
 
   const [modalStatus, setModalStatus] = useState(false)
-
+  const router = useRouter();
   useEffect(() => {
     console.log(modalStatus, "STATUS MODAL")
   }, [modalStatus])
@@ -36,10 +38,10 @@ const page: FC<pageProps> = ({ }) => {
   console.log(session)
   useEffect(() => {
     if (session) {
-      window.location.href = 'bussines/bussines-dashboard'
+      router.push('bussines/bussines-dashboard')
     }
 
-  }, [session])
+  }, [session,router])
 
   return (
     <div >

@@ -8,6 +8,7 @@ import logo from '../public/images/tech-force-high-resolution-logo-color-on-tran
 import RegistrationModal from './components/RegistrationModal'
 import Navbar from './components/Navbar'
 import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralUnion } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
 
@@ -16,6 +17,8 @@ export default function Home() {
 
 
   const [modalStatus, setModalStatus] = useState(false)
+
+  const router = useRouter();
 
   useEffect(() => {
     console.log(modalStatus, "STATUS MODAL")
@@ -27,9 +30,9 @@ export default function Home() {
  
   useEffect(() => {
     if (session) {
-      window.location.href = 'bussines/bussines-dashboard'
+      router.push('bussines/bussines-dashboard')
     }
-  },[session])
+  },[session,router])
 
 
   return (
@@ -58,14 +61,7 @@ export default function Home() {
       </nav>
       <main>
 
-        {modalStatus && <RegistrationModal 
-          setModalStatus={setModalStatus}
-        />}
 
-
-        <button onClick={() => { setModalStatus(prev => !prev) }}>
-          Sign up
-        </button>
       </main>
     </div>
 
