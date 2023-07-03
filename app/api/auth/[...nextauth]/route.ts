@@ -5,6 +5,7 @@ import EmailProvider from 'next-auth/providers/email';
 import userTest from '@/app/utils/models/userModel';
 import connectionToDB from '@/app/utils/database';
 import mongoose from 'mongoose';
+import nodemailer from 'nodemailer';
 
 /* google auth */
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID as string;
@@ -22,6 +23,20 @@ const EMAIL_SERVER_PORT = process.env.EMAIL_SERVER_PORT
 const EMAIL_SERVER_USER = process.env.EMAIL_SERVER_USER as string;
 const EMAIL_SERVER_PASSWORD = process.env.EMAIL_SERVER_PASSWORD as string;
 
+/* mail provider */
+/* const mailer = nodemailer.createTransport({
+    host: 'smtp.mailgun.org',
+    port: 587,
+    auth: {
+        user: EMAIL_SERVER_USER,
+        pass: EMAIL_SERVER_PASSWORD,
+    },
+});
+const emailAdapter = EmailProvider({
+    server: mailer,
+    from: process.env.EMAIL_FROM,
+});
+ */
 const handler = NextAuth({
     providers: [
         GoogleProvider({
@@ -33,14 +48,7 @@ const handler = NextAuth({
             clientSecret: GITHUB_SECRET,
         }),
 /*         EmailProvider({
-            server: {
-                host: EMAIL_SERVER_HOST,
-                port: EMAIL_SERVER_PORT,
-                auth: {
-                    user: EMAIL_SERVER_USER,
-                    pass: EMAIL_SERVER_PASSWORD,
-                },
-            },
+            server: mailer,
             from: process.env.EMAIL_FROM,
         }), */
     ],
