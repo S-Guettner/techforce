@@ -82,14 +82,14 @@ const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
 
 
       <section className='bg-white h-screen'>
-        <div>
-          {/* ========================================================= TASKS ============================================================ */}
+        {/* ============================= ============================ TASKS ============================================================ */}
+        <div className='my-10'>
           <p>Tasks</p>
           <div>
             {tasks && tasks.map((item, index) => {
               return (
                 <div key={nanoid()}>
-                  <p className='inline'>&#x2022;{item} index = {index}</p>
+                  <p className='inline'>&#x2022;{item} </p>
                   <button className='bg-red-400 p-1 text-white rounded-md' onClick={() => deleteTask(index)}>delete task</button>
                 </div>
               )
@@ -98,14 +98,14 @@ const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
             )}
           </div>
         </div>
-        <div>
-          {/* ========================================================= OFFERS ============================================================ */}
+        {/* ========================================================= OFFERS ============================================================ */}
+        <div className='my-10'>
           <p>Job offer</p>
           <div>
             {offers && offers.map((item, index) => {
               return (
                 <div key={nanoid()}>
-                  <p className='inline'>&#x2022;{item} index = {index}</p>
+                  <p className='inline'>&#x2022;{item} </p>
                   <button className='bg-red-400 p-1 text-white rounded-md' onClick={() => deleteOffer(index)}>delete offer</button>
                 </div>
               )
@@ -114,14 +114,14 @@ const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
             )}
           </div>
         </div>
-        <div>
-          {/* ========================================================= REQUIREMENTS ============================================================ */}
+        {/* ========================================================= REQUIREMENTS ============================================================ */}
+        <div className='my-10'>
           <p>Job requirement</p>
           <div>
             {requirements && requirements.map((item, index) => {
               return (
                 <div key={nanoid()}>
-                  <p className='inline'>&#x2022;{item} index = {index}</p>
+                  <p className='inline'>&#x2022;{item} </p>
                   <button className='bg-red-400 p-1 text-white rounded-md' onClick={() => deleteRequirement(index)}>delete requirement</button>
                 </div>
               )
