@@ -1,12 +1,17 @@
 'use client'
 import { FC, useState } from 'react'
+import { useSession } from 'next-auth/react'
 import { nanoid } from 'nanoid'
+import axios from 'axios'
 
 interface BussinesDashboardNewPostProps {
 
 }
 
 const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
+
+  const { data: session } = useSession()
+  console.log(session?.user?.email)
 
 
   const [tasks, setTasks] = useState<string[]>([]);
@@ -43,15 +48,34 @@ const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent the default form submission behavior
-    // Process the form data or perform any necessary actions
-  };
+    e.preventDefault()
+  }
 
   const deleteRequirement = (index: number) => {
     const newRequirements = [...requirements];
     newRequirements.splice(index, 1);
     setRequirements(newRequirements);
   };
+
+  const createNewPost = () => {
+    /* req backend */
+    axios.post('/api/newPost', {
+      userEmail: session?.user?.email,
+      jobTitle: 'Fred',
+      shortJobDescription: 'Flintstone',
+      detailedJobDescription: "test",
+      tasks: ["task1", "task2", "task3"],
+      offers: ["offer1", "offer2", "offer3"],
+      requirements: ["requirements1", "requirements2", "requirements3"],
+      contactPerson: "contactPerson"
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   return (
     <main>
@@ -79,6 +103,8 @@ const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
         <input onChange={(e) => setRequirement(e.target.value)} className='block border-2 border-black' placeholder='job requirements' type="text" name="jobRequirements" id="jobRequirements" />
         <button onClick={() => addRequirement(requirement)}>add requirement</button>
       </div>
+
+      <button onClick={() => createNewPost()}>Create new job post</button>
 
 
       <section className='bg-white h-screen'>
