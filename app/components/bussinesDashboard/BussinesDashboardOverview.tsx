@@ -2,6 +2,7 @@
 import { FC,useEffect,useState } from 'react'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
+import BussinesDashboardOverviewPosts from './BussinesDashboardOverviewPosts'
 
 interface BussinesDashboardOverviewProps {
   
@@ -11,7 +12,7 @@ const BussinesDashboardOverview: FC<BussinesDashboardOverviewProps> = ({}) => {
   
     const { data: session } = useSession()
    
-    const [posts,setPost] = useState({})
+    const [posts,setPost] = useState([{}])
   
     useEffect(() => {
         axios.post('/api/postsOverview', {
@@ -29,7 +30,11 @@ const BussinesDashboardOverview: FC<BussinesDashboardOverviewProps> = ({}) => {
     console.log(posts)
     return (
     <main>
-
+        {posts && posts.map((item) => {
+            return(
+                <h1>hello</h1>
+            )
+        })}
     </main>
   )
 }
