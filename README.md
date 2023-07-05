@@ -1,2 +1,2 @@
 ## todo
--[] error handling for new job post 
+- [] error handling for new job post 
