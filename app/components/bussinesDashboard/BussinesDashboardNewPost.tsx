@@ -13,6 +13,10 @@ const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
   const { data: session } = useSession()
   console.log(session?.user?.email)
 
+  const [jobTitle, setJobTitle] = useState("")
+  const [shortJobDescription, setShortJobDescription] = useState("")
+  const [detailedJobDescription, setSetailedJobDescription] = useState("")
+  const [contactPerson, setContactPerson] = useState("")
 
   const [tasks, setTasks] = useState<string[]>([]);
   const [task, setTask] = useState("")
@@ -61,13 +65,13 @@ const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
     /* req backend */
     axios.post('/api/newPost', {
       userEmail: session?.user?.email,
-      jobTitle: 'Fred',
-      shortJobDescription: 'Flintstone',
-      detailedJobDescription: "test",
-      tasks: ["task1", "task2", "task3"],
-      offers: ["offer1", "offer2", "offer3"],
-      requirements: ["requirements1", "requirements2", "requirements3"],
-      contactPerson: "contactPerson"
+      jobTitle: jobTitle,
+      shortJobDescription: shortJobDescription,
+      detailedJobDescription: detailedJobDescription,
+      tasks: tasks,
+      offers: offers,
+      requirements: requirements,
+      contactPerson: contactPerson
     })
       .then(function (response) {
         console.log(response);
@@ -79,28 +83,28 @@ const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
 
   return (
     <main>
-      <div>BussinesDashboardNewPost</div>
       <form >
-        <input className='block border-2 border-black' placeholder='job title' type="text" name="jobTitle" id="jobTitle" />
-        <input className='block border-2 border-black' placeholder='short job description' type="text" name="shortDescription" id="shortDescription" />
+        <input onChange={(e) => setJobTitle(e.target.value)} className='block border-2 border-black' placeholder='job title' type="text" name="jobTitle" id="jobTitle" />
+        <input onChange={(e) => setShortJobDescription(e.target.value)} className='block border-2 border-black' placeholder='short job description' type="text" name="shortDescription" id="shortDescription" />
+        <input onChange={(e) => setSetailedJobDescription(e.target.value)} className='block border-2 border-black' placeholder='detailed job description' type="text" name="detailedDescription" id="detailedDescription" />
+        <input onChange={(e) => setContactPerson(e.target.value)} className='block border-2 border-black' placeholder='contact Person' type="text" name="contactPerson" id="contactPerson" />
 
-
-      </form>
+      
 
 
       {/* bulletpoints */}
       <div>
-        <form onSubmit={handleSubmit}>
-          <input onChange={(e) => setTask(e.target.value)} className='block border-2 border-black' placeholder='job tasks' type="text" name="jobTasks" id="jobTasks" />
+        <div>
+          <input onChange={(e) => setTask(e.target.value)} className=' border-2 border-black' placeholder='job tasks' type="text" name="jobTasks" id="jobTasks" />
           <button onClick={() => addTask(task)}>add task</button>
-        </form>
+        </div>
       </div>
       <div>
-        <input onChange={(e) => setOffer(e.target.value)} className='block border-2 border-black' placeholder='What we offer you' type="text" name="jobOffer" id="jobOffer" />
+        <input onChange={(e) => setOffer(e.target.value)} className='border-2 border-black' placeholder='What we offer you' type="text" name="jobOffer" id="jobOffer" />
         <button onClick={() => addOffer(offer)}>add offer</button>
       </div>
       <div>
-        <input onChange={(e) => setRequirement(e.target.value)} className='block border-2 border-black' placeholder='job requirements' type="text" name="jobRequirements" id="jobRequirements" />
+        <input onChange={(e) => setRequirement(e.target.value)} className='border-2 border-black' placeholder='job requirements' type="text" name="jobRequirements" id="jobRequirements" />
         <button onClick={() => addRequirement(requirement)}>add requirement</button>
       </div>
 
@@ -157,6 +161,7 @@ const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
           </div>
         </div>
       </section>
+      </form>
     </main>
   )
 }

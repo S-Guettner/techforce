@@ -11,7 +11,7 @@ interface BussinesDashboardOverviewProps {
 
 interface Post {
     jobTitle: string;
-    
+    timestamp:string
 }
 
 const BussinesDashboardOverview: FC<BussinesDashboardOverviewProps> = ({}) => {
@@ -33,13 +33,14 @@ const BussinesDashboardOverview: FC<BussinesDashboardOverviewProps> = ({}) => {
                 console.log(error);
             });
     },[])
-/*     console.log(posts[0]) */
+    console.log(posts)
     return (
     <main>
         {posts && posts.map((item) => {
             return(
                 <BussinesDashboardOverviewPosts 
                     key={nanoid()}
+                    timeStamp={item.timestamp}
                     jobTitle={item.jobTitle}
                 />
             )
