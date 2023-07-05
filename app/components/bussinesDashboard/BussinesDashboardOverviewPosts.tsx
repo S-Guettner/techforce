@@ -10,12 +10,11 @@ const BussinesDashboardOverviewPosts: FC<BussinesDashboardOverviewPostsProps> = 
     const year = timeStamp.slice(0,4)
     const month = timeStamp.slice(5, 7)
     const day = timeStamp.slice(8,10)
-    console.log(year)
   
     return (
-    <main>
-          <p>{jobTitle}</p>
-            <p>Created at {day}:{month}:{year}</p>
+    <main className='flex justify-between px-2'>
+        <p className='inline'>{jobTitle}</p>
+        <p className='inline'>Created at {day}:{month}:{year}</p>
     </main>
   )
 }

@@ -47,14 +47,14 @@ const page: FC<pageProps> = ({ }) => {
     <div >
       <main>
 
-        {modalStatus && <RegistrationModal
+{/*         {modalStatus && <RegistrationModal
           setModalStatus={setModalStatus}
         />}
 
         {session && <button onClick={() => signOut()}>Sign out</button>}
         {!session && <button onClick={() => setModalStatus(prev => !prev)}>Sign in</button>}
 
-
+ */}
 
 
 

@@ -21,7 +21,7 @@ const BussinesDashboardOverview: FC<BussinesDashboardOverviewProps> = ({}) => {
     const [posts, setPost] = useState<Post[]>([])
   
     useEffect(() => {
-        axios.post('/api/postsOverview', {
+        axios.post('/api/postsOverviewDashboard', {
             userEmail: session?.user?.email
 
         })
