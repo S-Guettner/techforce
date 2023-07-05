@@ -7,7 +7,13 @@ const jobPostings = new mongoose.Schema({
     tasks:[String],
     offers:[String],
     requirements:[String],
-    contactPerson:String
+    contactPerson:String,
+    timestamp: {
+        type: Date,
+        immutable: true,
+        default: Date.now,
+    },
+
 })
 
 const userCompanySchema = new mongoose.Schema({

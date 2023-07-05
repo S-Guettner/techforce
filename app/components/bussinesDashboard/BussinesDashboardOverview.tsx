@@ -1,6 +1,7 @@
 "use client"
 import { FC,useEffect,useState } from 'react'
 import axios from 'axios'
+import { nanoid } from 'nanoid'
 import { useSession } from 'next-auth/react'
 import BussinesDashboardOverviewPosts from './BussinesDashboardOverviewPosts'
 
@@ -8,11 +9,16 @@ interface BussinesDashboardOverviewProps {
   
 }
 
+interface Post {
+    jobTitle: string;
+    
+}
+
 const BussinesDashboardOverview: FC<BussinesDashboardOverviewProps> = ({}) => {
   
     const { data: session } = useSession()
    
-    const [posts,setPost] = useState([{}])
+    const [posts, setPost] = useState<Post[]>([])
   
     useEffect(() => {
         axios.post('/api/postsOverview', {
@@ -27,12 +33,15 @@ const BussinesDashboardOverview: FC<BussinesDashboardOverviewProps> = ({}) => {
                 console.log(error);
             });
     },[])
-    console.log(posts)
+/*     console.log(posts[0]) */
     return (
     <main>
         {posts && posts.map((item) => {
             return(
-                <h1>hello</h1>
+                <BussinesDashboardOverviewPosts 
+                    key={nanoid()}
+                    jobTitle={item.jobTitle}
+                />
             )
         })}
     </main>
