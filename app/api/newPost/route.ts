@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import mongoose from 'mongoose';
 import testUser from '@/app/utils/models/userModel';
 
 export const POST = async (req: Request, res: Response) => {

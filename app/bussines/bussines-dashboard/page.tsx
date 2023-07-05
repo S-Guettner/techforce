@@ -4,6 +4,7 @@ import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralU
 import { useRouter } from 'next/navigation'
 import BussinesDashboardSidebar from '@/app/components/bussinesDashboard/BussinesDashboardSidebar'
 import BussinesDashboardNewPost from '@/app/components/bussinesDashboard/BussinesDashboardNewPost'
+import BussinesDashboardOverview from '@/app/components/bussinesDashboard/BussinesDashboardOverview'
 
 interface pageProps {
 
@@ -21,7 +22,7 @@ const page: FC<pageProps> = ({ }) => {
     }
   }, [session, router])
 
-  const [selectedAction, setSelectedAction] = useState("new-post")
+  const [selectedAction, setSelectedAction] = useState("overview")
 
 
   return (
@@ -41,7 +42,7 @@ const page: FC<pageProps> = ({ }) => {
         </div>
         <div className='bg-neutral-200 w-5/6 text-black'>
           <h1>{selectedAction}</h1>
-          {selectedAction === "new-post" ? <BussinesDashboardNewPost /> : "more options in progress"}
+          {selectedAction === "new-post" ? <BussinesDashboardNewPost /> : selectedAction === "overview" ? <BussinesDashboardOverview /> : ""}
         </div>
       </main>
 
