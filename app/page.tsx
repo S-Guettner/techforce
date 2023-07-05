@@ -9,6 +9,7 @@ import RegistrationModal from './components/RegistrationModal'
 import Navbar from './components/Navbar'
 import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralUnion } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import axios from 'axios'
 
 export default function Home() {
 
@@ -19,6 +20,13 @@ export default function Home() {
   const [modalStatus, setModalStatus] = useState(false)
 
   const router = useRouter();
+
+  useEffect(() => {
+    axios.get('/api/allPosts')
+    .then(function (res){
+      console.log(res)
+    })
+  },[])
 
   useEffect(() => {
     console.log(modalStatus, "STATUS MODAL")
