@@ -41,7 +41,6 @@ const page: FC<pageProps> = ({ }) => {
           />
         </div>
         <div className='bg-neutral-200 w-5/6 text-black'>
-          <h1>{selectedAction}</h1>
           {selectedAction === "new-post" ? <BussinesDashboardNewPost /> : selectedAction === "overview" ? <BussinesDashboardOverview /> : ""}
         </div>
       </main>
