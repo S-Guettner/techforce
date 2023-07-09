@@ -20,7 +20,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
     const [newShortJobDescription, setNewShortJobDescription] = useState<string | undefined>("")
     const [newDetailedJobDescription, setNewDetailedJobDescription] = useState<string | undefined>("")
 
-    const [newTasks, setNewTasks] = useState<string[]>([])
+    const [newTasks, setNewTasks] = useState<string[] | undefined>([])
     const [newOffers, setNewOffers] = useState<string[]>([])
     const [newRequirements, setNewRequirements] = useState<string[]>([])
 
@@ -81,21 +81,22 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
         }
     }
 
-    console.log(newRequirements)
+    console.log(newTasks)
 
     const removeItemHandler = (array: string[], index: number) => {
 
         if (array === newTasks) {
-            const newArr = array?.splice(index, 1)
-            setNewTasks(newArr)
+            newTasks?.splice(index, 1)
+            console.log(newTasks)
+            /* setNewTasks(newArr) */
         }
 
-        if (array === offers) {
+        if (array === newOffers) {
             const newArr = array?.splice(index, 1)
             setNewOffers(newArr)
         }
 
-        if (array === requirements) {
+        if (array === newRequirements) {
             const newArr = array?.splice(index, 1)
             setNewRequirements(newArr)
         }
