@@ -33,6 +33,8 @@ const BussinesDashboardOverview: FC<BussinesDashboardOverviewProps> = ({ }) => {
 
     const [singlePost, setSinglePost] = useState<Post>()
 
+  
+
     useEffect(() => {
         axios.post('/api/postsOverviewDashboard', {
             userEmail: session?.user?.email
@@ -47,7 +49,7 @@ const BussinesDashboardOverview: FC<BussinesDashboardOverviewProps> = ({ }) => {
             });
     }, [])
 
-    console.log(singlePost, "post")
+    console.log(postId, "postId")
 
     useEffect(() => {
         if (postId.length > 0) {
@@ -88,6 +90,7 @@ const BussinesDashboardOverview: FC<BussinesDashboardOverviewProps> = ({ }) => {
         return (
             <main>
                 <BussinesDashboardSinglePostEdit
+                    postId={postId}
                     contactPerson={singlePost?.contactPerson}
                     shortJobDescription={singlePost?.shortJobDescription}
                     detailedJobDescription={singlePost?.detailedJobDescription}
