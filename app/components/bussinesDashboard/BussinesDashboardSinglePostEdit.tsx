@@ -11,7 +11,7 @@ interface BussinesDashboardSinglePostEditProps {
     jobTitle?: string
     offers?: string[]
     requirements?: string[]
-    tasks?: string[] 
+    tasks?: string[]
 }
 
 const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> = ({ postId, tasks, requirements, contactPerson, shortJobDescription, detailedJobDescription, jobTitle, offers }) => {
@@ -44,17 +44,48 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             setNewDetailedJobDescription("")
         }
 
-    }, [jobTitle, shortJobDescription, detailedJobDescription])
+        if (tasks) {
+            setNewTasks(tasks)
+        } else {
+            setNewTasks([])
+        }
+
+        if (offers) {
+            setNewOffers(offers)
+        } else {
+            setNewOffers([])
+        }
+
+        if (requirements) {
+            setNewRequirements(requirements)
+        } else {
+            setNewRequirements([])
+        }
+
+    }, [jobTitle, shortJobDescription, detailedJobDescription, tasks, offers, requirements])
 
 
     const addItemHandler = (array: string[] | undefined, item: string) => {
-        array?.push(item)
-        console.log(tasks)
+        const newArray = [...(array || []), item]
+
+        if (array === newTasks) {
+            setNewTasks(newArray)
+        }
+
+        if (array === newOffers) {
+            setNewOffers(newArray)
+        }
+
+        if (array === newRequirements) {
+            setNewRequirements(newArray)
+        }
     }
+
+    console.log(newRequirements)
 
     const removeItemHandler = (array: string[], index: number) => {
 
-        if (array === tasks) {
+        if (array === newTasks) {
             const newArr = array?.splice(index, 1)
             setNewTasks(newArr)
         }
@@ -87,33 +118,37 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             </div>
 
             <section className='border-2 border-black rounded-md'>
-                
+
                 <h3>Tasks:</h3>
-                
-                <button onClick={() => addItemHandler(tasks, "test")}>
+
+                <button onClick={() => addItemHandler(newTasks, "test")}>
                     add task
                 </button>
 
+                {newTasks && newTasks.map((item, index) => {
+                    return (
+                        <div key={nanoid()} className='flex justify-between'>
+                            <p>&#x2022; {item}</p>
+                            <button onClick={() => removeItemHandler(newTasks, index)}>
+                                Remove
+                            </button>
+                        </div>
+                    )
+                })}
+            </section>
+            <section className='border-2 border-black rounded-md'>
 
-                {tasks && tasks.map((item, index) => {
-                    return (
-                        <div key={nanoid()} className='flex justify-between'>
-                            <p>&#x2022; {item}</p>
-                            <button onClick={() => removeItemHandler(tasks, index)}>
-                                Remove
-                            </button>
-                        </div>
-                    )
-                })}
-            </section>
-            <section className='border-2 border-black rounded-md'>
                 <h3>Offers:</h3>
-                <button>add offer</button>
-                {offers && offers.map((item, index) => {
+
+                <button onClick={() => addItemHandler(newOffers, "test")}>
+                    add offer
+                </button>
+
+                {newOffers && newOffers.map((item, index) => {
                     return (
                         <div key={nanoid()} className='flex justify-between'>
                             <p>&#x2022; {item}</p>
-                            <button onClick={() => removeItemHandler(offers, index)}>
+                            <button onClick={() => removeItemHandler(newOffers, index)}>
                                 Remove
                             </button>
                         </div>
@@ -121,13 +156,18 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
                 })}
             </section>
             <section className='border-2 border-black rounded-md'>
+
                 <h3>Requirements:</h3>
-                <button>add requirement</button>
-                {requirements && requirements.map((item, index) => {
+
+                <button onClick={() => addItemHandler(newRequirements, "test")}>
+                    add requirement
+                </button>
+
+                {newRequirements && newRequirements.map((item, index) => {
                     return (
                         <div key={nanoid()} className='flex justify-between'>
                             <p>&#x2022; {item}</p>
-                            <button onClick={() => removeItemHandler(requirements, index)}>
+                            <button onClick={() => removeItemHandler(newRequirements, index)}>
                                 Remove
                             </button>
                         </div>
