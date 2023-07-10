@@ -12,9 +12,10 @@ interface BussinesDashboardSinglePostEditProps {
     offers?: string[]
     requirements?: string[]
     tasks?: string[]
+    setPostId: React.Dispatch<React.SetStateAction<string>>
 }
 
-const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> = ({ postId, tasks, requirements, contactPerson, shortJobDescription, detailedJobDescription, jobTitle, offers }) => {
+const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> = ({ setPostId, postId, tasks, requirements, contactPerson, shortJobDescription, detailedJobDescription, jobTitle, offers }) => {
 
     const [newJobTitle, setNewJobTitle] = useState<string | undefined>("")
     const [newShortJobDescription, setNewShortJobDescription] = useState<string | undefined>("")
@@ -23,6 +24,8 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
     const [newTasks, setNewTasks] = useState<string[] | undefined>([])
     const [newOffers, setNewOffers] = useState<string[]>([])
     const [newRequirements, setNewRequirements] = useState<string[]>([])
+
+
 
     useEffect(() => {
 
@@ -85,15 +88,18 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
 
     const removeItemHandler = (array: string[], index: number) => {
 
+
+        
         if (array === newTasks) {
-            newTasks?.splice(index, 1)
+            tasks?.splice(index,1)
             console.log(newTasks)
-            /* setNewTasks(newArr) */
+            setNewTasks(newTasks)
         }
 
         if (array === newOffers) {
             const newArr = array?.splice(index, 1)
             setNewOffers(newArr)
+            
         }
 
         if (array === newRequirements) {
@@ -105,6 +111,9 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
 
     return (
         <main>
+            <button onClick={() => setPostId("")}>
+                <p>&#x2190; Back</p>
+            </button>
             <div>
                 <p>Change Job Title</p>
                 <input onChange={(e) => setNewJobTitle(e.target.value)} type="text" name="newJobTitle" id="newJobTitle" value={newJobTitle} />

@@ -91,6 +91,7 @@ const BussinesDashboardOverview: FC<BussinesDashboardOverviewProps> = ({ }) => {
             <main>
                 <BussinesDashboardSinglePostEdit
                     postId={postId}
+                    setPostId={setPostId}
                     contactPerson={singlePost?.contactPerson}
                     shortJobDescription={singlePost?.shortJobDescription}
                     detailedJobDescription={singlePost?.detailedJobDescription}
