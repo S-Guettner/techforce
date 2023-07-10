@@ -194,9 +194,13 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
 
                 <h3>Offers:</h3>
 
-                <button onClick={() => addItemHandler(newOffers, "test")}>
-                    add offer
-                </button>
+                <div className='flex justify-evenly'>
+                    <input onChange={(e) => setNewOfferValue(e.target.value)} type="text" name="addOffer" id="addOffer" placeholder='new offer' />
+
+                    <button className='bg-blue-900 rounded-2xl text-white p-2' onClick={() => addItemHandler(newOffers, newOfferValue)}>
+                        add offer
+                    </button>
+                </div>
 
                 {newOffers && newOffers.map((item, index) => {
                     return (
@@ -212,10 +216,14 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             <section className='border-2 border-black rounded-md'>
 
                 <h3>Requirements:</h3>
+                
+                <div className='flex justify-evenly'>
+                    <input onChange={(e) => setNewRequirementValue(e.target.value)} type="text" name="addOffer" id="addOffer" placeholder='new offer' />
 
-                <button onClick={() => addItemHandler(newRequirements, "test")}>
-                    add requirement
-                </button>
+                    <button className='bg-blue-900 rounded-2xl text-white p-2' onClick={() => addItemHandler(newRequirements, newRequirementValue)}>
+                        add requirement
+                    </button>
+                </div>
 
                 {newRequirements && newRequirements.map((item, index) => {
                     return (
