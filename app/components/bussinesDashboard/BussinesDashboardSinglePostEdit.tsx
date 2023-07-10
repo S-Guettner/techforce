@@ -157,6 +157,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
         })
         .then(function (response) {
             console.log(response)
+            setPostId("")
         })
         .catch(function(error) {
             console.log(error)

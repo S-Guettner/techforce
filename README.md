@@ -1,3 +1,3 @@
 ## todo
-- [] error handling for new job post 
+- [] create new job post bugged
 - [] get company details to add to job posts

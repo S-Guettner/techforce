@@ -47,7 +47,7 @@ const BussinesDashboardOverview: FC<BussinesDashboardOverviewProps> = ({ }) => {
             .catch(function (error) {
                 console.log(error);
             });
-    }, [])
+    }, [postId])
 
     console.log(postId, "postId")
 
