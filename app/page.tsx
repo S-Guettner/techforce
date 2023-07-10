@@ -10,31 +10,51 @@ import Navbar from './components/Navbar'
 import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralUnion } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
+import Posts from './components/indexPage/Posts'
+
+interface Post {
+  jobTitle: string
+  shortJobDescription: string
+  detailedJobDescription: string
+  tasks: string[]
+  offers: string[]
+  requirements: string[]
+  contactPerson: string
+  _id: string
+  timestamp: string
+}
 
 export default function Home() {
 
   const [registrationClicked, setRegistrationClicked] = useState(false)
   const [loginClicked, setLoginClicked] = useState(false)
 
+  const [posts, setPosts] = useState<Post[]>()
 
   const [modalStatus, setModalStatus] = useState(false)
 
   const router = useRouter();
+  const { data: session } = useSession()
 
   useEffect(() => {
     axios.get('/api/allPosts')
-    .then(function (res){
-      console.log(res)
-    })
-  },[])
+      .then(function (response) {
+          console.log(response, "response");
+        setPosts(response?.data?.jobPosts)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [])
+
+  console.log(posts, "posts")
+  
 
   useEffect(() => {
     console.log(modalStatus, "STATUS MODAL")
   }, [modalStatus])
 
-  const { data: session } = useSession()
-  console.log(session)
-
+  
  
   useEffect(() => {
     if (session) {
@@ -56,19 +76,19 @@ export default function Home() {
           />
         </div>
         <div>
-          {/*           <button onClick={() => setRegistrationClicked(prev => !prev)} className='mx-2 rounded-lg px-2 bg-[#01bc8d] text-white hover:opacity-40'>
-            Registration
-          </button>
-          <button onClick={() => setLoginClicked(prev => !prev)} className='mx-2 rounded-lg px-2 bg-[#01bc8d] text-white hover:opacity-40'>
-            login
-          </button> */}
           <Link className='underline hover:no-underline' href='bussines'>
             For Employers
           </Link>
         </div>
       </nav>
       <main>
-
+        {posts && posts.map((post) => {
+          console.log(post)
+          return(
+            <p>Hello</p>
+          )
+        })
+        }
 
       </main>
     </div>

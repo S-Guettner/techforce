@@ -91,20 +91,25 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
 
         
         if (array === newTasks) {
-            tasks?.splice(index,1)
-            console.log(newTasks)
-            setNewTasks(newTasks)
+            const updatedArr = [...newTasks]
+            updatedArr.splice(index,1)
+            setNewTasks(updatedArr)
+            console.log(updatedArr)
         }
 
         if (array === newOffers) {
-            const newArr = array?.splice(index, 1)
-            setNewOffers(newArr)
+            const updatedArr = [...newOffers]
+            updatedArr.splice(index, 1)
+            setNewOffers(updatedArr)
+            console.log(updatedArr)
             
         }
 
         if (array === newRequirements) {
-            const newArr = array?.splice(index, 1)
-            setNewRequirements(newArr)
+            const updatedArr = [...newRequirements]
+            updatedArr.splice(index, 1)
+            setNewRequirements(updatedArr)
+            console.log(updatedArr)
         }
 
     }
