@@ -62,7 +62,7 @@ const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
   };
 
   const createNewPost = () => {
-    /* req backend */
+
     axios.post('/api/newPost', {
       userEmail: session?.user?.email,
       jobTitle: jobTitle,
@@ -89,78 +89,78 @@ const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
         <input onChange={(e) => setSetailedJobDescription(e.target.value)} className='block border-2 border-black' placeholder='detailed job description' type="text" name="detailedDescription" id="detailedDescription" />
         <input onChange={(e) => setContactPerson(e.target.value)} className='block border-2 border-black' placeholder='contact Person' type="text" name="contactPerson" id="contactPerson" />
 
-      
 
 
-      {/* bulletpoints */}
-      <div>
+
+        {/* bulletpoints */}
         <div>
-          <input onChange={(e) => setTask(e.target.value)} className=' border-2 border-black' placeholder='job tasks' type="text" name="jobTasks" id="jobTasks" />
-          <button onClick={() => addTask(task)}>add task</button>
-        </div>
-      </div>
-      <div>
-        <input onChange={(e) => setOffer(e.target.value)} className='border-2 border-black' placeholder='What we offer you' type="text" name="jobOffer" id="jobOffer" />
-        <button onClick={() => addOffer(offer)}>add offer</button>
-      </div>
-      <div>
-        <input onChange={(e) => setRequirement(e.target.value)} className='border-2 border-black' placeholder='job requirements' type="text" name="jobRequirements" id="jobRequirements" />
-        <button onClick={() => addRequirement(requirement)}>add requirement</button>
-      </div>
-
-      <button onClick={() => createNewPost()}>Create new job post</button>
-
-
-      <section className='bg-white h-screen'>
-        {/* ============================= ============================ TASKS ============================================================ */}
-        <div className='my-10'>
-          <p>Tasks</p>
           <div>
-            {tasks && tasks.map((item, index) => {
-              return (
-                <div key={nanoid()}>
-                  <p className='inline'>&#x2022;{item} </p>
-                  <button className='bg-red-400 p-1 text-white rounded-md' onClick={() => deleteTask(index)}>delete task</button>
-                </div>
-              )
-            }
-
-            )}
+            <input onChange={(e) => setTask(e.target.value)} className=' border-2 border-black' placeholder='job tasks' type="text" name="jobTasks" id="jobTasks" />
+            <button type='button' onClick={() => addTask(task)}>add task</button>
           </div>
         </div>
-        {/* ========================================================= OFFERS ============================================================ */}
-        <div className='my-10'>
-          <p>Job offer</p>
-          <div>
-            {offers && offers.map((item, index) => {
-              return (
-                <div key={nanoid()}>
-                  <p className='inline'>&#x2022;{item} </p>
-                  <button className='bg-red-400 p-1 text-white rounded-md' onClick={() => deleteOffer(index)}>delete offer</button>
-                </div>
-              )
-            }
-
-            )}
-          </div>
+        <div>
+          <input onChange={(e) => setOffer(e.target.value)} className='border-2 border-black' placeholder='What we offer you' type="text" name="jobOffer" id="jobOffer" />
+          <button type='button' onClick={() => addOffer(offer)}>add offer</button>
         </div>
-        {/* ========================================================= REQUIREMENTS ============================================================ */}
-        <div className='my-10'>
-          <p>Job requirement</p>
-          <div>
-            {requirements && requirements.map((item, index) => {
-              return (
-                <div key={nanoid()}>
-                  <p className='inline'>&#x2022;{item} </p>
-                  <button className='bg-red-400 p-1 text-white rounded-md' onClick={() => deleteRequirement(index)}>delete requirement</button>
-                </div>
-              )
-            }
-
-            )}
-          </div>
+        <div>
+          <input onChange={(e) => setRequirement(e.target.value)} className='border-2 border-black' placeholder='job requirements' type="text" name="jobRequirements" id="jobRequirements" />
+          <button type='button' onClick={() => addRequirement(requirement)}>add requirement</button>
         </div>
-      </section>
+
+        <button onClick={() => createNewPost()}>Create new job post</button>
+
+
+        <section className='bg-white h-screen'>
+          {/* ============================= ============================ TASKS ============================================================ */}
+          <div className='my-10'>
+            <p>Tasks</p>
+            <div>
+              {tasks && tasks.map((item, index) => {
+                return (
+                  <div key={nanoid()}>
+                    <p className='inline'>&#x2022;{item} </p>
+                    <button className='bg-red-400 p-1 text-white rounded-md' onClick={() => deleteTask(index)}>delete task</button>
+                  </div>
+                )
+              }
+
+              )}
+            </div>
+          </div>
+          {/* ========================================================= OFFERS ============================================================ */}
+          <div className='my-10'>
+            <p>Job offer</p>
+            <div>
+              {offers && offers.map((item, index) => {
+                return (
+                  <div key={nanoid()}>
+                    <p className='inline'>&#x2022;{item} </p>
+                    <button className='bg-red-400 p-1 text-white rounded-md' onClick={() => deleteOffer(index)}>delete offer</button>
+                  </div>
+                )
+              }
+
+              )}
+            </div>
+          </div>
+          {/* ========================================================= REQUIREMENTS ============================================================ */}
+          <div className='my-10'>
+            <p>Job requirement</p>
+            <div>
+              {requirements && requirements.map((item, index) => {
+                return (
+                  <div key={nanoid()}>
+                    <p className='inline'>&#x2022;{item} </p>
+                    <button className='bg-red-400 p-1 text-white rounded-md' onClick={() => deleteRequirement(index)}>delete requirement</button>
+                  </div>
+                )
+              }
+
+              )}
+            </div>
+          </div>
+        </section>
       </form>
     </main>
   )
