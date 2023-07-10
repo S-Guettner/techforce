@@ -11,6 +11,7 @@ import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralU
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import Posts from './components/indexPage/Posts'
+import { nanoid } from 'nanoid'
 
 interface Post {
   jobTitle: string
@@ -29,7 +30,7 @@ export default function Home() {
   const [registrationClicked, setRegistrationClicked] = useState(false)
   const [loginClicked, setLoginClicked] = useState(false)
 
-  const [posts, setPosts] = useState<Post[]>()
+  const [posts, setPosts] = useState<Post[]>([])
 
   const [modalStatus, setModalStatus] = useState(false)
 
@@ -37,14 +38,17 @@ export default function Home() {
   const { data: session } = useSession()
 
   useEffect(() => {
-    axios.get('/api/allPosts')
-      .then(function (response) {
-          console.log(response, "response");
-        setPosts(response?.data?.jobPosts)
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get('/api/allPosts')
+        console.log(response)
+        setPosts(response?.data?.jobPostings)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    fetchPosts()
   }, [])
 
   console.log(posts, "posts")
@@ -85,7 +89,9 @@ export default function Home() {
         {posts && posts.map((post) => {
           console.log(post)
           return(
-            <p>Hello</p>
+            <Posts 
+              key={nanoid()}
+            />
           )
         })
         }
