@@ -1,6 +1,7 @@
 "use client"
 import { FC, useState, useEffect } from 'react'
 import { nanoid } from 'nanoid'
+import { useSession } from 'next-auth/react'
 import axios from 'axios'
 
 interface BussinesDashboardSinglePostEditProps {
@@ -16,6 +17,8 @@ interface BussinesDashboardSinglePostEditProps {
 }
 
 const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> = ({ setPostId, postId, tasks, requirements, contactPerson, shortJobDescription, detailedJobDescription, jobTitle, offers }) => {
+
+    const { data: session } = useSession()
 
     const [newJobTitle, setNewJobTitle] = useState<string | undefined>("")
     const [newShortJobDescription, setNewShortJobDescription] = useState<string | undefined>("")
@@ -89,10 +92,10 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
     const removeItemHandler = (array: string[], index: number) => {
 
 
-        
+
         if (array === newTasks) {
             const updatedArr = [...newTasks]
-            updatedArr.splice(index,1)
+            updatedArr.splice(index, 1)
             setNewTasks(updatedArr)
             console.log(updatedArr)
         }
@@ -102,7 +105,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             updatedArr.splice(index, 1)
             setNewOffers(updatedArr)
             console.log(updatedArr)
-            
+
         }
 
         if (array === newRequirements) {
@@ -112,6 +115,28 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             console.log(updatedArr)
         }
 
+    }
+
+    const submitHamdler = () => {
+        axios.post('/api/singlePostEdit', {
+            userEmail: session?.user?.email,
+            postId,
+            jobTitle: newJobTitle,
+            shortJobDescription: newShortJobDescription,
+            detailedJobDescription: newDetailedJobDescription,
+            tasks: newTasks,
+            offers: newOffers,
+            requirements: newRequirements,
+            contactPerson: 'John Doe'
+
+        })
+            .then(function (response) {
+                console.log(response);
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     return (
@@ -189,8 +214,13 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
                     )
                 })}
             </section>
-            <p>{contactPerson}</p>
-
+            <section className='border-2 border-black rounded-md'>
+                <p>Contact Person:</p>
+                <p>{contactPerson}</p>
+            </section>
+            <button onClick={() => submitHamdler()} className='bg-blue-900 text-white p-2 rounded-2xl m-4 hover:opacity-50'>
+                Submit Changes
+            </button>
         </main>
     )
 }
