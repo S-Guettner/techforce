@@ -52,19 +52,19 @@ export default function Home() {
   }, [])
 
   console.log(posts, "posts")
-  
+
 
   useEffect(() => {
     console.log(modalStatus, "STATUS MODAL")
   }, [modalStatus])
 
-  
- 
+
+
   useEffect(() => {
     if (session) {
       router.push('bussines/bussines-dashboard')
     }
-  },[session,router])
+  }, [session, router])
 
 
   return (
@@ -88,8 +88,8 @@ export default function Home() {
       <main>
         {posts && posts.map((post) => {
           console.log(post)
-          return(
-            <Posts 
+          return (
+            <Posts
               key={nanoid()}
             />
           )
