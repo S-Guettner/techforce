@@ -1,4 +1,4 @@
-import NextAuth, { AuthOptions, SessionOptions, Session,User } from 'next-auth';
+import NextAuth, { AuthOptions, SessionOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import GitHubProvider from 'next-auth/providers/github';
 import EmailProvider from 'next-auth/providers/email';
@@ -7,65 +7,45 @@ import connectionToDB from '@/app/utils/database';
 import mongoose from 'mongoose';
 import nodemailer from 'nodemailer';
 
-/* google auth */
-const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID as string;
-const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET as string;
-
-/* github auth */
-const GITHUB_ID = process.env.GITHUB_ID as string;
-const GITHUB_SECRET = process.env.GITHUB_SECRET as string;
-
 /* mail magic link auth */
-/* const EMAIL_SERVER_HOST = process.env.EMAIL_SERVER_HOST as string;
+const EMAIL_SERVER_HOST = process.env.EMAIL_SERVER_HOST as string;
 const EMAIL_SERVER_PORT = process.env.EMAIL_SERVER_PORT ? parseInt(process.env.EMAIL_SERVER_PORT) : undefined;
 const EMAIL_SERVER_USER = process.env.EMAIL_SERVER_USER as string;
 const EMAIL_SERVER_PASSWORD = process.env.EMAIL_SERVER_PASSWORD as string;
+
+/* mail provider */
+/* const mailer = nodemailer.createTransport({
+    host: 'smtp.mailgun.org',
+    port: 587,
+    auth: {
+        user: EMAIL_SERVER_USER,
+        pass: EMAIL_SERVER_PASSWORD,
+    },
+});
+const emailAdapter = EmailProvider({
+    server: mailer,
+    from: process.env.EMAIL_FROM,
+});
  */
-interface CustomUser extends SessionOptions {
-    id: string;
-    name: string;
-    email: string;
-    role: string;
-}
-
-interface ExtendedSession extends Session {
-    publicPages?: string[];
-}
-
-
 const handler = NextAuth({
     providers: [
         GoogleProvider({
-            clientId: GOOGLE_CLIENT_ID,
-            clientSecret: GOOGLE_CLIENT_SECRET,
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
         }),
         GitHubProvider({
-            clientId: GITHUB_ID,
-            clientSecret: GITHUB_SECRET,
+            clientId: process.env.GITHUB_ID as string,
+            clientSecret: process.env.GITHUB_SECRET as string,
         }),
+        /*         EmailProvider({
+            server: mailer,
+            from: process.env.EMAIL_FROM,
+        }), */
     ],
     secret: process.env.JWT_SECRET,
 
     callbacks: {
-        async session({ session, token, user }) {
-            const customSession: ExtendedSession = {
-                ...session,
-                publicPages: ['/api/allPosts'],
-            };
-
-            if (token) {
-                customSession.user = {
-                    id: token?.id,
-                    name: token?.name,
-                    email: token?.email,
-                    role: token?.role,
-                } as CustomUser;
-            }
-
-            return customSession;
-        },
-
-        async signIn({ user, account, profile, email, credentials }) {
+        async signIn({ user }) {
             connectionToDB();
 
             try {
@@ -76,7 +56,6 @@ const handler = NextAuth({
                 if (!userCheck) {
                     await userTest.create({
                         email: userEmail,
-                        role: 'bussines',
                     });
                     console.log('User not in DB');
                 } else {
@@ -88,19 +67,6 @@ const handler = NextAuth({
                 console.log(error);
                 return false;
             }
-        },
-    },
-    pages: {
-        signIn: '/login',
-    },
-
-    events: {
-        async signIn({ user }) {
-            // Check if the route is '/api/allPosts'
-            if (user?.email === '/api/allPosts') {
-                return; // Bypass authentication for this specific route
-            }
-            throw new Error('Invalid route'); // Require authentication for other routes
         },
     },
 });
