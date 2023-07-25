@@ -41,7 +41,9 @@ const page: FC<pageProps> = ({ }) => {
       router.push('bussines/bussines-dashboard')
     }
 
-  }, [session,router])
+  }, [session,router]) 
+
+
 
   return (
     <div >

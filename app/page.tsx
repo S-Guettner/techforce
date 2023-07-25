@@ -7,11 +7,12 @@ import Image from 'next/image'
 import logo from '../public/images/tech-force-high-resolution-logo-color-on-transparent-background.png'
 import RegistrationModal from './components/RegistrationModal'
 import Navbar from './components/Navbar'
-import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralUnion } from 'next-auth/react'
+import { signIn, signOut, useSession, getSession, getProviders, ClientSafeProvider, LiteralUnion } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import Posts from './components/indexPage/Posts'
 import { nanoid } from 'nanoid'
+
 
 interface Post {
   jobTitle: string
@@ -27,6 +28,8 @@ interface Post {
 
 export default function Home() {
 
+  
+
   const [registrationClicked, setRegistrationClicked] = useState(false)
   const [loginClicked, setLoginClicked] = useState(false)
 
@@ -37,10 +40,15 @@ export default function Home() {
   const router = useRouter();
   const { data: session } = useSession()
 
+
+  console.log(getSession())
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('/api/allPosts')
+
+
+        const response = await axios.post('/api/allPosts');
         console.log(response)
         setPosts(response?.data?.jobPostings)
       } catch (err) {
@@ -51,7 +59,7 @@ export default function Home() {
     fetchPosts()
   }, [])
 
-  console.log(posts, "posts")
+  console.log(session)
 
 
   useEffect(() => {
@@ -60,12 +68,12 @@ export default function Home() {
 
 
 
-  useEffect(() => {
+/*   useEffect(() => {
     if (session) {
       router.push('bussines/bussines-dashboard')
     }
   }, [session, router])
-
+ */
 
   return (
     <div>

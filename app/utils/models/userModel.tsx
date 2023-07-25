@@ -16,10 +16,11 @@ const jobPostings = new mongoose.Schema({
 
 })
 
-const userCompanySchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     email:String,
+    role:String,
     jobPostings: [jobPostings]
 })
 
 
-export default mongoose.models.user || mongoose.model("user", userCompanySchema)
+export default mongoose.models.user || mongoose.model("user", userSchema)

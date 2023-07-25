@@ -20,7 +20,7 @@ const Navbar: FC<NavbarProps> = () => {
     const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>()
     
 
-    const { data: session } = useSession()
+     const { data: session } = useSession()
 
     
 
