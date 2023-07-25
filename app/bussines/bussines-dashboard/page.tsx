@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import BussinesDashboardSidebar from '@/app/components/bussinesDashboard/BussinesDashboardSidebar'
 import BussinesDashboardNewPost from '@/app/components/bussinesDashboard/BussinesDashboardNewPost'
 import BussinesDashboardOverview from '@/app/components/bussinesDashboard/BussinesDashboardOverview'
+import axios from 'axios'
 
 interface pageProps {
 
@@ -16,11 +17,25 @@ const page: FC<pageProps> = ({ }) => {
   console.log(session)
 
   const router = useRouter();
-  useEffect(() => {
-    if (!session) {
-      router.push('/')
+
+  /* useEffect(() => {
+    const newBussinesUser = async () => {
+      try {
+
+
+        const response = await axios.post('/api/newBussinesUser', { userEmail: session?.user?.email, userType: "bussines"});
+        console.log(response)
+        
+      } catch (err) {
+        console.log(err)
+      }
     }
-  }, [session, router])
+
+    newBussinesUser()
+  }, [session])
+  */
+
+
 
   const [selectedAction, setSelectedAction] = useState("overview")
 

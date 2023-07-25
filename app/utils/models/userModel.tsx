@@ -18,7 +18,7 @@ const jobPostings = new mongoose.Schema({
 
 const userSchema = new mongoose.Schema({
     email:String,
-    role:String,
+    userType:String,
     jobPostings: [jobPostings]
 })
 
