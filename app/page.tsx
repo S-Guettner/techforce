@@ -14,6 +14,7 @@ import Posts from './components/indexPage/Posts'
 import { nanoid } from 'nanoid'
 
 
+
 interface Post {
   jobTitle: string
   shortJobDescription: string

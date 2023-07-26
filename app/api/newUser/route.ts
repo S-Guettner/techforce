@@ -20,9 +20,9 @@ export const POST = async (req: Request, res: Response) => {
                         email: userEmail,
                         userType: userType,
                     });
-                    return NextResponse.json({newUser})
                     console.log(newUser)
                     console.log('User not in DB');
+                    return NextResponse.json({newUser})
                 } else {
                     console.log('User already in DB');
                 }

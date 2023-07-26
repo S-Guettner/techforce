@@ -7,6 +7,7 @@ import { BuiltInProviderType } from 'next-auth/providers'
 import { nanoid } from 'nanoid'
 import axios from 'axios'
 import { redirect } from 'next/dist/server/api-utils'
+import RegistrationModal from './RegistrationModal'
 
 interface NavbarProps {
 
@@ -54,29 +55,12 @@ const Navbar: FC<NavbarProps> = () => {
 
     return (
         <nav>
+           
+           
+           
+           
             <button onClick={() => signOut()}>Sign out</button>
-       {/*          
-            <nav key={nanoid()}>
-
-                        <button
-                            type='button'
-
-                            onClick={() => signIn('google',{callbackUrl:"http://localhost:3000"})}
-                        >
-                            Sign in
-                        </button>
-
-                        <button className='mx-5' type='button'
-
-                            onClick={() => signOut()}>
-                                Sign Out
-                        </button>
-
-                    </nav>
- */}
                 
-          
-
             
         </nav>
     )
