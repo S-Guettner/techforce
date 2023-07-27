@@ -1,5 +1,17 @@
 import mongoose from 'mongoose'
 
+
+const application = new mongoose.Schema({
+
+    firstName: String,
+    lastName: String,
+    telephoneNumber: String,
+    emailAdress: String,
+    cvPath:String,
+    location:String,
+    salaryExpectation:String
+})
+
 const jobPostings = new mongoose.Schema({
 
     jobTitle: String,
@@ -11,6 +23,7 @@ const jobPostings = new mongoose.Schema({
     contactPersonName: String,
     contactPersonNumber: String,
     contactPersonEmail: String,
+    applications: [application],
 
     timestamp: {
         type: Date,
@@ -26,6 +39,8 @@ const userSchema = new mongoose.Schema({
     userType: String,
     jobPostings: [jobPostings]
 })
+
+
 
 
 export default mongoose.models.user || mongoose.model("user", userSchema)
