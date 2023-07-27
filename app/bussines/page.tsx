@@ -50,7 +50,7 @@ const page: FC<pageProps> = ({ }) => {
       <main>
 
         {modalStatus && <RegistrationModal
-          currentPage={"bussines/bussines-dashboard"}
+          currentPage={"/bussines/bussines-dashboard"}
           setModalStatus={setModalStatus}
         />}
 

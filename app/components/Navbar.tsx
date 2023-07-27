@@ -19,11 +19,11 @@ interface getProviderState {
 const Navbar: FC<NavbarProps> = () => {
 
     const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>()
-    
+    const [modalStatus, setModalStatus] = useState(false)
 
-     const { data: session } = useSession()
+    const { data: session } = useSession()
 
-    
+
 
     useEffect(() => {
         const providers = async () => {
@@ -35,33 +35,35 @@ const Navbar: FC<NavbarProps> = () => {
 
     /* console.log(session) */
 
- /*    console.log(session?.user?.email)
+    /*    console.log(session?.user?.email)
+   
+       useEffect(() => {
+           
+               axios.post('/api/userCheck', {
+                   userEmail:session?.user?.email
+               })
+                   .then(function (response) {
+                       console.log(response);
+                   })
+                   .catch(function (error) {
+                       console.log(error);
+                   });
+           
+       }, [session]) */
 
-    useEffect(() => {
-        
-            axios.post('/api/userCheck', {
-                userEmail:session?.user?.email
-            })
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        
-    }, [session]) */
-       
-    
+
 
     return (
         <nav>
-           
-           
-           
-           
-            <button onClick={() => signOut()}>Sign out</button>
-                
-            
+            <div className='flex justify-between w-56'>
+                <button onClick={() => signOut()}>Sign out</button>
+                {!session && <button onClick={() => setModalStatus(prev => !prev)}>Sign in</button>}
+            </div>
+            {modalStatus && <RegistrationModal
+                currentPage={"/"}
+                setModalStatus={setModalStatus}
+            />}
+
         </nav>
     )
 }

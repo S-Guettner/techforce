@@ -16,24 +16,25 @@ const page: FC<pageProps> = ({ }) => {
   const { data: session } = useSession()
   console.log(session)
 
+
+  const[registartionState,setRegistrationState] = useState<boolean>(false)
+
   const router = useRouter();
 
-  /* useEffect(() => {
+  useEffect(() => {
     const newBussinesUser = async () => {
       try {
-
-
-        const response = await axios.post('/api/newBussinesUser', { userEmail: session?.user?.email, userType: "bussines"});
-        console.log(response)
-        
+        if (session && session.user && session.user.email) {
+          const response = await axios.post('/api/newUser', { userEmail: session.user.email, userType: "bussines" });
+          console.log(response);
+        }
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
+    };
 
-    newBussinesUser()
-  }, [session])
-  */
+    newBussinesUser();
+  }, [session]);
 
 
 

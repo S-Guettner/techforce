@@ -60,6 +60,23 @@ export default function Home() {
     fetchPosts()
   }, [])
 
+
+
+  useEffect(() => {
+    const newBussinesUser = async () => {
+      try {
+        if (session && session.user && session.user.email) {
+          const response = await axios.post('/api/newUser', { userEmail: session.user.email, userType: "applicant" });
+          console.log(response);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    newBussinesUser();
+  }, [session]);
+
   console.log(session)
 
 

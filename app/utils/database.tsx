@@ -20,4 +20,6 @@ const connectionToDB = async () => {
     }
 }
 
+
+
 export default connectionToDB
