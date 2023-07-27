@@ -111,12 +111,19 @@ export default function Home() {
           </Link>
         </div>
       </nav>
-      <main>
+      <main className=''>
         {posts && posts.map((post) => {
           console.log(post)
           return (
             <Posts
               key={nanoid()}
+              jobTitle={post?.jobTitle}
+              shortJobDescription={post?.shortJobDescription}
+              detailedJobDescription={post?.detailedJobDescription}
+              contactPerson={post?.contactPerson}
+              tasks={post?.tasks}
+              offers={post?.offers}
+              requirements={post?.requirements}
             />
           )
         })
