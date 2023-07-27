@@ -9,7 +9,9 @@ interface Post {
     tasks: string[]
     offers: string[]
     requirements: string[]
-    contactPerson: string 
+    contactPersonName: string 
+    contactPersonNumber: string 
+    contactPersonEmail: string 
     _id: ObjectId
     timestamp: Date
 }

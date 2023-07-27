@@ -7,6 +7,8 @@ import axios from 'axios'
 interface BussinesDashboardSinglePostEditProps {
     postId?: string
     contactPersonName?: string
+    contactPersonNumber?:string
+    contactPersonEmail?:string
     shortJobDescription?: string
     detailedJobDescription?: string
     jobTitle?: string
@@ -16,7 +18,7 @@ interface BussinesDashboardSinglePostEditProps {
     setPostId: React.Dispatch<React.SetStateAction<string>>
 }
 
-const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> = ({ setPostId, postId, tasks, requirements, contactPersonName, shortJobDescription, detailedJobDescription, jobTitle, offers }) => {
+const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> = ({ setPostId, postId, tasks, requirements, contactPersonName,contactPersonNumber,contactPersonEmail, shortJobDescription, detailedJobDescription, jobTitle, offers }) => {
 
     const { data: session } = useSession()
 
@@ -35,6 +37,8 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
     const [newTaskValue, setNewTaskValue] = useState<string>("")
     const [newOfferValue, setNewOfferValue] = useState<string>("")
     const [newRequirementValue, setNewRequirementValue] = useState<string>("")
+
+    console.log(contactPersonNumber)
 
     useEffect(() => {
 
@@ -62,6 +66,18 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             setNewContactPersonName("")
         }
 
+        if (contactPersonNumber) {
+            setNewContactPersonNumber(contactPersonNumber)
+        } else {
+            setNewContactPersonNumber("")
+        }
+
+        if (contactPersonEmail) {
+            setNewContactPersonEmail(contactPersonEmail)
+        } else {
+            setNewContactPersonEmail("")
+        }
+
         if (tasks) {
             setNewTasks(tasks)
         } else {
@@ -80,13 +96,13 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             setNewRequirements([])
         }
 
-        
-    }, [jobTitle, shortJobDescription, detailedJobDescription, tasks, offers, requirements, contactPersonName])
-    
+
+    }, [jobTitle, shortJobDescription, detailedJobDescription, tasks, offers, requirements, contactPersonName, contactPersonNumber, newContactPersonEmail])
+
     console.log(contactPersonName)
 
     const addItemHandler = (array: string[] | undefined, item: string) => {
-        
+
         const newArray = [...(array || []), item]
 
         if (array === newTasks) {
@@ -131,7 +147,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
     }
 
     const submitHandler = () => {
-        
+
         axios.post('/api/singlePostEdit', {
             userEmail: session?.user?.email,
             postId,
@@ -141,7 +157,9 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             tasks: newTasks,
             offers: newOffers,
             requirements: newRequirements,
-            contactPersonName: newContactPersonName
+            contactPersonName: newContactPersonName,
+            contactPersonNumber: newContactPersonNumber,
+            contactPersonEmail: newContactPersonEmail
 
         })
             .then(function (response) {
@@ -157,15 +175,15 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
         axios.post('/api/deletePost', {
             postId,
             userEmail: session?.user?.email
-            
+
         })
-        .then(function (response) {
-            console.log(response)
-            setPostId("")
-        })
-        .catch(function(error) {
-            console.log(error)
-        })
+            .then(function (response) {
+                console.log(response)
+                setPostId("")
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
     }
     console.log(session?.user?.email)
 
@@ -176,17 +194,17 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
                 <p>&#x2190; Back</p>
             </button>
             <div>
-            {/* ================================================ Change Job Title ================================================ */}
+                {/* ================================================ Change Job Title ================================================ */}
                 <p>Change Job Title</p>
                 <input onChange={(e) => setNewJobTitle(e.target.value)} type="text" name="newJobTitle" id="newJobTitle" value={newJobTitle} />
             </div>
             <div>
-            {/* ================================================ Change short Job description ================================================ */}
+                {/* ================================================ Change short Job description ================================================ */}
                 <p>Change short Job description</p>
                 <input onChange={(e) => setNewShortJobDescription(e.target.value)} type="text" name="newJobTitle" id="newJobTitle" value={newShortJobDescription} />
             </div>
             <div>
-            {/* ================================================ Change detailed Job description ================================================ */}
+                {/* ================================================ Change detailed Job description ================================================ */}
                 <p>Change detailed Job description</p>
                 <input onChange={(e) => setNewDetailedJobDescription(e.target.value)} type="text" name="detailedJobDescription" id="detailedJobDescription" value={newDetailedJobDescription} />
             </div>
@@ -195,7 +213,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
 
                 <h3>Tasks:</h3>
                 <div className='flex justify-evenly'>
-            {/* ================================================ add task ================================================ */}
+                    {/* ================================================ add task ================================================ */}
                     <input onChange={(e) => setNewTaskValue(e.target.value)} type="text" name="addTask" id="addTask" placeholder='new task' />
                     <button className='bg-blue-900 rounded-2xl text-white p-2' onClick={() => addItemHandler(newTasks, newTaskValue)}>
                         add task
@@ -218,7 +236,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
                 <h3>Offers:</h3>
 
                 <div className='flex justify-evenly'>
-            {/* ================================================ add offer ================================================ */}
+                    {/* ================================================ add offer ================================================ */}
                     <input onChange={(e) => setNewOfferValue(e.target.value)} type="text" name="addOffer" id="addOffer" placeholder='new offer' />
                     <button className='bg-blue-900 rounded-2xl text-white p-2' onClick={() => addItemHandler(newOffers, newOfferValue)}>
                         add offer
@@ -241,7 +259,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
                 <h3>Requirements:</h3>
 
                 <div className='flex justify-evenly'>
-            {/* ================================================ add requirement ================================================ */}    
+                    {/* ================================================ add requirement ================================================ */}
                     <input onChange={(e) => setNewRequirementValue(e.target.value)} type="text" name="addOffer" id="addOffer" placeholder='new offer' />
                     <button className='bg-blue-900 rounded-2xl text-white p-2' onClick={() => addItemHandler(newRequirements, newRequirementValue)}>
                         add requirement
@@ -260,16 +278,21 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
                 })}
             </section>
             <section className='border-2 border-black rounded-md'>
-            {/* ================================================ change contact person ================================================ */}
+                {/* ================================================ change contact person ================================================ */}
                 <p>Contact Person:</p>
-                <input onChange={(e) => setNewContactPersonName(e.target.value)} type="text" name="contactPerson" id="contactPerson" value={newContactPersonName} />
+                <p>Name</p>
+                <input className='block m-7' onChange={(e) => setNewContactPersonName(e.target.value)} type="text" name="contactPersonName" id="contactPersonName" value={newContactPersonName} />
+                <p>Nummer</p>
+                <input className='block m-7' onChange={(e) => setNewContactPersonNumber(e.target.value)} type="text" name="contactPersonNumber" id="contactPersonNumber" value={newContactPersonNumber} />
+                <p>Email</p>
+                <input className='block m-7' onChange={(e) => setNewContactPersonEmail(e.target.value)} type="text" name="contactPersonEmail" id="contactPersonEmail" value={newContactPersonEmail} />
             </section>
             <section>
-            {/* ================================================ submit changes ================================================ */}
+                {/* ================================================ submit changes ================================================ */}
                 <button onClick={() => submitHandler()} className='bg-blue-900 text-white p-2 rounded-2xl m-4 hover:opacity-50'>
                     Submit Changes
                 </button>
-            {/* ================================================ delete post ================================================ */}
+                {/* ================================================ delete post ================================================ */}
                 <button onClick={() => deletePostHandler()} >
                     Delete Post
                 </button>

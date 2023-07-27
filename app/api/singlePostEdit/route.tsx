@@ -10,13 +10,15 @@ interface Post {
     offers: string[]
     requirements: string[]
     contactPersonName: string
+    contactPersonNumber: string
+    contactPersonEmail: string
     _id: ObjectId
     timestamp: Date
 }
 
 export const POST = async (req: Request, res: Response) => {
     try {
-        const { postId, userEmail, jobTitle, shortJobDescription, detailedJobDescription, tasks, offers, requirements, contactPersonName } = await req.json();
+        const { postId, userEmail, jobTitle, shortJobDescription, detailedJobDescription, tasks, offers, requirements, contactPersonName, contactPersonNumber, contactPersonEmail } = await req.json();
 
         const user = await testUser.findOneAndUpdate(
             { email: userEmail, 'jobPostings._id': postId },
@@ -29,6 +31,8 @@ export const POST = async (req: Request, res: Response) => {
                     'jobPostings.$.offers': offers,
                     'jobPostings.$.requirements': requirements,
                     'jobPostings.$.contactPersonName': contactPersonName,
+                    'jobPostings.$.contactPersonNumber': contactPersonNumber,
+                    'jobPostings.$.contactPersonEmail': contactPersonEmail,
                 },
             },
             { new: true }
