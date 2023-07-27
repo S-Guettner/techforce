@@ -6,7 +6,7 @@ import axios from 'axios'
 
 interface BussinesDashboardSinglePostEditProps {
     postId?: string
-    contactPerson?: string
+    contactPersonName?: string
     shortJobDescription?: string
     detailedJobDescription?: string
     jobTitle?: string
@@ -16,14 +16,16 @@ interface BussinesDashboardSinglePostEditProps {
     setPostId: React.Dispatch<React.SetStateAction<string>>
 }
 
-const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> = ({ setPostId, postId, tasks, requirements, contactPerson, shortJobDescription, detailedJobDescription, jobTitle, offers }) => {
+const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> = ({ setPostId, postId, tasks, requirements, contactPersonName, shortJobDescription, detailedJobDescription, jobTitle, offers }) => {
 
     const { data: session } = useSession()
 
     const [newJobTitle, setNewJobTitle] = useState<string | undefined>("")
     const [newShortJobDescription, setNewShortJobDescription] = useState<string | undefined>("")
     const [newDetailedJobDescription, setNewDetailedJobDescription] = useState<string | undefined>("")
-    const [newContactPerson, setNewContactPerson] = useState<string | undefined>("")
+    const [newContactPersonName, setNewContactPersonName] = useState<string | undefined>("")
+    const [newContactPersonNumber, setNewContactPersonNumber] = useState<string | undefined>("")
+    const [newContactPersonEmail, setNewContactPersonEmail] = useState<string | undefined>("")
 
 
     const [newTasks, setNewTasks] = useState<string[]>([])
@@ -54,10 +56,10 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             setNewDetailedJobDescription("")
         }
 
-        if (contactPerson) {
-            setNewContactPerson(contactPerson)
+        if (contactPersonName) {
+            setNewContactPersonName(contactPersonName)
         } else {
-            setNewContactPerson("")
+            setNewContactPersonName("")
         }
 
         if (tasks) {
@@ -78,8 +80,10 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             setNewRequirements([])
         }
 
-    }, [jobTitle, shortJobDescription, detailedJobDescription, tasks, offers, requirements, contactPerson])
-
+        
+    }, [jobTitle, shortJobDescription, detailedJobDescription, tasks, offers, requirements, contactPersonName])
+    
+    console.log(contactPersonName)
 
     const addItemHandler = (array: string[] | undefined, item: string) => {
         
@@ -137,7 +141,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             tasks: newTasks,
             offers: newOffers,
             requirements: newRequirements,
-            contactPerson: newContactPerson
+            contactPersonName: newContactPersonName
 
         })
             .then(function (response) {
@@ -258,7 +262,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             <section className='border-2 border-black rounded-md'>
             {/* ================================================ change contact person ================================================ */}
                 <p>Contact Person:</p>
-                <input onChange={(e) => setNewContactPerson(e.target.value)} type="text" name="contactPerson" id="contactPerson" value={newContactPerson} />
+                <input onChange={(e) => setNewContactPersonName(e.target.value)} type="text" name="contactPerson" id="contactPerson" value={newContactPersonName} />
             </section>
             <section>
             {/* ================================================ submit changes ================================================ */}

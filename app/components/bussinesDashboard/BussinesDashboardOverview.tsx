@@ -18,7 +18,7 @@ interface Post {
     tasks: string[]
     offers: string[]
     requirements: string[]
-    contactPerson: string
+    contactPersonName: string
     _id: string
     timestamp: string
 }
@@ -92,7 +92,7 @@ const BussinesDashboardOverview: FC<BussinesDashboardOverviewProps> = ({ }) => {
                 <BussinesDashboardSinglePostEdit
                     postId={postId}
                     setPostId={setPostId}
-                    contactPerson={singlePost?.contactPerson}
+                    contactPersonName={singlePost?.contactPersonName}
                     shortJobDescription={singlePost?.shortJobDescription}
                     detailedJobDescription={singlePost?.detailedJobDescription}
                     jobTitle={singlePost?.jobTitle}

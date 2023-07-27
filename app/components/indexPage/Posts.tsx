@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { nanoid } from 'nanoid'
 
 interface PostsProps {
   jobTitle: string,
@@ -36,7 +37,7 @@ const Posts: FC<PostsProps> = (
         <h4 className='text-xl mb-5'>Aufgaben:</h4>
         {tasks && tasks.map((task) => {
           return (
-            <div className='flex'>
+            <div key={nanoid()} className='flex'>
               <p className='mr-2'>&#8226;</p>
               <p>{task}</p>
             </div>
@@ -48,7 +49,7 @@ const Posts: FC<PostsProps> = (
         <h4 className='text-xl mb-5'>Was wir bieten:</h4>
         {offers && offers.map((offer) => {
           return (
-            <div className='flex'>
+            <div key={nanoid()} className='flex'>
               <p className='mr-2'>&#8226;</p>
               <p>{offer}</p>
             </div>
@@ -60,7 +61,7 @@ const Posts: FC<PostsProps> = (
         <h4 className='text-xl mb-5'>Qualifikationen:</h4>
         {requirements && requirements.map((requirement) => {
           return (
-            <div className='flex'>
+            <div key={nanoid()} className='flex'>
               <p className='mr-2'>&#8226;</p>
               <p>{requirement}</p>
             </div>
