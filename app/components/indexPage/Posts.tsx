@@ -10,7 +10,9 @@ interface PostsProps {
   contactPersonEmail: string,
   tasks: string[],
   offers: string[],
-  requirements: string[]
+  requirements: string[],
+  postId: string,
+  setPostId: React.Dispatch<React.SetStateAction<string>>
 
 }
 
@@ -24,7 +26,9 @@ const Posts: FC<PostsProps> = (
     requirements,
     contactPersonName,
     contactPersonNumber,
-    contactPersonEmail
+    contactPersonEmail,
+    postId,
+    setPostId
   }
 ) => {
   return (

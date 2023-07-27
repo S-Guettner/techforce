@@ -8,6 +8,9 @@ import { nanoid } from 'nanoid'
 import axios from 'axios'
 import { redirect } from 'next/dist/server/api-utils'
 import RegistrationModal from './RegistrationModal'
+import Link from 'next/link'
+import Image from 'next/image'
+import logo from '../../public/images/new-logo.png'
 
 interface NavbarProps {
 
@@ -54,15 +57,21 @@ const Navbar: FC<NavbarProps> = () => {
 
 
     return (
-        <nav>
-            <div className='flex justify-between w-56'>
-                <button onClick={() => signOut()}>Sign out</button>
-                {!session && <button onClick={() => setModalStatus(prev => !prev)}>Sign in</button>}
+        <nav className='flex items-center p-5 justify-between'>
+            <div>
+                <Image
+                    src={logo}
+                    width={170}
+                    height={170}
+                    alt='logo'
+                />
             </div>
-            {modalStatus && <RegistrationModal
-                currentPage={"/"}
-                setModalStatus={setModalStatus}
-            />}
+
+            <Link className='underline hover:no-underline' href='bussines'>
+                <p className='font-light'>
+                    Für Arbeitgeber
+                </p>
+            </Link>
 
         </nav>
     )

@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import Posts from './components/indexPage/Posts'
 import { nanoid } from 'nanoid'
+import SmallPost from './components/indexPage/SmallPost'
 
 
 
@@ -31,7 +32,7 @@ interface Post {
 
 export default function Home() {
 
-  
+
 
   const [registrationClicked, setRegistrationClicked] = useState(false)
   const [loginClicked, setLoginClicked] = useState(false)
@@ -39,6 +40,8 @@ export default function Home() {
   const [posts, setPosts] = useState<Post[]>([])
 
   const [modalStatus, setModalStatus] = useState(false)
+
+  const [postId,setPostId] = useState("")
 
   const router = useRouter();
   const { data: session } = useSession()
@@ -62,23 +65,24 @@ export default function Home() {
     fetchPosts()
   }, [])
 
+  console.log(postId)
 
-
-  useEffect(() => {
-    const newBussinesUser = async () => {
-      try {
-        if (session && session.user && session.user.email) {
-          const response = await axios.post('/api/newUser', { userEmail: session.user.email, userType: "applicant" });
-          console.log(response);
+  /* 
+    useEffect(() => {
+      const newBussinesUser = async () => {
+        try {
+          if (session && session.user && session.user.email) {
+            const response = await axios.post('/api/newUser', { userEmail: session.user.email, userType: "applicant" });
+            console.log(response);
+          }
+        } catch (err) {
+          console.log(err);
         }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    newBussinesUser();
-  }, [session]);
-
+      };
+  
+      newBussinesUser();
+    }, [session]);
+   */
   console.log(session)
 
 
@@ -88,53 +92,81 @@ export default function Home() {
 
 
 
-/*   useEffect(() => {
-    if (session) {
-      router.push('bussines/bussines-dashboard')
+  /*   useEffect(() => {
+      if (session) {
+        router.push('bussines/bussines-dashboard')
+      }
+    }, [session, router])
+   */
+
+    if(postId.length == 0){
+      return (
+        <div>
+          <Navbar />
+          <nav className='flex justify-between items-center p-2'>
+    
+            <div>
+            </div>
+          </nav>
+          <main className='p-5'>
+            <aside className=''>
+              {posts && posts.map((post) => {
+                console.log(post)
+                return (
+                  <SmallPost
+                    key={nanoid()}
+                    jobTitle={post?.jobTitle}
+                    postId={post?._id}
+                    setPostId={setPostId}
+                  />
+                )
+              })
+              }
+            </aside>
+    
+    
+          </main>
+        </div>
+    
+      )
+    }else{
+      return(
+        <div>
+          <Navbar />
+          <nav className='flex justify-between items-center p-2'>
+
+            <div>
+            </div>
+          </nav>
+          <main className='p-5'>
+            <aside className=''>
+              {posts && posts.map((post) => {
+                console.log(post)
+                return (
+                  <Posts
+                    key={nanoid()}
+                    jobTitle={post?.jobTitle}
+                    shortJobDescription={post?.shortJobDescription}
+                    detailedJobDescription={post?.detailedJobDescription}
+                    tasks={post?.tasks}
+                    offers={post?.offers}
+                    requirements={post?.requirements}
+                    contactPersonName={post?.contactPersonName}
+                    contactPersonNumber={post?.contactPersonNumber}
+                    contactPersonEmail={post?.contactPersonEmail}
+                    postId={postId}
+                    setPostId={setPostId}
+                  />
+                )
+              })
+              }
+            </aside>
+
+
+          </main>
+        </div>
+
+      )
     }
-  }, [session, router])
- */
 
-  return (
-    <div>
-      <Navbar />
-      <nav className='flex justify-between items-center p-2'>
-        <div>
-          <Image
-            src={logo}
-            width={100}
-            height={100}
-            alt='logo'
-          />
-        </div>
-        <div>
-          <Link className='underline hover:no-underline' href='bussines'>
-            For Employers
-          </Link>
-        </div>
-      </nav>
-      <main className=''>
-        {posts && posts.map((post) => {
-          console.log(post)
-          return (
-            <Posts
-              key={nanoid()}
-              jobTitle={post?.jobTitle}
-              shortJobDescription={post?.shortJobDescription}
-              detailedJobDescription={post?.detailedJobDescription}
-              contactPersonName={post?.contactPersonName}
-              contactPersonNumber={post?.contactPersonNumber}
-              contactPersonEmail={post?.contactPersonEmail}
-              tasks={post?.tasks}
-              offers={post?.offers}
-              requirements={post?.requirements}
-            />
-          )
-        })
-        }
-
-      </main>
-    </div>
-
-  )
 }
