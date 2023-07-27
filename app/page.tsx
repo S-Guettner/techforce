@@ -22,7 +22,9 @@ interface Post {
   tasks: string[]
   offers: string[]
   requirements: string[]
-  contactPerson: string
+  contactPersonName: string
+  contactPersonNumber: string
+  contactPersonEmail: string
   _id: string
   timestamp: string
 }
@@ -120,7 +122,9 @@ export default function Home() {
               jobTitle={post?.jobTitle}
               shortJobDescription={post?.shortJobDescription}
               detailedJobDescription={post?.detailedJobDescription}
-              contactPerson={post?.contactPerson}
+              contactPersonName={post?.contactPersonName}
+              contactPersonNumber={post?.contactPersonNumber}
+              contactPersonEmail={post?.contactPersonEmail}
               tasks={post?.tasks}
               offers={post?.offers}
               requirements={post?.requirements}

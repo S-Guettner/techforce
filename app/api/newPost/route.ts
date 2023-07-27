@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 import testUser from '@/app/utils/models/userModel';
 
 export const POST = async (req: Request, res: Response) => {
-    const { userEmail, jobTitle, shortJobDescription, detailedJobDescription, tasks, offers, requirements, contactPerson } = await req.json();
-    const jobListing = { jobTitle, shortJobDescription, detailedJobDescription, tasks, offers, requirements, contactPerson };
+    const { userEmail, jobTitle, shortJobDescription, detailedJobDescription, tasks, offers, requirements, contactPersonName , contactPersonNumber , contactPersonEmail } = await req.json();
+    const jobListing = { jobTitle, shortJobDescription, detailedJobDescription, tasks, offers, requirements, contactPersonName , contactPersonNumber , contactPersonEmail };
     console.log("email" ,userEmail);
     console.log(jobListing);
     try {

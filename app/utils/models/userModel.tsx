@@ -1,13 +1,17 @@
 import mongoose from 'mongoose'
 
 const jobPostings = new mongoose.Schema({
-    jobTitle:String,
-    shortJobDescription:String,
-    detailedJobDescription:String,
-    tasks:[String],
-    offers:[String],
-    requirements:[String],
-    contactPerson:String,
+
+    jobTitle: String,
+    shortJobDescription: String,
+    detailedJobDescription: String,
+    tasks: [String],
+    offers: [String],
+    requirements: [String],
+    contactPersonName: String,
+    contactPersonNumber: String,
+    contactPersonEmail: String,
+
     timestamp: {
         type: Date,
         immutable: true,
@@ -17,8 +21,9 @@ const jobPostings = new mongoose.Schema({
 })
 
 const userSchema = new mongoose.Schema({
-    email:String,
-    userType:String,
+
+    email: String,
+    userType: String,
     jobPostings: [jobPostings]
 })
 

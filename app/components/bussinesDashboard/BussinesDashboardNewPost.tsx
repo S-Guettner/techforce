@@ -16,7 +16,9 @@ const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
   const [jobTitle, setJobTitle] = useState("")
   const [shortJobDescription, setShortJobDescription] = useState("")
   const [detailedJobDescription, setSetailedJobDescription] = useState("")
-  const [contactPerson, setContactPerson] = useState("")
+  const [contactPersonName, setContactPersonName] = useState("")
+  const [contactPersonNumber, setContactPersonNumber] = useState("")
+  const [contactPersonEmail, setContactPersonEmail] = useState("")
 
   const [tasks, setTasks] = useState<string[]>([]);
   const [task, setTask] = useState("")
@@ -71,7 +73,9 @@ const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
       tasks: tasks,
       offers: offers,
       requirements: requirements,
-      contactPerson: contactPerson
+      contactPersonName: contactPersonName,
+      contactPersonNumber: contactPersonNumber,
+      contactPersonEmail: contactPersonEmail
     })
       .then(function (response) {
         console.log(response);
@@ -87,7 +91,9 @@ const BussinesDashboardNewPost: FC<BussinesDashboardNewPostProps> = ({ }) => {
         <input onChange={(e) => setJobTitle(e.target.value)} className='block border-2 border-black' placeholder='job title' type="text" name="jobTitle" id="jobTitle" />
         <input onChange={(e) => setShortJobDescription(e.target.value)} className='block border-2 border-black' placeholder='short job description' type="text" name="shortDescription" id="shortDescription" />
         <input onChange={(e) => setSetailedJobDescription(e.target.value)} className='block border-2 border-black' placeholder='detailed job description' type="text" name="detailedDescription" id="detailedDescription" />
-        <input onChange={(e) => setContactPerson(e.target.value)} className='block border-2 border-black' placeholder='contact Person' type="text" name="contactPerson" id="contactPerson" />
+        <input onChange={(e) => setContactPersonName(e.target.value)} className='block border-2 border-black' placeholder='contact Person' type="text" name="contactPerson" id="contactPerson" />
+        <input onChange={(e) => setContactPersonNumber(e.target.value)} className='block border-2 border-black' placeholder='contact Person number' type="text" name="contactPerson" id="contactPerson" />
+        <input onChange={(e) => setContactPersonEmail(e.target.value)} className='block border-2 border-black' placeholder='contact Person email' type="text" name="contactPerson" id="contactPerson" />
 
 
 
