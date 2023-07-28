@@ -45,7 +45,7 @@ const page: FC<pageProps> = ({}) => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [session?.user?.email])
+  }, [session])
   
   return (
     <main>

@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import Link from 'next/link'
 
 interface DashboardPostProps {
     postId: string
@@ -17,6 +18,7 @@ const DashboardPost: FC<DashboardPostProps> = ({ postId, jobTitle, timestamp }) 
         <div>
             <p>{jobTitle}</p>
             <p>Erstellt am {day}.{month}.{year}</p>
+            <Link href={`/postEdit/${postId}`}>Bearbeiten</Link>
         </div>
     )
 }

@@ -1,4 +1,5 @@
 ## todo
 - [X] create new job post bugged
-- [] GET allPosts route throws error
+- [x] GET allPosts route throws error
+- [] (new job post) created tasks etc. not showing 
 - [] get company details to add to job posts
