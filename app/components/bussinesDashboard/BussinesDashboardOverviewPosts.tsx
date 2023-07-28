@@ -14,7 +14,7 @@ const BussinesDashboardOverviewPosts: FC<BussinesDashboardOverviewPostsProps> = 
     const day = timeStamp.slice(8,10)
   
     return (
-        <button onClick={() => setPostId(postId)} className='flex justify-between px-2 border-2 border-black rounded-md my-4 w-full py-4'>
+        <button onClick={() => setPostId(postId)} className='flex justify-between px-2 shadow-xl rounded-md my-4 w-full py-4'>
         <p className='inline'>{jobTitle}</p>
         <p className='inline'>Created at {day}:{month}:{year}</p>
     </button>
