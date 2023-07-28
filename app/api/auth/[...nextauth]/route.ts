@@ -53,7 +53,7 @@ const handler = NextAuth({
     secret: process.env.JWT_SECRET,
 
     callbacks: {
-   /*      async signIn({ user, account, profile, email, credentials }) {
+        async signIn({ user, account, profile, email, credentials }) {
             connectionToDB();
 
             
@@ -77,7 +77,7 @@ const handler = NextAuth({
                 console.log(error);
                 return false;
             }
-        }, */
+        },
     },
 });
 

@@ -102,7 +102,9 @@ export default function Home() {
     if(postId.length == 0){
       return (
         <div>
-          <Navbar />
+          <Navbar 
+            currentPage={""}
+          />
           <nav className='flex justify-between items-center p-2'>
     
             <div>
@@ -132,7 +134,9 @@ export default function Home() {
     }else{
       return(
         <div>
-          <Navbar />
+          <Navbar 
+            currentPage={""}
+          />
           <nav className='flex justify-between items-center p-2'>
 
             <div>

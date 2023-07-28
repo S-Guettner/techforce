@@ -1,5 +1,6 @@
 'use client'
 
+
 import { FC } from 'react'
 import { useState, useEffect } from 'react'
 import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralUnion } from 'next-auth/react'
@@ -13,13 +14,13 @@ import Image from 'next/image'
 import logo from '../../public/images/new-logo.png'
 
 interface NavbarProps {
-
+    currentPage: string
 }
 interface getProviderState {
 
 }
 
-const Navbar: FC<NavbarProps> = () => {
+const Navbar: FC<NavbarProps> = ({ currentPage }) => {
 
     const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>()
     const [modalStatus, setModalStatus] = useState(false)
@@ -27,6 +28,11 @@ const Navbar: FC<NavbarProps> = () => {
     const { data: session } = useSession()
 
 
+    const buttonHandler = () => {
+        signOut({ callbackUrl: 'http://localhost:3000' })
+    }
+
+   
 
     useEffect(() => {
         const providers = async () => {
@@ -54,27 +60,48 @@ const Navbar: FC<NavbarProps> = () => {
            
        }, [session]) */
 
+    if (currentPage === "bussines") {
+        return (
+            <nav className='flex items-center p-5 justify-between'>
+                <Link href={'/'}>
+                    <Image
+                        src={logo}
+                        width={170}
+                        height={170}
+                        alt='logo'
+                    />
+                </Link>
+                {session &&
+                    <button onClick={() => buttonHandler()}>
+                        <p className='font-light text-white p-2 rounded-3xl bg-[#66af99]'>Sign out</p>
+                    </button>}
 
 
-    return (
-        <nav className='flex items-center p-5 justify-between'>
-            <Link href={'/'}>
-                <Image
-                    src={logo}
-                    width={170}
-                    height={170}
-                    alt='logo'
-                />
-            </Link>
+            </nav>
+        )
 
-            <Link className='underline hover:no-underline' href='bussines'>
-                <p className='font-light'>
-                    Für Arbeitgeber
-                </p>
-            </Link>
+    } else {
+        return (
+            <nav className='flex items-center p-5 justify-between'>
+                <Link href={'/'}>
+                    <Image
+                        src={logo}
+                        width={170}
+                        height={170}
+                        alt='logo'
+                    />
+                </Link>
 
-        </nav>
-    )
+                <Link className='underline hover:no-underline' href='/bussines'>
+                    <p className='font-light'>
+                        Für Arbeitgeber
+                    </p>
+                </Link>
+
+            </nav>
+        )
+    }
+
 }
 
 export default Navbar

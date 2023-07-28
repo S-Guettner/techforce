@@ -31,6 +31,8 @@ const Page: FC<PageProps> = ({ params }) => {
 
     const applyHandler = () => {
 
+        
+
         axios.post('/api/newApplication', {
             jobId: params.jobId,
             firstName: firstNameRef.current ? firstNameRef.current.value : '',
@@ -52,7 +54,9 @@ const Page: FC<PageProps> = ({ params }) => {
 
     return (
         <div>
-            <Navbar />
+            <Navbar 
+                currentPage={""}
+            />
             <main className="flex justify-center ">
                 <div>
                     <label htmlFor="firstName">Vorname</label>
@@ -70,7 +74,7 @@ const Page: FC<PageProps> = ({ params }) => {
                     <label className='block' htmlFor="message">Nachricht</label>
                     <textarea onChange={() => console.log(messageRef.current?.value)} ref={messageRef} className='border max-h-28' name="message" id="message" cols={26} rows={3} />
 
-                    {uploadState ? (
+                    {!uploadState ? (
                         <div className='mb-3'>
                             <p className='mb-2 text-center'>Lebenslauf als PDF importieren</p>
                             <UploadButton
@@ -90,8 +94,8 @@ const Page: FC<PageProps> = ({ params }) => {
                         </div>
                     ) : (
                         <div>
-                            <p className='text-center pt-2 mb-2'>Hochladen von Lebenslauf <br/> war erfolgreich</p>
-                                <svg className='mx-auto mb-7' stroke="#66af99" fill="#66af99" strokeWidth="0" viewBox="0 0 512 512" height="2.5rem" width="2.5rem" xmlns="http://www.w3.org/2000/svg"><path d="M170.718 216.482L141.6 245.6l93.6 93.6 208-208-29.118-29.118L235.2 279.918l-64.482-63.436zM422.4 256c0 91.518-74.883 166.4-166.4 166.4S89.6 347.518 89.6 256 164.482 89.6 256 89.6c15.6 0 31.2 2.082 45.764 6.241L334 63.6C310.082 53.2 284.082 48 256 48 141.6 48 48 141.6 48 256s93.6 208 208 208 208-93.6 208-208h-41.6z"></path></svg>
+                            <p className='text-center pt-2 mb-2'>Hochladen von Lebenslauf <br /> war erfolgreich</p>
+                            <svg className='mx-auto mb-7' stroke="#66af99" fill="#66af99" strokeWidth="0" viewBox="0 0 512 512" height="2.5rem" width="2.5rem" xmlns="http://www.w3.org/2000/svg"><path d="M170.718 216.482L141.6 245.6l93.6 93.6 208-208-29.118-29.118L235.2 279.918l-64.482-63.436zM422.4 256c0 91.518-74.883 166.4-166.4 166.4S89.6 347.518 89.6 256 164.482 89.6 256 89.6c15.6 0 31.2 2.082 45.764 6.241L334 63.6C310.082 53.2 284.082 48 256 48 141.6 48 48 141.6 48 256s93.6 208 208 208 208-93.6 208-208h-41.6z"></path></svg>
                         </div>
 
                     )

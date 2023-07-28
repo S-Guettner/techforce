@@ -47,7 +47,9 @@ const page: FC<pageProps> = ({ }) => {
 
   return (
     <div >
-      <Navbar />
+      <Navbar 
+      currentPage=''
+      />
       <main>
 
         {modalStatus && <RegistrationModal

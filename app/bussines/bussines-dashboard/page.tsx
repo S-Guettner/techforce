@@ -2,6 +2,7 @@
 import { FC, useEffect, useState } from 'react'
 import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralUnion } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+
 import BussinesDashboardSidebar from '@/app/components/bussinesDashboard/BussinesDashboardSidebar'
 import BussinesDashboardNewPost from '@/app/components/bussinesDashboard/BussinesDashboardNewPost'
 import BussinesDashboardOverview from '@/app/components/bussinesDashboard/BussinesDashboardOverview'
@@ -22,7 +23,7 @@ const page: FC<pageProps> = ({ }) => {
 
   const router = useRouter();
 
-  useEffect(() => {
+/*   useEffect(() => {
     const newBussinesUser = async () => {
       try {
         if (session && session.user && session.user.email) {
@@ -35,7 +36,7 @@ const page: FC<pageProps> = ({ }) => {
     };
 
     newBussinesUser();
-  }, [session]);
+  }, [session]); */
 
 
 
@@ -44,23 +45,9 @@ const page: FC<pageProps> = ({ }) => {
 
   return (
     <main>
-      <div className='flex justify-between'>
-        <p>
-          Company dashboard
-        </p>
-        <button onClick={() => signOut()}>Sign out</button>
-      </div>
-
-      <main className='flex'>
-        <div className='bg-neutral-300 w-1/6 h-screen'>
-          <BussinesDashboardSidebar
-            setSelectedAction={setSelectedAction}
-          />
-        </div>
-        <div className='bg-neutral-200 w-5/6 text-black'>
-          {selectedAction === "new-post" ? <BussinesDashboardNewPost /> : selectedAction === "overview" ? <BussinesDashboardOverview /> : ""}
-        </div>
-      </main>
+      <Navbar 
+        currentPage={"bussines"}
+      />
 
 
     </main>

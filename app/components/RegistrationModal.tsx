@@ -48,13 +48,13 @@ const RegistrationModal: FC<RegistrationModalProps> = ({ setModalStatus , curren
         <div className='border-2 border-red-600 p-2'>
           <h3>currently not working!!!!!!</h3>
           <input className='border-2 border-black rounded-md' placeholder='email' type="email" name="" id="" />
-          <div className=' w-2/3 flex justify-between cursor-pointer border-2 border-neutral-500 rounded-md p-2 my-2' onClick={() => customSignIn('github' ,`http://localhost:3000${callbackUrl}` )}>
+          <div className=' w-2/3 flex justify-between cursor-pointer border-2 border-neutral-500 rounded-md p-2 my-2' onClick={() => customSignIn('github' ,`http://localhost:3000/bussines/bussines-dashboard` )}>
             <p>Sign up with email</p>
             <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
           </div>
         </div>
 
-        <div className='w-2/3  flex justify-between cursor-pointer border-2 border-neutral-500 rounded-md p-2 my-2' onClick={() => customSignIn('google', `http://localhost:3000${callbackUrl}` )}>
+        <div className='w-2/3  flex justify-between cursor-pointer border-2 border-neutral-500 rounded-md p-2 my-2' onClick={() => customSignIn('google', `http://localhost:3000/bussines/bussines-dashboard` )}>
           <p>Sign up with google</p>
           <svg stroke="currentColor" fill="currentColor" strokeWidth="0" version="1.1" x="0px" y="0px" viewBox="0 0 48 48" enableBackground="new 0 0 48 48" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12
 	c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24
