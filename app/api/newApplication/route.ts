@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import testUser from '@/app/utils/models/userModel';
 
 export const POST = async (req: Request, res: NextResponse) => {
-    const { jobId, firstName, lastName, telephoneNumber, emailAdress, location, salaryExpectation, cvPath } = await req.json();
+    const { jobId, firstName, lastName, telephoneNumber, emailAdress, location, salaryExpectation, cvPath, message } = await req.json();
 
     const application = {
         firstName,
@@ -12,6 +12,7 @@ export const POST = async (req: Request, res: NextResponse) => {
         location,
         salaryExpectation,
         cvPath,
+        message
     };
 
     try {

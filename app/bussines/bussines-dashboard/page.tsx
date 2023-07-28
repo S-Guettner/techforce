@@ -6,6 +6,7 @@ import BussinesDashboardSidebar from '@/app/components/bussinesDashboard/Bussine
 import BussinesDashboardNewPost from '@/app/components/bussinesDashboard/BussinesDashboardNewPost'
 import BussinesDashboardOverview from '@/app/components/bussinesDashboard/BussinesDashboardOverview'
 import axios from 'axios'
+import Navbar from '@/app/components/Navbar'
 
 interface pageProps {
 

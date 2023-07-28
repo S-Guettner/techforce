@@ -8,7 +8,7 @@ import RegistrationModal from '../components/RegistrationModal'
 import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralUnion } from 'next-auth/react'
 import { BuiltInProviderType } from 'next-auth/providers'
 import { useRouter } from 'next/navigation'
-
+import Navbar from '../components/Navbar'
 
 interface pageProps {
 
@@ -47,6 +47,7 @@ const page: FC<pageProps> = ({ }) => {
 
   return (
     <div >
+      <Navbar />
       <main>
 
         {modalStatus && <RegistrationModal

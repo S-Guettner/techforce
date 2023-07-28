@@ -58,14 +58,14 @@ const Navbar: FC<NavbarProps> = () => {
 
     return (
         <nav className='flex items-center p-5 justify-between'>
-            <div>
+            <Link href={'/'}>
                 <Image
                     src={logo}
                     width={170}
                     height={170}
                     alt='logo'
                 />
-            </div>
+            </Link>
 
             <Link className='underline hover:no-underline' href='bussines'>
                 <p className='font-light'>

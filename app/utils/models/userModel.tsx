@@ -9,7 +9,8 @@ const application = new mongoose.Schema({
     emailAdress: String,
     cvPath:String,
     location:String,
-    salaryExpectation:String
+    salaryExpectation:String,
+    message:String
 })
 
 const jobPostings = new mongoose.Schema({

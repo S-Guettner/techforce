@@ -23,6 +23,7 @@ const Page: FC<PageProps> = ({ params }) => {
     const emailAdressRef = useRef<HTMLInputElement>(null);
     const locationRef = useRef<HTMLInputElement>(null);
     const salaryExpectationRef = useRef<HTMLInputElement>(null);
+    const messageRef = useRef<HTMLTextAreaElement>(null);
 
     console.log(filePath)
     
@@ -37,6 +38,7 @@ const Page: FC<PageProps> = ({ params }) => {
             location: locationRef.current ? locationRef.current.value : '',
             salaryExpectation: salaryExpectationRef.current ? salaryExpectationRef.current.value : '',
             cvPath: filePath,
+            message: messageRef.current ? messageRef.current.value : ''
         })
             .then(function (response) {
                 console.log(response);
@@ -49,22 +51,24 @@ const Page: FC<PageProps> = ({ params }) => {
     return (
         <div>
             <Navbar />
-            <main className="flex justify-center pt-6">
+            <main className="flex justify-center ">
                 <div>
                     <label htmlFor="firstName">Vorname</label>
-                    <input ref={firstNameRef} className='border p-2 mb-5 block' type="text" name="firstName" id="firstName" />
+                    <input ref={firstNameRef} className='border p-2 mb-2  block' type="text" name="firstName" id="firstName" />
                     <label htmlFor="lastName">Nachname</label>
-                    <input ref={lastNameRef} className='border p-2 mb-5 block' type="text" name="lastName" id="lastName" />
+                    <input ref={lastNameRef} className='border p-2 mb-2  block' type="text" name="lastName" id="lastName" />
                     <label htmlFor="telephoneNumber">Telefon</label>
-                    <input ref={telephoneNumberRef} className='border p-2 mb-5 block' type="text" name="telephoneNumber" id="telephoneNumber" />
+                    <input ref={telephoneNumberRef} className='border p-2 mb-2  block' type="text" name="telephoneNumber" id="telephoneNumber" />
                     <label htmlFor="emailAdress">E-Mail-Adresse</label>
-                    <input ref={emailAdressRef} className='border p-2 mb-5 block' type="text" name="emailAdress" id="emailAdress" />
+                    <input ref={emailAdressRef} className='border p-2 mb-2  block' type="text" name="emailAdress" id="emailAdress" />
                     <label htmlFor="location">Wohnort</label>
-                    <input ref={locationRef} className='border p-2 mb-5 block' type="text" name="location" id="location" />
+                    <input ref={locationRef} className='border p-2 mb-2  block' type="text" name="location" id="location" />
                     <label htmlFor="salaryExpectation">Gehaltsvorstellung</label>
-                    <input ref={salaryExpectationRef} className='border p-2 mb-5 block' type="text" name="salaryExpectation" id="salaryExpectation" />
+                    <input ref={salaryExpectationRef} className='border p-2 mb-2  block' type="text" name="salaryExpectation" id="salaryExpectation" />
+                    <label className='block' htmlFor="message">Nachricht</label>
+                    <textarea onChange={() => console.log(messageRef.current?.value)} ref={messageRef} className='border max-h-28' name="message" id="message" cols={26} rows={3} />
                     <p className='mb-2 text-center'>Lebenslauf als PDF importieren</p>
-                    <div className='mb-10'>
+                    <div className='mb-3'>
                         <UploadButton
                             endpoint="imageUploader"
                             onClientUploadComplete={(res) => {
