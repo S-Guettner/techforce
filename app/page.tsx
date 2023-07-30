@@ -13,6 +13,7 @@ import axios from 'axios'
 import Posts from './components/indexPage/Posts'
 import { nanoid } from 'nanoid'
 import SmallPost from './components/indexPage/SmallPost'
+import PostsFilter from './components/indexPage/PostsFilter'
 
 
 
@@ -41,7 +42,7 @@ export default function Home() {
 
   const [modalStatus, setModalStatus] = useState(false)
 
-  const [postId,setPostId] = useState("")
+  const [postId, setPostId] = useState("")
 
   const router = useRouter();
   const { data: session } = useSession()
@@ -99,78 +100,86 @@ export default function Home() {
     }, [session, router])
    */
 
-    if(postId.length == 0){
-      return (
-        <div>
-          <Navbar 
-            currentPage={""}
-          />
-          <nav className='flex justify-between items-center p-2'>
-    
-            <div>
-            </div>
-          </nav>
-          <main className='p-5'>
-            <aside className=''>
-              {posts && posts.map((post) => {
-                console.log(post)
-                return (
-                  <SmallPost
-                    key={nanoid()}
-                    jobTitle={post?.jobTitle}
-                    postId={post?._id}
-                    setPostId={setPostId}
-                  />
-                )
-              })
-              }
-            </aside>
-    
-    
-          </main>
-        </div>
-    
-      )
-    }else{
-      return(
-        <div>
-          <Navbar 
-            currentPage={""}
-          />
-          <nav className='flex justify-between items-center p-2'>
+  if (postId.length == 0) {
+    return (
+      <div>
+        <Navbar
+          currentPage={""}
+        />
+        <nav className='flex justify-between items-center p-2'>
 
-            <div>
-            </div>
-          </nav>
-          <main className='p-5'>
-            <aside className=''>
-              {posts && posts.map((post) => {
-                console.log(post)
-                return (
-                  <Posts
-                    key={nanoid()}
-                    jobTitle={post?.jobTitle}
-                    shortJobDescription={post?.shortJobDescription}
-                    detailedJobDescription={post?.detailedJobDescription}
-                    tasks={post?.tasks}
-                    offers={post?.offers}
-                    requirements={post?.requirements}
-                    contactPersonName={post?.contactPersonName}
-                    contactPersonNumber={post?.contactPersonNumber}
-                    contactPersonEmail={post?.contactPersonEmail}
-                    postId={postId}
-                    setPostId={setPostId}
-                  />
-                )
-              })
-              }
-            </aside>
+          <div>
+          </div>
+        </nav>
 
+        <section className='p-5 flex justify-center'>
+          <PostsFilter />
+        </section>
+        <div className='h-[1px] bg-[#b2d7cc]'>
 
-          </main>
         </div>
 
-      )
-    }
+        <main className='p-5'>
+          <aside className=''>
+            {posts && posts.map((post) => {
+              console.log(post)
+              return (
+                <SmallPost
+                  key={nanoid()}
+                  jobTitle={post?.jobTitle}
+                  postId={post?._id}
+                  setPostId={setPostId}
+                />
+              )
+            })
+            }
+          </aside>
+
+
+        </main>
+      </div>
+
+    )
+  } else {
+    return (
+      <div>
+        <Navbar
+          currentPage={""}
+        />
+        <nav className='flex justify-between items-center p-2'>
+
+          <div>
+          </div>
+        </nav>
+        <main className='p-5'>
+          <aside className=''>
+            {posts && posts.map((post) => {
+              console.log(post)
+              return (
+                <Posts
+                  key={nanoid()}
+                  jobTitle={post?.jobTitle}
+                  shortJobDescription={post?.shortJobDescription}
+                  detailedJobDescription={post?.detailedJobDescription}
+                  tasks={post?.tasks}
+                  offers={post?.offers}
+                  requirements={post?.requirements}
+                  contactPersonName={post?.contactPersonName}
+                  contactPersonNumber={post?.contactPersonNumber}
+                  contactPersonEmail={post?.contactPersonEmail}
+                  postId={postId}
+                  setPostId={setPostId}
+                />
+              )
+            })
+            }
+          </aside>
+
+
+        </main>
+      </div>
+
+    )
+  }
 
 }

@@ -24,8 +24,6 @@ const page: FC<pageProps> = ({ }) => {
     const [tasks, setTasks] = useState<string[]>([]);
     const [task, setTask] = useState("")
 
-    console.log(task)
-
     const [offers, setOffers] = useState<string[]>([])
     const [offer, setOffer] = useState("")
 
