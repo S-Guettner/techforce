@@ -5,12 +5,15 @@ import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 import { nanoid } from 'nanoid'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
 interface pageProps {
 
 }
 
 const page: FC<pageProps> = ({ }) => {
+
+    const router = useRouter();
 
     const { data: session } = useSession()
 
@@ -81,6 +84,7 @@ const page: FC<pageProps> = ({ }) => {
         })
             .then(function (response) {
                 console.log(response);
+                router.push('/bussines/bussines-dashboard/overviewPosts')
             })
             .catch(function (error) {
                 console.log(error);

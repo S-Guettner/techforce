@@ -4,7 +4,7 @@
 - [x] (new job post) created tasks etc. not showing
 - [x] search function index page (filter)
 - [x] (new post): empty text input field after text added 
-- [] (new post): redirect to overview after submit
+- [x] (new post): redirect to overview after submit
 - [] get company details to add to job posts
 - [] area in dashboard to see applications
 - [] notification for new applications
