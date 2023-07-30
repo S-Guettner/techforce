@@ -24,6 +24,8 @@ const page: FC<pageProps> = ({ }) => {
     const [tasks, setTasks] = useState<string[]>([]);
     const [task, setTask] = useState("")
 
+    console.log(task)
+
     const [offers, setOffers] = useState<string[]>([])
     const [offer, setOffer] = useState("")
 
@@ -111,19 +113,19 @@ const page: FC<pageProps> = ({ }) => {
                 </div>
                 <div className='flex justify-center'>
                     <div className='flex w-5/6 items-center'>
-                        <textarea className='border rounded-xl p-2 mb-5 max-h-36 mr-2' name="" id="" cols={30} rows={5} placeholder='Aufgaben:'></textarea>
+                        <textarea onChange={(e) => setTask(e.target.value)} className='border rounded-xl p-2 mb-5 max-h-36 mr-2' name="" id="" cols={30} rows={5} placeholder='Aufgaben:'></textarea>
                         <button className='block mx-auto font-light border w-1/3 m-2  rounded-2xl my-2 p-2 ' type='button' onClick={() => addTask(task)}>hinzufügen</button>
                     </div>
                 </div>
                 <div className='flex justify-center'>
                     <div className='flex w-5/6 items-center'>
-                        <textarea className='border rounded-xl p-2 mb-5 max-h-36 mr-2' name="" id="" cols={30} rows={5} placeholder='Was wir bieten:'></textarea>
+                        <textarea onChange={(e) => setOffer(e.target.value)} className='border rounded-xl p-2 mb-5 max-h-36 mr-2' name="" id="" cols={30} rows={5} placeholder='Was wir bieten:'></textarea>
                         <button className='block mx-auto font-light border w-1/3 m-2  rounded-2xl my-2 p-2 ' type='button' onClick={() => addOffer(offer)}>hinzufügen</button>
                     </div>
                 </div>
                 <div className='flex justify-center'>
                     <div className='flex w-5/6 items-center'>
-                        <textarea className='border rounded-xl p-2 mb-5 max-h-36 mr-2' name="" id="" cols={30} rows={5} placeholder='Anforderungen:'></textarea>
+                        <textarea onChange={(e) => setRequirement(e.target.value)} className='border rounded-xl p-2 mb-5 max-h-36 mr-2' name="" id="" cols={30} rows={5} placeholder='Anforderungen:'></textarea>
                         <button className='block mx-auto font-light border w-1/3 m-2  rounded-2xl my-2 p-2  mb-10 ' type='button' onClick={() => addRequirement(requirement)}>hinzufügen</button>
                     </div>
                 </div>
