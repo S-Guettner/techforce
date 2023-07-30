@@ -8,3 +8,5 @@
 - [] get company details to add to job posts
 - [] area in dashboard to see applications
 - [] notification for new applications
+- [] on post click shows all post on details page and not only clicked post
+

@@ -47,15 +47,19 @@ export default function Home() {
   const router = useRouter();
   const { data: session } = useSession()
 
+  const [searchTerm, setSearchTerm] = useState("")
+
 
   console.log(getSession())
 
+  
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        console.log(searchTerm)
 
 
-        const response = await axios.post('/api/allPosts');
+        const response = await axios.post('/api/allPosts', { searchTerm: searchTerm });
         console.log(response)
         setPosts(response?.data?.jobPostings)
       } catch (err) {
@@ -64,7 +68,7 @@ export default function Home() {
     }
 
     fetchPosts()
-  }, [])
+  }, [searchTerm])
 
   console.log(postId)
 
@@ -113,7 +117,10 @@ export default function Home() {
         </nav>
 
         <section className='p-5 flex justify-center'>
-          <PostsFilter />
+          <PostsFilter
+            key={nanoid()}
+            setSearchTerm={setSearchTerm}
+          />
         </section>
         <div className='h-[1px] bg-[#b2d7cc]'>
 

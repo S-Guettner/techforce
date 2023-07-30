@@ -1,15 +1,28 @@
 import testUser from '@/app/utils/models/userModel';
-import { NextApiRequest, NextApiResponse } from 'next';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import connectionToDB from '@/app/utils/database';
 
-export const POST = async (req: NextApiRequest, res: NextApiResponse) => {
+interface Body {
+    searchTerm?: string;
+}
+
+export const POST = async (req: NextRequest, res: NextResponse) => {
     connectionToDB();
 
     try {
-        const jobPostings = await testUser.find().select('jobPostings');
-        console.log(jobPostings);
-        const allJobPostings = jobPostings.map((user) => user.jobPostings).flat();
+        const { searchTerm } = await req.json();
+        console.log('searchTerm', searchTerm);
+
+        const users = await testUser.find().select('jobPostings');
+
+        let allJobPostings = users.map((user) => user.jobPostings).flat();
+
+        // Wenn ein Suchbegriff vorhanden ist, filtern von Job-Postings
+        if (searchTerm) {
+            const lowerCaseSearchTerm = searchTerm.toLowerCase();
+            allJobPostings = allJobPostings.filter((posting) => posting.jobTitle.toLowerCase().includes(lowerCaseSearchTerm));
+        }
+
         console.log('Job postings:', allJobPostings);
 
         return NextResponse.json({ jobPostings: allJobPostings });
