@@ -100,7 +100,7 @@ const page: FC<pageProps> = ({ }) => {
                 </Link>
             </div>
 
-            <section className=''>
+            <section>
                 <div>
                     <input onChange={(e) => setJobTitle(e.target.value)} className='block border mb-5 p-2 w-5/6  mx-auto rounded-xl' placeholder='Stellenbezeichnung' type="text" name="jobTitle" id="jobTitle" />
                     <input onChange={(e) => setShortJobDescription(e.target.value)} className='block border mb-5 p-2 w-5/6 mx-auto rounded-xl' placeholder='Kurzbeschreibung' type="text" name="shortDescription" id="shortDescription" />
@@ -109,24 +109,31 @@ const page: FC<pageProps> = ({ }) => {
                     <input onChange={(e) => setContactPersonNumber(e.target.value)} className='block border mb-5 p-2 w-5/6 mx-auto rounded-xl' placeholder='Nummer Kontaktperson' type="text" name="contactPersonNumber" id="contactPersonNumber" />
                     <input onChange={(e) => setContactPersonEmail(e.target.value)} className='block border mb-5 p-2 w-5/6 mx-auto rounded-xl' placeholder='E-mail Kontaktperson' type="text" name="contactPerson" id="contactPerson" />
                 </div>
-                <div className='flex justify-center'>
-                    <div className='flex w-5/6 items-center'>
-                        <textarea onChange={(e) => setTask(e.target.value)} className='border rounded-xl p-2 mb-5 max-h-36 mr-2' name="" id="" cols={30} rows={5} placeholder='Aufgaben:'></textarea>
-                        <button className='block mx-auto font-light border w-1/3 m-2  rounded-2xl my-2 p-2 ' type='button' onClick={() => addTask(task)}>hinzufügen</button>
+
+                <form onSubmit={(e) => { e.preventDefault(); addTask(task); setTask('') }}>
+                    <div className='flex justify-center'>
+                        <div className='flex w-5/6 items-center'>
+                            <textarea value={task} onChange={(e) => setTask(e.target.value)} className='border rounded-xl p-2 mb-5 max-h-36 mr-2' name="" id="" cols={30} rows={5} placeholder='Aufgaben:'></textarea>
+                            <button className='block mx-auto font-light border w-1/3 m-2  rounded-2xl my-2 p-2 ' type='submit'>hinzufügen</button>
+                        </div>
                     </div>
-                </div>
-                <div className='flex justify-center'>
-                    <div className='flex w-5/6 items-center'>
-                        <textarea onChange={(e) => setOffer(e.target.value)} className='border rounded-xl p-2 mb-5 max-h-36 mr-2' name="" id="" cols={30} rows={5} placeholder='Was wir bieten:'></textarea>
-                        <button className='block mx-auto font-light border w-1/3 m-2  rounded-2xl my-2 p-2 ' type='button' onClick={() => addOffer(offer)}>hinzufügen</button>
+                </form>
+                <form onSubmit={(e) => { e.preventDefault(); addOffer(offer); setOffer('') }}>
+                    <div className='flex justify-center'>
+                        <div className='flex w-5/6 items-center'>
+                            <textarea value={offer} onChange={(e) => setOffer(e.target.value)} className='border rounded-xl p-2 mb-5 max-h-36 mr-2' name="" id="" cols={30} rows={5} placeholder='Was wir bieten:'></textarea>
+                            <button className='block mx-auto font-light border w-1/3 m-2  rounded-2xl my-2 p-2 ' type='submit'>hinzufügen</button>
+                        </div>
                     </div>
-                </div>
-                <div className='flex justify-center'>
-                    <div className='flex w-5/6 items-center'>
-                        <textarea onChange={(e) => setRequirement(e.target.value)} className='border rounded-xl p-2 mb-5 max-h-36 mr-2' name="" id="" cols={30} rows={5} placeholder='Anforderungen:'></textarea>
-                        <button className='block mx-auto font-light border w-1/3 m-2  rounded-2xl my-2 p-2  mb-10 ' type='button' onClick={() => addRequirement(requirement)}>hinzufügen</button>
+                </form>
+                <form onSubmit={(e) => { e.preventDefault(); addRequirement(requirement); setRequirement('') }}>
+                    <div className='flex justify-center'>
+                        <div className='flex w-5/6 items-center'>
+                            <textarea value={requirement} onChange={(e) => setRequirement(e.target.value)} className='border rounded-xl p-2 mb-5 max-h-36 mr-2' name="" id="" cols={30} rows={5} placeholder='Anforderungen:'></textarea>
+                            <button className='block mx-auto font-light border w-1/3 m-2  rounded-2xl my-2 p-2  mb-10 ' type='submit'>hinzufügen</button>
+                        </div>
                     </div>
-                </div>
+                </form>
 
 
                 <section className='bg-white '>
