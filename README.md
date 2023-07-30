@@ -5,6 +5,7 @@
 - [x] search function index page (filter)
 - [x] (new post): empty text input field after text added 
 - [x] (new post): redirect to overview after submit
+- [] maybe add post overview to dashboard because there is a lot of empty space
 - [] get company details to add to job posts
 - [] area in dashboard to see applications
 - [] notification for new applications
