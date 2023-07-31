@@ -78,7 +78,7 @@ const Page: FC<PageProps> = ({ params }) => {
                         <div className='mb-3'>
                             <p className='mb-2 text-center'>Lebenslauf als PDF importieren</p>
                             <UploadButton
-                                endpoint="imageUploader"
+                                endpoint="pdfUploader"
                                 onClientUploadComplete={(res) => {
                                     setFilePath(res && res[0].fileUrl)
                                     setFileName(res && res[0].fileKey)

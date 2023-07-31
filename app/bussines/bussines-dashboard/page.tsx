@@ -36,6 +36,10 @@ const page: FC<pageProps> = ({ }) => {
 
   const [postsState, setPostsState] = useState<Post[]>()
 
+  const [detailsCheck, setDetailsCheck] = useState<boolean>()
+
+  const [detailsRedirect, setDetailsRedirect] = useState("")
+
   useEffect(() => {
     axios.post('/api/postsOverviewDashboard', {
       userEmail: session?.user?.email
@@ -48,6 +52,27 @@ const page: FC<pageProps> = ({ }) => {
       .catch(function (error) {
         console.log(error);
       });
+  }, [session])
+
+  useEffect(() => {
+    if (session) {
+      axios.post('/api/checkUserDetails', {
+        userEmail: session?.user?.email
+      })
+        .then(function (response) {
+          console.log(response?.data?.result)
+          setDetailsCheck(response?.data?.result)
+          if (response?.data?.result){
+            setDetailsRedirect("/bussines/bussines-dashboard/newPost")
+          }else{
+            setDetailsRedirect("/bussines/companyDetails")
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+
   }, [session])
 
   const [registartionState, setRegistrationState] = useState<boolean>(false)
@@ -78,11 +103,11 @@ const page: FC<pageProps> = ({ }) => {
       <Navbar
         currentPage={"bussines"}
       />
-{/*       <div className='flex justify-center'>
+      {/*       <div className='flex justify-center'>
         <Link href={'/bussines/bussines-dashboard/overviewPosts'} className='text-center inline  w-[90%] mt-10 rounded-2xl border border-x-stone-100 p-5 shadow-lg'>Übersicht</Link>
       </div> */}
       <div className='flex justify-center'>
-        <Link href={'/bussines/bussines-dashboard/newPost'} className='text-center inline  w-[90%] mt-10 rounded-2xl border border-x-stone-100 p-5 shadow-lg'>Stelle erstellen</Link>
+        <Link href={`${detailsRedirect}`} className='text-center inline  w-[90%] mt-10 rounded-2xl border border-x-stone-100 p-5 shadow-lg'>Stelle erstellen</Link>
       </div>
       <section>
         <section>

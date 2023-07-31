@@ -7,10 +7,10 @@ const application = new mongoose.Schema({
     lastName: String,
     telephoneNumber: String,
     emailAdress: String,
-    cvPath:String,
-    location:String,
-    salaryExpectation:String,
-    message:String
+    cvPath: String,
+    location: String,
+    salaryExpectation: String,
+    message: String
 })
 
 const jobPostings = new mongoose.Schema({
@@ -34,11 +34,22 @@ const jobPostings = new mongoose.Schema({
 
 })
 
+const companyDetails = new mongoose.Schema({
+    companyName:String,
+    companyImage:String,
+    companyLocation:String,
+    
+    yearFounded:String,
+    numberOfEmployees:String,
+
+})
+
 const userSchema = new mongoose.Schema({
 
     email: String,
     userType: String,
-    jobPostings: [jobPostings]
+    jobPostings: [jobPostings],
+    companyDetails: companyDetails 
 })
 
 
