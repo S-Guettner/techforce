@@ -140,7 +140,7 @@ const page: FC<pageProps> = ({ }) => {
 
                 <section className='bg-white '>
                     {/* ============================= ============================ TASKS ============================================================ */}
-                    <div className='my-10'>
+                    <div className='my-10 p-6'>
                         <p>Aufgaben:</p>
                         <div>
                             {tasks && tasks.map((item, index) => {
@@ -158,7 +158,7 @@ const page: FC<pageProps> = ({ }) => {
                         </div>
                     </div>
                     {/* ========================================================= OFFERS ============================================================ */}
-                    <div className='my-10'>
+                    <div className='my-10 p-6'>
                         <p>Was wir bieten:</p>
                         <div>
                             {offers && offers.map((item, index) => {
@@ -176,7 +176,7 @@ const page: FC<pageProps> = ({ }) => {
                         </div>
                     </div>
                     {/* ========================================================= REQUIREMENTS ============================================================ */}
-                    <div className='my-10'>
+                    <div className='my-10 p-6'>
                         <p>Anforderungen:</p>
                         <div>
                             {requirements && requirements.map((item, index) => {
