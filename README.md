@@ -8,8 +8,9 @@
 - [x] maybe add post overview to dashboard because there is a lot of empty space
 - [x] on post click shows all post on details page and not only clicked post
 - [x] route to check if company details are provided
-- [] get company details to add to job posts
-- [] possibility to change company details 
+- [x] get company details to add to job posts
+- [] submit search at index with enter
+
 - [] notification for new applications
 - [] area in dashboard to see applications
 - [] show missing or wrong input in form as error

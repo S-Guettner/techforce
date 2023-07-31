@@ -1,14 +1,40 @@
 import { NextResponse } from 'next/server';
-import testUser from '@/app/utils/models/userModel';
+import User from '@/app/utils/models/userModel';
 
 export const POST = async (req: Request, res: Response) => {
-    const { userEmail, jobTitle, shortJobDescription, detailedJobDescription, tasks, offers, requirements, contactPersonName , contactPersonNumber , contactPersonEmail } = await req.json();
-    const jobListing = { jobTitle, shortJobDescription, detailedJobDescription, tasks, offers, requirements, contactPersonName , contactPersonNumber , contactPersonEmail };
-    console.log("email" ,userEmail);
-    console.log(jobListing);
+    const {
+        userEmail,
+        jobTitle,
+        detailedJobDescription,
+        tasks,
+        offers,
+        requirements,
+        contactPersonName,
+        contactPersonNumber,
+        contactPersonEmail,
+    } = await req.json();
+
     try {
-        const updateJobPostings = await testUser.findOneAndUpdate({ email: userEmail }, { $push: { jobPostings: jobListing } }, { new: true });
-        return NextResponse.json({ updateJobPostings });
+        const user = await User.findOne({ email: userEmail });
+
+        if (!user || !user.companyDetails) {
+            return NextResponse.json({ message: 'User not found or company details not set.' });
+        }
+
+        const jobListing = {
+            jobTitle,
+            detailedJobDescription,
+            tasks,
+            offers,
+            requirements,
+            contactPersonName,
+            contactPersonNumber,
+            contactPersonEmail,
+        };
+
+        const updatedUser = await User.findOneAndUpdate({ email: userEmail }, { $push: { jobPostings: jobListing } }, { new: true });
+
+        return NextResponse.json({ updatedUser });
     } catch (err) {
         return NextResponse.json({ message: err });
     }

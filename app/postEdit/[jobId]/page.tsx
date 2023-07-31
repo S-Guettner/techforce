@@ -12,7 +12,6 @@ interface BussinesDashboardSinglePostEditProps {
     contactPersonName?: string
     contactPersonNumber?: string
     contactPersonEmail?: string
-    shortJobDescription?: string
     detailedJobDescription?: string
     jobTitle?: string
     offers?: string[]
@@ -29,7 +28,6 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
     const { data: session } = useSession()
 
     const [newJobTitle, setNewJobTitle] = useState<string | undefined>("")
-    const [newShortJobDescription, setNewShortJobDescription] = useState<string | undefined>("")
     const [newDetailedJobDescription, setNewDetailedJobDescription] = useState<string | undefined>("")
     const [newContactPersonName, setNewContactPersonName] = useState<string | undefined>("")
     const [newContactPersonNumber, setNewContactPersonNumber] = useState<string | undefined>("")
@@ -46,7 +44,6 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
 
 
     const [jobTitle, setJobTitle] = useState("")
-    const [shortJobDescription, setShortJobDescription] = useState("")
     const [detailedJobDescription, setDetailedJobDescription] = useState("")
     const [contactPersonName, setContactPersonName] = useState("")
     const [contactPersonNumber, setContactPersonNumber] = useState("")
@@ -68,7 +65,6 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
         })
             .then(function (response) {
                 setJobTitle(response.data.jobPosting.jobTitle)
-                setShortJobDescription(response.data.jobPosting.shortJobDescription)
                 setContactPersonName(response.data.jobPosting.contactPersonName)
                 setDetailedJobDescription(response.data.jobPosting.detailedJobDescription)
                 setContactPersonNumber(response.data.jobPosting.contactPersonNumber)
@@ -89,12 +85,6 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             setNewJobTitle(jobTitle)
         } else {
             setNewJobTitle("")
-        }
-
-        if (shortJobDescription) {
-            setNewShortJobDescription(shortJobDescription)
-        } else {
-            setNewShortJobDescription("")
         }
 
         if (detailedJobDescription) {
@@ -140,7 +130,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
         }
 
 
-    }, [jobTitle, shortJobDescription, detailedJobDescription, tasks, offers, requirements, contactPersonName, contactPersonNumber, newContactPersonEmail])
+    }, [jobTitle, detailedJobDescription, tasks, offers, requirements, contactPersonName, contactPersonNumber, newContactPersonEmail])
 
     console.log(contactPersonName)
 
@@ -195,7 +185,6 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             userEmail: session?.user?.email,
             postId: params.jobId,
             jobTitle: newJobTitle,
-            shortJobDescription: newShortJobDescription,
             detailedJobDescription: newDetailedJobDescription,
             tasks: newTasks,
             offers: newOffers,
@@ -244,13 +233,6 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
                     {/* ================================================ Change Job Title ================================================ */}
                     <p>Stellenbezeichnung ändern</p>
                     <input className='border rounded-xl p-2 w-[340px] shadow-inner' onChange={(e) => setNewJobTitle(e.target.value)} type="text" name="newJobTitle" id="newJobTitle" value={newJobTitle} />
-                </div>
-            </div>
-            <div className='flex justify-center mb-5'>
-                <div>
-                    {/* ================================================ Change short Job description ================================================ */}
-                    <p>Kurzbeschreibung ändern</p>
-                    <textarea className='border rounded-xl p-2 max-h-44 shadow-inner' onChange={(e) => setNewShortJobDescription(e.target.value)} value={newShortJobDescription} name="shortDescription" id="shortDescription" cols={35} rows={5}></textarea>
                 </div>
             </div>
             <div className='flex justify-center mb-5'>
@@ -372,7 +354,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
             <div className='flex justify-center'>
 
                 <button className='bg-red-600 p-2 mb-5 text-white rounded-xl' onClick={() => deletePostHandler()} >
-                    Stellenausschreibung entfernen
+                    Stellenausschreibung löschen
                 </button>
             </div>
         </main>

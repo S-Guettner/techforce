@@ -19,7 +19,7 @@ const page: FC<pageProps> = ({ }) => {
 
     const [jobTitle, setJobTitle] = useState("")
     const [shortJobDescription, setShortJobDescription] = useState("")
-    const [detailedJobDescription, setSetailedJobDescription] = useState("")
+    const [detailedJobDescription, setDetailedJobDescription] = useState("")
     const [contactPersonName, setContactPersonName] = useState("")
     const [contactPersonNumber, setContactPersonNumber] = useState("")
     const [contactPersonEmail, setContactPersonEmail] = useState("")
@@ -73,7 +73,6 @@ const page: FC<pageProps> = ({ }) => {
         axios.post('/api/newPost', {
             userEmail: session?.user?.email,
             jobTitle: jobTitle,
-            shortJobDescription: shortJobDescription,
             detailedJobDescription: detailedJobDescription,
             tasks: tasks,
             offers: offers,
@@ -84,7 +83,7 @@ const page: FC<pageProps> = ({ }) => {
         })
             .then(function (response) {
                 console.log(response);
-                router.push('/bussines/bussines-dashboard/overviewPosts')
+                router.push('/bussines/bussines-dashboard')
             })
             .catch(function (error) {
                 console.log(error);
@@ -107,8 +106,7 @@ const page: FC<pageProps> = ({ }) => {
             <section>
                 <div>
                     <input onChange={(e) => setJobTitle(e.target.value)} className='block border mb-5 p-2 w-5/6  mx-auto rounded-xl' placeholder='Stellenbezeichnung' type="text" name="jobTitle" id="jobTitle" />
-                    <input onChange={(e) => setShortJobDescription(e.target.value)} className='block border mb-5 p-2 w-5/6 mx-auto rounded-xl' placeholder='Kurzbeschreibung' type="text" name="shortDescription" id="shortDescription" />
-                    <input onChange={(e) => setSetailedJobDescription(e.target.value)} className='block border mb-5 p-2 w-5/6 mx-auto rounded-xl' placeholder='Stellenbeschreibung' type="text" name="detailedDescription" id="detailedDescription" />
+                    <textarea onChange={(e) => setDetailedJobDescription(e.target.value)} className='block border max-h-36 h-36 mb-5 p-2 w-5/6 mx-auto rounded-xl' placeholder='Stellenbeschreibung' name="detailedDescription" id="detailedDescription" />
                     <input onChange={(e) => setContactPersonName(e.target.value)} className='block border mb-5 p-2 w-5/6 mx-auto rounded-xl' placeholder='Name Kontaktperson' type="text" name="contactPerson" id="contactPerson" />
                     <input onChange={(e) => setContactPersonNumber(e.target.value)} className='block border mb-5 p-2 w-5/6 mx-auto rounded-xl' placeholder='Nummer Kontaktperson' type="text" name="contactPersonNumber" id="contactPersonNumber" />
                     <input onChange={(e) => setContactPersonEmail(e.target.value)} className='block border mb-5 p-2 w-5/6 mx-auto rounded-xl' placeholder='E-mail Kontaktperson' type="text" name="contactPerson" id="contactPerson" />

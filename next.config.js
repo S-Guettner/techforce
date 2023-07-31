@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: {
-
+    experimental: {},
+    images: {
+        domains: ['uploadthing.com'],
     },
 };
 

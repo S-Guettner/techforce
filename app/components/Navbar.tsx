@@ -32,7 +32,7 @@ const Navbar: FC<NavbarProps> = ({ currentPage }) => {
         signOut({ callbackUrl: 'http://localhost:3000' })
     }
 
-   
+
 
     useEffect(() => {
         const providers = async () => {
@@ -71,10 +71,13 @@ const Navbar: FC<NavbarProps> = ({ currentPage }) => {
                         alt='logo'
                     />
                 </Link>
-                {session &&
-                    <button onClick={() => buttonHandler()}>
-                        <p className='font-light text-white p-2 rounded-3xl bg-[#66af99]'>Sign out</p>
-                    </button>}
+                <div>
+                    {session &&
+                        <button onClick={() => buttonHandler()}>
+                            <p className='font-light text-white p-2 rounded-3xl bg-[#66af99]'>Sign out</p>
+                        </button>}
+                        
+                </div>
 
 
             </nav>

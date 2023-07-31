@@ -17,19 +17,29 @@ import PostsFilter from './components/indexPage/PostsFilter'
 
 
 
-interface Post {
-  jobTitle: string
-  shortJobDescription: string
-  detailedJobDescription: string
-  tasks: string[]
-  offers: string[]
-  requirements: string[]
-  contactPersonName: string
-  contactPersonNumber: string
-  contactPersonEmail: string
-  _id: string
-  timestamp: string
+interface CompanyDetails {
+  companyName: string;
+  companyImage: string;
+  companyLocation: string;
+  yearFounded: string;
+  numberOfEmployees: string;
 }
+
+interface Post {
+  jobTitle: string;
+  shortJobDescription: string;
+  detailedJobDescription: string;
+  tasks: string[];
+  offers: string[];
+  requirements: string[];
+  contactPersonName: string;
+  contactPersonNumber: string;
+  contactPersonEmail: string;
+  _id: string;
+  timestamp: string;
+  companyDetails: CompanyDetails;
+}
+
 
 export default function Home() {
 
@@ -61,7 +71,7 @@ export default function Home() {
 
 
         const response = await axios.post('/api/allPosts', { searchTerm: searchTerm });
-        console.log(response)
+        console.log(response?.data?.jobPostings[0].companyDetails)
         setPosts(response?.data?.jobPostings)
       } catch (err) {
         console.log(err)
@@ -151,10 +161,14 @@ export default function Home() {
                   jobTitle={post?.jobTitle}
                   postId={post?._id}
                   setPostId={setPostId}
+                  companyName={post?.companyDetails?.companyName}
+                  companyImage={post?.companyDetails?.companyImage}
+                  companyLocation={post?.companyDetails?.companyLocation}
+                  yearFounded={post?.companyDetails?.yearFounded}
+                  numberOfEmployees={post?.companyDetails?.numberOfEmployees}
                 />
               )
-            })
-            }
+            })}
           </aside>
 
 

@@ -13,10 +13,20 @@ const application = new mongoose.Schema({
     message: String
 })
 
+const companyDetails = new mongoose.Schema({
+    companyName:String,
+    companyImage:String,
+    companyLocation:String,
+    
+    yearFounded:String,
+    numberOfEmployees:String,
+
+})
+
+
 const jobPostings = new mongoose.Schema({
 
     jobTitle: String,
-    shortJobDescription: String,
     detailedJobDescription: String,
     tasks: [String],
     offers: [String],
@@ -34,15 +44,6 @@ const jobPostings = new mongoose.Schema({
 
 })
 
-const companyDetails = new mongoose.Schema({
-    companyName:String,
-    companyImage:String,
-    companyLocation:String,
-    
-    yearFounded:String,
-    numberOfEmployees:String,
-
-})
 
 const userSchema = new mongoose.Schema({
 

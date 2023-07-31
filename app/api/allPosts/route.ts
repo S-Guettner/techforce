@@ -2,8 +2,38 @@ import testUser from '@/app/utils/models/userModel';
 import { NextRequest, NextResponse } from 'next/server';
 import connectionToDB from '@/app/utils/database';
 
-interface Body {
-    searchTerm?: string;
+interface Application {
+    firstName: string;
+    lastName: string;
+    telephoneNumber: string;
+    emailAdress: string;
+    cvPath: string;
+    location: string;
+    salaryExpectation: string;
+    message: string;
+}
+
+interface CompanyDetails {
+    companyName: string;
+    companyImage: string;
+    companyLocation: string;
+    yearFounded: string;
+    numberOfEmployees: string;
+}
+
+interface JobPosting {
+    jobTitle: string;
+    shortJobDescription: string;
+    detailedJobDescription: string;
+    tasks: string[];
+    offers: string[];
+    requirements: string[];
+    contactPersonName: string;
+    contactPersonNumber: string;
+    contactPersonEmail: string;
+    applications: Application[];
+    companyDetails: CompanyDetails;
+    timestamp: Date;
 }
 
 export const POST = async (req: NextRequest, res: NextResponse) => {
@@ -13,14 +43,20 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
         const { searchTerm } = await req.json();
         console.log('searchTerm', searchTerm);
 
-        const users = await testUser.find().select('jobPostings');
+        const users = await testUser.find().select('jobPostings companyDetails');
 
-        let allJobPostings = users.map((user) => user.jobPostings).flat();
+        let allJobPostings: JobPosting[] = users
+            .map((user: any) => {
+                return user.jobPostings.map((posting: any) => {
+                    return { ...posting._doc, companyDetails: user.companyDetails };
+                });
+            })
+            .flat();
 
         // Wenn ein Suchbegriff vorhanden ist, filtern von Job-Postings
         if (searchTerm) {
             const lowerCaseSearchTerm = searchTerm.toLowerCase();
-            allJobPostings = allJobPostings.filter((posting) => posting.jobTitle.toLowerCase().includes(lowerCaseSearchTerm));
+            allJobPostings = allJobPostings.filter((posting: JobPosting) => posting.jobTitle.toLowerCase().includes(lowerCaseSearchTerm));
         }
 
         console.log('Job postings:', allJobPostings);
