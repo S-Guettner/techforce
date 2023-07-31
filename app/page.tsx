@@ -43,6 +43,7 @@ export default function Home() {
   const [modalStatus, setModalStatus] = useState(false)
 
   const [postId, setPostId] = useState("")
+  const [singlePost, setSinglePost] = useState<Post>()
 
   const router = useRouter();
   const { data: session } = useSession()
@@ -52,7 +53,7 @@ export default function Home() {
 
   console.log(getSession())
 
-  
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -69,6 +70,20 @@ export default function Home() {
 
     fetchPosts()
   }, [searchTerm])
+
+  useEffect(() => {
+    const fetchSinglePost = async () => {
+      try {
+        const response = await axios.post('/api/singlePostApply', { jobId: postId });
+        console.log("single post", response?.data?.jobPosting)
+        setSinglePost(response?.data?.jobPosting)
+
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    fetchSinglePost()
+  }, [postId])
 
   console.log(postId)
 
@@ -159,27 +174,27 @@ export default function Home() {
           </div>
         </nav>
         <main className='p-5'>
-          <aside className=''>
-            {posts && posts.map((post) => {
-              console.log(post)
-              return (
-                <Posts
-                  key={nanoid()}
-                  jobTitle={post?.jobTitle}
-                  shortJobDescription={post?.shortJobDescription}
-                  detailedJobDescription={post?.detailedJobDescription}
-                  tasks={post?.tasks}
-                  offers={post?.offers}
-                  requirements={post?.requirements}
-                  contactPersonName={post?.contactPersonName}
-                  contactPersonNumber={post?.contactPersonNumber}
-                  contactPersonEmail={post?.contactPersonEmail}
-                  postId={postId}
-                  setPostId={setPostId}
-                />
-              )
-            })
-            }
+          <aside>
+
+            {singlePost && (
+              <Posts
+                key={nanoid()}
+                jobTitle={singlePost?.jobTitle}
+                shortJobDescription={singlePost?.shortJobDescription}
+                detailedJobDescription={singlePost?.detailedJobDescription}
+                tasks={singlePost?.tasks}
+                offers={singlePost?.offers}
+                requirements={singlePost?.requirements}
+                contactPersonName={singlePost?.contactPersonName}
+                contactPersonNumber={singlePost?.contactPersonNumber}
+                contactPersonEmail={singlePost?.contactPersonEmail}
+                postId={postId}
+                setPostId={setPostId}
+              />
+            )}
+
+
+
           </aside>
 
 

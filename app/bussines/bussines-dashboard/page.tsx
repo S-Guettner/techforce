@@ -9,16 +9,46 @@ import BussinesDashboardNewPost from '@/app/components/bussinesDashboard/Bussine
 import BussinesDashboardOverview from '@/app/components/bussinesDashboard/BussinesDashboardOverview'
 import axios from 'axios'
 import Navbar from '@/app/components/Navbar'
+import DashboardPost from '@/app/components/bussines/DashboardPost'
+import { nanoid } from 'nanoid'
 
 interface pageProps {
 
 }
 
+interface Post {
+  jobTitle: string
+  shortJobDescription: string
+  detailedJobDescription: string
+  tasks: string[]
+  offers: string[]
+  requirements: string[]
+  contactPersonName: string
+  contactPersonNumber: string
+  contactPersonEmail: string
+  _id: string
+  timestamp: string
+}
+
 const page: FC<pageProps> = ({ }) => {
 
   const { data: session } = useSession()
-  console.log(session)
 
+  const [postsState, setPostsState] = useState<Post[]>()
+
+  useEffect(() => {
+    axios.post('/api/postsOverviewDashboard', {
+      userEmail: session?.user?.email
+
+    })
+      .then(function (response) {
+
+        setPostsState(response?.data?.jobPosts)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [session])
 
   const [registartionState, setRegistrationState] = useState<boolean>(false)
 
@@ -43,24 +73,37 @@ const page: FC<pageProps> = ({ }) => {
 
   const [selectedAction, setSelectedAction] = useState("overview")
 
-    return (
-      <main>
-        <Navbar
-          currentPage={"bussines"}
-        />
-        <div className='flex justify-center'>
-          <Link href={'/bussines/bussines-dashboard/overviewPosts'} className='text-center inline  w-[90%] mt-10 rounded-2xl border border-x-stone-100 p-5 shadow-lg'>Übersicht</Link>
-        </div>
-        <div className='flex justify-center'>
-          <Link href={'/bussines/bussines-dashboard/newPost'} className='text-center inline  w-[90%] mt-10 rounded-2xl border border-x-stone-100 p-5 shadow-lg'>Stelle erstellen</Link>
-        </div>
+  return (
+    <main>
+      <Navbar
+        currentPage={"bussines"}
+      />
+{/*       <div className='flex justify-center'>
+        <Link href={'/bussines/bussines-dashboard/overviewPosts'} className='text-center inline  w-[90%] mt-10 rounded-2xl border border-x-stone-100 p-5 shadow-lg'>Übersicht</Link>
+      </div> */}
+      <div className='flex justify-center'>
+        <Link href={'/bussines/bussines-dashboard/newPost'} className='text-center inline  w-[90%] mt-10 rounded-2xl border border-x-stone-100 p-5 shadow-lg'>Stelle erstellen</Link>
+      </div>
+      <section>
         <section>
-
+          {postsState && postsState.map((post) => {
+            console.log(post)
+            return (
+              <div key={nanoid()}>
+                <DashboardPost
+                  postId={post._id}
+                  jobTitle={post.jobTitle}
+                  timestamp={post.timestamp}
+                />
+              </div>
+            )
+          })}
         </section>
+      </section>
 
-      </main>
-    )
-  }
+    </main>
+  )
+}
 
 
 
