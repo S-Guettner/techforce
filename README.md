@@ -11,8 +11,7 @@
 - [x] get company details to add to job posts
 - [] submit search at index with enter
 
-- [] notification for new applications
-- [] area in dashboard to see applications
+- [] area in dashboard to see applications (!!!!!!!! WIP needs styling rest working)
 - [] show missing or wrong input in form as error
 - [] protecting user only routes 
 

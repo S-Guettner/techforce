@@ -4,9 +4,6 @@ import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralU
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
-import BussinesDashboardSidebar from '@/app/components/bussinesDashboard/BussinesDashboardSidebar'
-import BussinesDashboardNewPost from '@/app/components/bussinesDashboard/BussinesDashboardNewPost'
-import BussinesDashboardOverview from '@/app/components/bussinesDashboard/BussinesDashboardOverview'
 import axios from 'axios'
 import Navbar from '@/app/components/Navbar'
 import DashboardPost from '@/app/components/bussines/DashboardPost'
@@ -14,6 +11,19 @@ import { nanoid } from 'nanoid'
 
 interface pageProps {
 
+}
+
+interface Applications {
+  cvPath:string
+  emailAdress:string
+  firstName:string
+  lastName: string
+  location:string
+  message:string
+  salaryExpectation:string
+  telephoneNumber:string
+  _id:string
+  
 }
 
 interface Post {
@@ -28,7 +38,9 @@ interface Post {
   contactPersonEmail: string
   _id: string
   timestamp: string
+  applications:[]
 }
+
 
 const page: FC<pageProps> = ({ }) => {
 
@@ -46,7 +58,6 @@ const page: FC<pageProps> = ({ }) => {
 
     })
       .then(function (response) {
-
         setPostsState(response?.data?.jobPosts)
       })
       .catch(function (error) {
@@ -60,7 +71,6 @@ const page: FC<pageProps> = ({ }) => {
         userEmail: session?.user?.email
       })
         .then(function (response) {
-          console.log(response?.data?.result)
           setDetailsCheck(response?.data?.result)
           if (response?.data?.result){
             setDetailsRedirect("/bussines/bussines-dashboard/newPost")
@@ -112,13 +122,14 @@ const page: FC<pageProps> = ({ }) => {
       <section>
         <section>
           {postsState && postsState.map((post) => {
-            console.log(post)
+            console.log(post?.applications)
             return (
               <div key={nanoid()}>
                 <DashboardPost
                   postId={post._id}
                   jobTitle={post.jobTitle}
                   timestamp={post.timestamp}
+                  applications={post?.applications}
                 />
               </div>
             )

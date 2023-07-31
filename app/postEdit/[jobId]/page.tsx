@@ -130,7 +130,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
         }
 
 
-    }, [jobTitle, detailedJobDescription, tasks, offers, requirements, contactPersonName, contactPersonNumber, newContactPersonEmail])
+    }, [jobTitle, detailedJobDescription, tasks, offers, requirements, contactPersonName, contactPersonNumber, contactPersonEmail])
 
     console.log(contactPersonName)
 
