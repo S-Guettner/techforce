@@ -10,6 +10,12 @@
 - [x] route to check if company details are provided
 - [x] get company details to add to job posts
 - [] submit search at index with enter
+- [] after submit of new application redirect to post detail
+- [x] delete applications and fav applications
+- [] add fav applications
+- [] click pointer for job posts at index
+
+
 
 - [] area in dashboard to see applications (!!!!!!!! WIP needs styling rest working)
 - [] show missing or wrong input in form as error
