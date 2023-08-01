@@ -2,6 +2,7 @@
 import { FC, useState, useRef } from 'react';
 import Navbar from '@/app/components/Navbar';
 import axios from 'axios';
+import { useRouter } from 'next/navigation'
 
 import "@uploadthing/react/styles.css";
 import { UploadButton } from "../../utils/uploadthing";
@@ -12,6 +13,8 @@ interface PageProps {
 
 const Page: FC<PageProps> = ({ params }) => {
     console.log(params);
+
+    const router = useRouter()
 
     const [fileName, setFileName] = useState<string | undefined>();
     const [filePath, setFilePath] = useState<string | undefined>();
@@ -46,6 +49,7 @@ const Page: FC<PageProps> = ({ params }) => {
         })
             .then(function (response) {
                 console.log(response);
+                router.push('/')
             })
             .catch(function (error) {
                 console.log(error);

@@ -9,8 +9,8 @@
 - [x] on post click shows all post on details page and not only clicked post
 - [x] route to check if company details are provided
 - [x] get company details to add to job posts
-- [] submit search at index with enter
-- [] after submit of new application redirect to post detail
+- [x] submit search at index with enter
+- [x] after submit of new application redirect to index
 - [x] delete applications and fav applications
 
 - [] click pointer for job posts at index
