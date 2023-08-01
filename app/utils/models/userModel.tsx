@@ -10,14 +10,14 @@ const application = new mongoose.Schema({
     cvPath: String,
     location: String,
     salaryExpectation: String,
-    message: String
+    message: String,
+    originJobPosting: mongoose.Schema.Types.ObjectId,
 })
 
 const companyDetails = new mongoose.Schema({
     companyName:String,
     companyImage:String,
     companyLocation:String,
-    
     yearFounded:String,
     numberOfEmployees:String,
 
@@ -36,6 +36,7 @@ const jobPostings = new mongoose.Schema({
     contactPersonEmail: String,
     applications: [application],
 
+
     timestamp: {
         type: Date,
         immutable: true,
@@ -50,7 +51,8 @@ const userSchema = new mongoose.Schema({
     email: String,
     userType: String,
     jobPostings: [jobPostings],
-    companyDetails: companyDetails 
+    companyDetails: companyDetails ,
+    favoriteApplications: [application],
 })
 
 

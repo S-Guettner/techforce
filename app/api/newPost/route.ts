@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import User from '@/app/utils/models/userModel';
 
+
 export const POST = async (req: Request, res: Response) => {
     const {
         userEmail,

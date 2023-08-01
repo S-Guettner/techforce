@@ -21,9 +21,10 @@ interface DashboardPostProps {
     jobTitle: string
     timestamp: string
     applications: Applications[]
+    setRerenderState: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const DashboardPost: FC<DashboardPostProps> = ({ postId, jobTitle, timestamp, applications }) => {
+const DashboardPost: FC<DashboardPostProps> = ({ postId, jobTitle, timestamp, applications, setRerenderState }) => {
 
     const year = timestamp.slice(0, 4)
     const month = timestamp.slice(5, 7)
@@ -56,6 +57,8 @@ const DashboardPost: FC<DashboardPostProps> = ({ postId, jobTitle, timestamp, ap
                         message={application?.message}
                         salaryExpectation={application?.salaryExpectation}
                         cvPath={application?.cvPath}
+                        applicationId={application?._id}
+                        setRerenderState={setRerenderState}
 
                     />
                 ))}

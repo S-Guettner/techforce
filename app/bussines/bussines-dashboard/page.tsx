@@ -52,6 +52,8 @@ const page: FC<pageProps> = ({ }) => {
 
   const [detailsRedirect, setDetailsRedirect] = useState("")
 
+  const [rerenderState, setRerenderState] = useState(false)
+
   useEffect(() => {
     axios.post('/api/postsOverviewDashboard', {
       userEmail: session?.user?.email
@@ -63,7 +65,7 @@ const page: FC<pageProps> = ({ }) => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [session])
+  }, [session, rerenderState])
 
   useEffect(() => {
     if (session) {
@@ -130,6 +132,7 @@ const page: FC<pageProps> = ({ }) => {
                   jobTitle={post.jobTitle}
                   timestamp={post.timestamp}
                   applications={post?.applications}
+                  setRerenderState={setRerenderState}
                 />
               </div>
             )
