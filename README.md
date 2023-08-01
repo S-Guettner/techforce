@@ -13,7 +13,7 @@
 - [x] after submit of new application redirect to index
 - [x] delete applications and fav applications
 
-- [] click pointer for job posts at index
+- [x] click pointer for job posts at index
 
 
 
