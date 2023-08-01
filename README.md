@@ -12,7 +12,7 @@
 - [] submit search at index with enter
 - [] after submit of new application redirect to post detail
 - [x] delete applications and fav applications
-- [] add fav applications
+
 - [] click pointer for job posts at index
 
 

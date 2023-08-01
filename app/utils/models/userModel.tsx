@@ -35,6 +35,10 @@ const jobPostings = new mongoose.Schema({
     contactPersonNumber: String,
     contactPersonEmail: String,
     applications: [application],
+    favoriteApplications: {
+        type: [application],
+        default: []
+    },
 
 
     timestamp: {
@@ -52,7 +56,7 @@ const userSchema = new mongoose.Schema({
     userType: String,
     jobPostings: [jobPostings],
     companyDetails: companyDetails ,
-    favoriteApplications: [application],
+
 })
 
 

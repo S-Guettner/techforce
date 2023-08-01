@@ -66,6 +66,7 @@ const handler = NextAuth({
                 if (!userCheck) {
                     await userTest.create({
                         email: userEmail,
+
                     });
                     console.log('User not in DB');
                 } else {

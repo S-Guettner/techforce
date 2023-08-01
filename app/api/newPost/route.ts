@@ -1,8 +1,11 @@
 import { NextResponse } from 'next/server';
 import User from '@/app/utils/models/userModel';
+import connectionToDB from '@/app/utils/database';
 
 
 export const POST = async (req: Request, res: Response) => {
+    connectionToDB()
+    
     const {
         userEmail,
         jobTitle,

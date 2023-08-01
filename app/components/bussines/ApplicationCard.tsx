@@ -60,9 +60,6 @@ const ApplicationCard: FC<ApplicationCardProps> = ({ applicationId, firstName, l
                     <p>{firstName}</p>
                     <p>{lastName}</p>
                 </div>
-                {favoriteState && (
-                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></svg>
-                )}
             </div>
             <div className='flex justify-start gap-2 items-center'>
                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 110.8V792H136V270.8l-27.6-21.5 39.3-50.5 42.8 33.3h643.1l42.8-33.3 39.3 50.5-27.7 21.5zM833.6 232L512 482 190.4 232l-42.8-33.3-39.3 50.5 27.6 21.5 341.6 265.6a55.99 55.99 0 0 0 68.7 0L888 270.8l27.6-21.5-39.3-50.5-42.7 33.2z"></path></svg>
@@ -103,7 +100,7 @@ const ApplicationCard: FC<ApplicationCardProps> = ({ applicationId, firstName, l
             </div>
             <div className='flex justify-between px-5'>
                 <button onClick={() => deleteApplication()} className='text-white bg-red-400 p-2 rounded-3xl'>löschen</button>
-                <button onClick={() => addToFavorite()} className='text-white bg-[#66af9a] p-2 rounded-3xl'>Zu Favoriten</button>
+
             </div>
         </section>
     )
