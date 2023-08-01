@@ -17,7 +17,7 @@
 
 
 
-- [] area in dashboard to see applications (!!!!!!!! WIP needs styling rest working)
+- [] area in dashboard to see applications (WIP needs styling ) !!!!!
 - [] show missing or wrong input in form as error
 - [] protecting user only routes 
 
