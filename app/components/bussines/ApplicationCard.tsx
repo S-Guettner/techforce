@@ -81,7 +81,7 @@ const ApplicationCard: FC<ApplicationCardProps> = ({ applicationId, firstName, l
             <div>
                 <p className='p-5 whitespace-pre-line'>{message}</p>
             </div>
-            <div className='flex justify-between p-5'>
+            <div className='flex justify-between '>
                 <div className='flex justify-start gap-1'>
                     <p>Gehaltsvorstellung:</p>
                     <p>{salaryExpectation}</p>
