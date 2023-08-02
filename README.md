@@ -14,6 +14,7 @@
 - [x] delete applications and fav applications
 
 - [x] click pointer for job posts at index
+- [] after delete of post in post edit redirect to prev page
 
 
 

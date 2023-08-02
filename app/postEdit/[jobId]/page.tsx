@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react'
 import axios from 'axios'
 import Navbar from '@/app/components/Navbar'
 import Link from 'next/link'
+import {useRouter} from 'next/navigation'
 
 
 interface BussinesDashboardSinglePostEditProps {
@@ -23,7 +24,7 @@ interface BussinesDashboardSinglePostEditProps {
 
 const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> = ({ params }) => {
 
-    
+    const router = useRouter()
 
     const { data: session } = useSession()
 
@@ -211,7 +212,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
         })
             .then(function (response) {
                 console.log(response)
-
+                router.push('/bussines/bussines-dashboard')
             })
             .catch(function (error) {
                 console.log(error)
