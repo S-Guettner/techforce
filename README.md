@@ -29,8 +29,10 @@
 
  -->
 - [] bussines registration
+!!!!!!!!!!!!!!!!!!!
 - [] different page instead of modal ?
-
+- [] change font
+- [] email sign in magic link
 
 
 - [x] area in dashboard to see applications (WIP needs styling ) !!!!!

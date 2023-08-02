@@ -54,7 +54,7 @@ const page: FC<pageProps> = ({ }) => {
       />
       <main>
         <div className='h-[16.3rem]  w-full bg-hero-pattern bg-no-repeat bg-contain'>
-          <h2 className='text-white pt-12 pl-5 text-[2.1rem] font-extrabold '>Finden Sie IT-Talente, die den Unterschied machen</h2>
+          <h2 className='text-white py-3 text-center pb-4 text-[2.5rem] font-extrabold '>Finden Sie IT-Talente, die den Unterschied machen</h2>
         </div>
         
         <section className=''>
@@ -72,16 +72,16 @@ const page: FC<pageProps> = ({ }) => {
           </div>
           <p className='text-center text-lg mb-3 px-8 font-medium'>Jetzt registrieren und die Zukunft gestalten!</p>
         </section>
-
+{/* 
         {modalStatus && <RegistrationModal
           currentPage={"/bussines/bussines-dashboard"}
           setModalStatus={setModalStatus}
         />}
-
+ */}
         {session && <button onClick={() => signOut()}>Sign out</button>}
         {!session &&
           <div className='flex justify-center items-center mb-16'>
-            <button className='text-white border p-2 px-10 rounded-3xl bg-[#66ae9c]' onClick={() => setModalStatus(prev => !prev)}>Kostenlos registrieren</button>
+            <Link href={'/bussines/registrationPage'} className='text-white border p-2 px-10 rounded-3xl bg-[#66ae9c]'>Kostenlos registrieren</Link>
           </div>
         }
 
