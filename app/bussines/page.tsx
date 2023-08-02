@@ -9,6 +9,8 @@ import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralU
 import { BuiltInProviderType } from 'next-auth/providers'
 import { useRouter } from 'next/navigation'
 import Navbar from '../components/Navbar'
+import HeroImage from '../../public/images/heroImageBussines.jpg'
+import TextImage from '../../public/images/registrationImage.jpg'
 
 interface pageProps {
 
@@ -41,16 +43,35 @@ const page: FC<pageProps> = ({ }) => {
       router.push('bussines/bussines-dashboard')
     }
 
-  }, [session,router]) 
+  }, [session, router])
 
 
 
   return (
-    <div >
-      <Navbar 
-      currentPage=''
+    <div className='w-screen h-screen'>
+      <Navbar
+        currentPage=''
       />
       <main>
+        <div className='h-[16.3rem]  w-full bg-hero-pattern bg-no-repeat bg-contain'>
+          <h2 className='text-white pt-12 pl-5 text-[2.1rem] font-extrabold '>Finden Sie IT-Talente, die den Unterschied machen</h2>
+        </div>
+        
+        <section className=''>
+          
+          <div>
+            <h3 className='text-center py-6 text-lg p-4 font-medium mb-3 '>
+              Suchen Sie nach IT-Experten, die Ihr Unternehmen voranbringen können? Melden Sie sich heute  kostenlos an und schalten Sie Ihre Stellenanzeigen.
+            </h3>
+            <section className='bg-[#66ae9c] text-white mb-5 pt-5 text-center text-lg pb-1'>
+              <p className='mb-5'>
+                Verbinden Sie sich mit qualifizierten Fachkräften, die bereit sind, Ihre Herausforderungen zu meistern und Ihr Geschäft zu transformieren.
+              </p>
+
+            </section>
+          </div>
+          <p className='text-center text-lg mb-3 px-8 font-medium'>Jetzt registrieren und die Zukunft gestalten!</p>
+        </section>
 
         {modalStatus && <RegistrationModal
           currentPage={"/bussines/bussines-dashboard"}
@@ -58,7 +79,11 @@ const page: FC<pageProps> = ({ }) => {
         />}
 
         {session && <button onClick={() => signOut()}>Sign out</button>}
-        {!session && <button onClick={() => setModalStatus(prev => !prev)}>Sign in</button>}
+        {!session &&
+          <div className='flex justify-center items-center mb-16'>
+            <button className='text-white border p-2 px-10 rounded-3xl bg-[#66ae9c]' onClick={() => setModalStatus(prev => !prev)}>Kostenlos registrieren</button>
+          </div>
+        }
 
 
 

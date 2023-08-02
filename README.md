@@ -16,12 +16,24 @@
 - [x] click pointer for job posts at index
 - [x] after delete of post in post edit redirect to prev page
 
-- [] add route to show company logo at post details  
+- [x] add route to show company logo at post details  
 
-- [] fav applications appeard in db !!!!!
+<!-- - [] ---------------------------------------------
+- [x] add fav applications to array of job posting
+- [] prevent duplicate applications
+- [x] add svg to favorite application
+- [] add page for favorite applications
+- [x] add route to remove from favorite
+- [] ---------------------------------------------
 
 
-- [] area in dashboard to see applications (WIP needs styling ) !!!!!
+ -->
+- [] bussines registration
+- [] different page instead of modal ?
+
+
+
+- [x] area in dashboard to see applications (WIP needs styling ) !!!!!
 - [] show missing or wrong input in form as error
 - [] protecting user only routes 
 

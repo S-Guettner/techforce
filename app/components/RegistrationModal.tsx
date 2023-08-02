@@ -37,7 +37,7 @@ const RegistrationModal: FC<RegistrationModalProps> = ({ setModalStatus , curren
 
 
 
-  return <div className='bg-neutral-600/50 w-screen h-screen absolute pt-11 flex items-center justify-center text-black'>
+  return <div className='bg-neutral-600/50 w-screen h-screen fixed pt-11 flex items-center justify-center text-black'>
     <div className='bg-neutral-200 w-1/2 h-3/4 p-4'>
 
       <div className='flex justify-between'>

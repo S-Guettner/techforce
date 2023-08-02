@@ -60,6 +60,11 @@ const ApplicationCard: FC<ApplicationCardProps> = ({ applicationId, firstName, l
                     <p>{firstName}</p>
                     <p>{lastName}</p>
                 </div>
+                <div>
+                    {favoriteState &&
+                        <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6.516,14.323l-1.49,6.452c-0.092,0.399,0.068,0.814,0.406,1.047C5.603,21.94,5.801,22,6,22 c0.193,0,0.387-0.056,0.555-0.168L12,18.202l5.445,3.63c0.348,0.232,0.805,0.223,1.145-0.024c0.338-0.247,0.487-0.68,0.372-1.082 l-1.829-6.4l4.536-4.082c0.297-0.268,0.406-0.686,0.278-1.064c-0.129-0.378-0.47-0.644-0.868-0.676L15.378,8.05l-2.467-5.461 C12.75,2.23,12.393,2,12,2s-0.75,0.23-0.911,0.589L8.622,8.05L2.921,8.503C2.529,8.534,2.192,8.791,2.06,9.16 c-0.134,0.369-0.038,0.782,0.242,1.056L6.516,14.323z M9.369,9.997c0.363-0.029,0.683-0.253,0.832-0.586L12,5.43l1.799,3.981 c0.149,0.333,0.469,0.557,0.832,0.586l3.972,0.315l-3.271,2.944c-0.284,0.256-0.397,0.65-0.293,1.018l1.253,4.385l-3.736-2.491 c-0.336-0.225-0.773-0.225-1.109,0l-3.904,2.603l1.05-4.546c0.078-0.34-0.026-0.697-0.276-0.94l-3.038-2.962L9.369,9.997z"></path></svg>
+                    }
+                </div>
             </div>
             <div className='flex justify-start gap-2 items-center'>
                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 110.8V792H136V270.8l-27.6-21.5 39.3-50.5 42.8 33.3h643.1l42.8-33.3 39.3 50.5-27.7 21.5zM833.6 232L512 482 190.4 232l-42.8-33.3-39.3 50.5 27.6 21.5 341.6 265.6a55.99 55.99 0 0 0 68.7 0L888 270.8l27.6-21.5-39.3-50.5-42.7 33.2z"></path></svg>
@@ -81,26 +86,25 @@ const ApplicationCard: FC<ApplicationCardProps> = ({ applicationId, firstName, l
             <div>
                 <p className='p-5 whitespace-pre-line'>{message}</p>
             </div>
-            <div className='flex justify-between '>
-                <div className='flex justify-start gap-1'>
-                    <p>Gehaltsvorstellung:</p>
-                    <p>{salaryExpectation}</p>
-                    <p>€</p>
-                </div>
-                <div className='flex items-center gap-2 mb-5'>
-                    <a target="_blank" href={cvPath}>
-                        <div className='flex gap-2 items-center'>
-                            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#000" strokeWidth="2" d="M4.99787498,8.99999999 L4.99787498,0.999999992 L19.4999998,0.999999992 L22.9999998,4.50000005 L23,23 L16,23 M18,1 L18,6 L23,6 M8,11 C6.34325,11 5,12.34325 5,14 C5,15.65675 6.34325,17 8,17 C9.65675,17 11,15.65675 11,14 C11,12.34325 9.65675,11 8,11 L8,11 Z M3,23 L3,22 C3,18 6,17 8,17 C10,17 13,18 13,22 L13,23 L3,23 Z"></path></svg>
-                            <p>
-                                Lebenslauf öffnen
-                            </p>
-                        </div>
-                    </a>
-                </div>
+
+            <div className='flex justify-start gap-1 mb-5'>
+                <p>Gehaltsvorstellung:</p>
+                <p>{salaryExpectation}</p>
+                <p>€</p>
             </div>
+            <div className='flex items-center gap-2 mb-10'>
+                <a target="_blank" href={cvPath}>
+                    <div className='flex gap-2 items-center'>
+                        <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#000" strokeWidth="2" d="M4.99787498,8.99999999 L4.99787498,0.999999992 L19.4999998,0.999999992 L22.9999998,4.50000005 L23,23 L16,23 M18,1 L18,6 L23,6 M8,11 C6.34325,11 5,12.34325 5,14 C5,15.65675 6.34325,17 8,17 C9.65675,17 11,15.65675 11,14 C11,12.34325 9.65675,11 8,11 L8,11 Z M3,23 L3,22 C3,18 6,17 8,17 C10,17 13,18 13,22 L13,23 L3,23 Z"></path></svg>
+                        <p>
+                            Lebenslauf öffnen
+                        </p>
+                    </div>
+                </a>
+            </div>
+
             <div className='flex justify-between px-5'>
                 <button onClick={() => deleteApplication()} className='text-white bg-red-400 p-2 rounded-3xl'>löschen</button>
-
             </div>
         </section>
     )
