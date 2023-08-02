@@ -65,6 +65,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
 
         })
             .then(function (response) {
+                console.log(response)
                 setJobTitle(response.data.jobPosting.jobTitle)
                 setContactPersonName(response.data.jobPosting.contactPersonName)
                 setDetailedJobDescription(response.data.jobPosting.detailedJobDescription)
@@ -73,7 +74,7 @@ const BussinesDashboardSinglePostEdit: FC<BussinesDashboardSinglePostEditProps> 
                 setTasks(response.data.jobPosting.tasks)
                 setOffers(response.data.jobPosting.offers)
                 setRequirements(response.data.jobPosting.requirements)
-                console.log(response.data.jobPosting.offers)
+              /*   console.log(response.data.jobPosting.offers) */
             })
             .catch(function (error) {
                 console.log(error)

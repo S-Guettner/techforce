@@ -14,8 +14,11 @@
 - [x] delete applications and fav applications
 
 - [x] click pointer for job posts at index
-- [] after delete of post in post edit redirect to prev page
+- [x] after delete of post in post edit redirect to prev page
 
+- [] add route to show company logo at post details  
+
+- [] fav applications appeard in db !!!!!
 
 
 - [] area in dashboard to see applications (WIP needs styling ) !!!!!
