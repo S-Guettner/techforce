@@ -1,9 +1,5 @@
-"use client"
-
-import { useSession} from 'next-auth/react'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import { SessionProvider } from 'next-auth/react'
 import Provider from './components/Provider'
 
 const inter = Inter({ subsets: ['latin'] })
