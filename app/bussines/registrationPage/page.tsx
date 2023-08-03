@@ -28,13 +28,20 @@ const page: FC<pageProps> = ({ }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
 
+    const [signInError, setSignInError] = useState("")
+
     const handleSignIn = async (e: any) => {
         e.preventDefault();
 
-        signIn('credentials', {
+        const result = await signIn('credentials', {
             email: email,
-            password: password
+            password: password,
+            redirect: false, // This prevents redirecting to another page
         })
+
+        if (result?.error) {
+            setSignInError("wrong credentials");
+        }
     }
 
     const { data: session } = useSession()
@@ -64,6 +71,7 @@ const page: FC<pageProps> = ({ }) => {
                             <p >Registrieren / anmelden</p>
                             <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         </div>
+                        {signInError && <p className="error">{signInError}</p>}
                     </div>
                     <div className='w-full  flex justify-between shadow-lg items-center cursor-pointer border  rounded-md p-2 my-2' onClick={() => customSignIn('google', `http://localhost:3000/bussines/bussines-dashboard`)}>
                         <p className='mr-2'>Sign up with google</p>
