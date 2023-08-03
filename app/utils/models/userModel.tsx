@@ -53,6 +53,7 @@ const jobPostings = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
 
     email: String,
+    password:String,
     userType: String,
     jobPostings: [jobPostings],
     companyDetails: companyDetails ,
