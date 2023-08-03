@@ -9,7 +9,7 @@ import {useRouter} from 'next/navigation'
 
 
 interface BussinesDashboardSinglePostEditProps {
-    postId?: string
+/*     postId?: string
     contactPersonName?: string
     contactPersonNumber?: string
     contactPersonEmail?: string
@@ -18,7 +18,7 @@ interface BussinesDashboardSinglePostEditProps {
     offers?: string[]
     requirements?: string[]
     tasks?: string[]
-    setPostId: React.Dispatch<React.SetStateAction<string>>
+    setPostId: React.Dispatch<React.SetStateAction<string>> */
     params: { jobId: string };
 }
 
