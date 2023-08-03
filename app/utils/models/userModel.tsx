@@ -34,6 +34,9 @@ const jobPostings = new mongoose.Schema({
     contactPersonName: String,
     contactPersonNumber: String,
     contactPersonEmail: String,
+    location: String,
+    latitude:Number,
+    longitude:Number,
     applications: [application],
     favoriteApplications: {
         type: [application],

@@ -1,11 +1,13 @@
 'use client'
-import { FC, useState } from 'react'
+import { FC, useState , useEffect} from 'react'
 import Navbar from '@/app/components/Navbar'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 import { nanoid } from 'nanoid'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import opencage from 'opencage-api-client';
+import _ from 'lodash'; 
 
 interface pageProps {
 
@@ -19,6 +21,7 @@ const page: FC<pageProps> = ({ }) => {
 
     const [jobTitle, setJobTitle] = useState("")
     const [shortJobDescription, setShortJobDescription] = useState("")
+
     const [detailedJobDescription, setDetailedJobDescription] = useState("")
     const [contactPersonName, setContactPersonName] = useState("")
     const [contactPersonNumber, setContactPersonNumber] = useState("")
@@ -32,6 +35,55 @@ const page: FC<pageProps> = ({ }) => {
 
     const [requirements, setRequirements] = useState<string[]>([])
     const [requirement, setRequirement] = useState("")
+
+
+    const [location, setLocation] = useState("")
+    const [locationSuggestions, setLocationSuggestions] = useState([])
+
+    const debouncedSearchTerm = _.debounce(() => getGeolocation(location), 200);
+
+    const [suggestions, setSuggestions] = useState<Array<string>>([]);  
+
+    const [longitude, setLongitude] = useState(0)
+    const [latitude, setLatitude] = useState(0)
+
+    console.log("longitude", longitude)
+    console.log("latitude", latitude)
+
+    useEffect(() => {
+        if (location) {
+            debouncedSearchTerm();
+            // Cancel the debounce on useEffect cleanup.
+            return debouncedSearchTerm.cancel;
+        } else {
+            setSuggestions([]);
+        }
+    }, [location]);
+
+    const getGeolocation = (search: string) => {
+        axios.get('https://api.opencagedata.com/geocode/v1/json', {
+            params: {
+                key: `${process.env.NEXT_PUBLIC_KEY}`,
+                q: search,
+                language: 'de',
+                limit: 5,
+                countrycode: 'de'
+            }
+        }).then(response => {
+            if (response.data.results) {
+                let suggestionList = response.data.results.map((place: any) => place.formatted);
+                setSuggestions(suggestionList);
+                setLongitude(response.data.results[0].geometry.lng)
+                setLatitude(response.data.results[0].geometry.lat)
+            } else {
+                setSuggestions([]);
+            }
+        }).catch(error => {
+            console.error('Error fetching data from OpenCage API: ', error);
+            setSuggestions([]);
+        });
+    };
+
 
 
     const addTask = (task: string) => {
@@ -79,7 +131,10 @@ const page: FC<pageProps> = ({ }) => {
             requirements: requirements,
             contactPersonName: contactPersonName,
             contactPersonNumber: contactPersonNumber,
-            contactPersonEmail: contactPersonEmail
+            contactPersonEmail: contactPersonEmail,
+            location:location,
+            latitude:latitude,
+            longitude:longitude,
         })
             .then(function (response) {
                 console.log(response);
@@ -105,6 +160,12 @@ const page: FC<pageProps> = ({ }) => {
 
             <section>
                 <div>
+                    <div>
+                        <input type='text' value={location} onChange={(e) => setLocation(e.target.value)} className='block border mb-5 p-2 w-5/6  mx-auto rounded-xl' placeholder='Ort'  name="location" id="location" list="location-suggestions" />
+                        <datalist id="location-suggestions">
+                            {suggestions.map((suggestion, index) => <option key={index}>{suggestion}</option>)}
+                        </datalist>
+                    </div>
                     <input onChange={(e) => setJobTitle(e.target.value)} className='block border mb-5 p-2 w-5/6  mx-auto rounded-xl' placeholder='Stellenbezeichnung' type="text" name="jobTitle" id="jobTitle" />
                     <textarea onChange={(e) => setDetailedJobDescription(e.target.value)} className='block border max-h-36 h-36 mb-5 p-2 w-5/6 mx-auto rounded-xl' placeholder='Stellenbeschreibung' name="detailedDescription" id="detailedDescription" />
                     <input onChange={(e) => setContactPersonName(e.target.value)} className='block border mb-5 p-2 w-5/6 mx-auto rounded-xl' placeholder='Name Kontaktperson' type="text" name="contactPerson" id="contactPerson" />

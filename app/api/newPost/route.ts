@@ -16,7 +16,12 @@ export const POST = async (req: Request, res: Response) => {
         contactPersonName,
         contactPersonNumber,
         contactPersonEmail,
+        location,
+        latitude,
+        longitude,
     } = await req.json();
+
+    console.log(latitude, longitude);
 
     try {
         const user = await User.findOne({ email: userEmail });
@@ -34,6 +39,9 @@ export const POST = async (req: Request, res: Response) => {
             contactPersonName,
             contactPersonNumber,
             contactPersonEmail,
+            location,
+            latitude,
+            longitude,
         };
 
         const updatedUser = await User.findOneAndUpdate({ email: userEmail }, { $push: { jobPostings: jobListing } }, { new: true });
