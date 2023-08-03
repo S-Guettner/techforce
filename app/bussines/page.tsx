@@ -56,13 +56,13 @@ const page: FC<pageProps> = ({ }) => {
         <div className='h-[16.3rem]  w-full bg-hero-pattern bg-no-repeat bg-contain'>
           <h2 className='text-white py-3 text-center pb-4 text-[2.5rem] font-extrabold '>Finden Sie IT-Talente, die den Unterschied machen</h2>
         </div>
-        <section className='my-6'>
-          <p className='text-center text-lg mb-3 px-8 font-medium'>Suchen Sie nach IT-Experten, die Ihr Unternehmen voranbringen können? Melden Sie sich heute  kostenlos an und schalten Sie Ihre Stellenanzeigen.</p>
+        <section className='my-8'>
+          <p className='text-center mb-3 px-8 '>Suchen Sie nach IT-Experten, die Ihr Unternehmen voranbringen können? Melden Sie sich heute  kostenlos an und schalten Sie Ihre Stellenanzeigen.</p>
         </section>
         <section className=''>
 
           <div className='bg-[#66ae9c] text-white'>
-            <h3 className='text-center py-6  p-4  mb-7 '>
+            <h3 className='text-center py-8  p-4  mb-8 '>
               Verbinden Sie sich mit qualifizierten Fachkräften, die bereit sind, Ihre Herausforderungen zu meistern und Ihr Geschäft zu transformieren.
             </h3>
             {/*             <section className='bg-[#66ae9c] text-white mb-5 pt-5 text-center text-lg pb-1'>
