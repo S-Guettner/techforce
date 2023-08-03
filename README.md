@@ -28,13 +28,13 @@
 
 
  -->
-- [] bussines registration
+- [x] bussines registration
 !!!!!!!!!!!!!!!!!!!
-- [] different page instead of modal ?
+- [x] different page instead of modal ?
 - [] change font
 <!-- - [] email sign in magic link -->
 - [x] add credentials sign up
-- [] wrong password path is not working
+- [x] wrong password path is not working
 
 
 - [x] area in dashboard to see applications (WIP needs styling ) !!!!!
