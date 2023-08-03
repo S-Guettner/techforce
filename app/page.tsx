@@ -60,6 +60,14 @@ export default function Home() {
   const { data: session } = useSession()
 
   const [searchTerm, setSearchTerm] = useState("")
+  
+  
+  const [longitude, setLongitude] = useState(0)
+  const [latitude, setLatitude] = useState(0)
+  const [radius, setRadius] = useState<number | string>()
+
+
+
 
 
  /*  console.log(getSession()) */
@@ -71,7 +79,7 @@ export default function Home() {
         console.log(searchTerm)
 
 
-        const response = await axios.post('/api/allPosts', { searchTerm: searchTerm });
+        const response = await axios.post('/api/allPosts', { searchTerm: searchTerm, longitude: longitude, latitude: latitude, radius: radius });
         console.log(response?.data?.location)
         setPosts(response?.data?.jobPostings)
       } catch (err) {
@@ -80,7 +88,7 @@ export default function Home() {
     }
 
     fetchPosts()
-  }, [searchTerm])
+  }, [searchTerm, longitude, latitude, radius])
 
   useEffect(() => {
     const fetchSinglePost = async () => {
@@ -146,6 +154,9 @@ export default function Home() {
           <PostsFilter
             key={nanoid()}
             setSearchTerm={setSearchTerm}
+            setLongitude={setLongitude}
+            setLatitude={setLatitude}
+            setRadius={setRadius}
           />
         </section>
         <div className='h-[1px] bg-[#b2d7cc]'>

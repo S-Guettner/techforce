@@ -42,3 +42,6 @@
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!
 - [] search for job location
+
+
+- [] search function for location !!!!!!!!!

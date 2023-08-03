@@ -43,7 +43,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     connectionToDB();
 
     try {
-        const { searchTerm } = await req.json();
+        const { searchTerm, longitude, latitude, radius } = await req.json();
         console.log('searchTerm', searchTerm);
 
         const users = await testUser.find().select('jobPostings companyDetails');
