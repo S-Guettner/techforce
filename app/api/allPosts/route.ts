@@ -34,6 +34,9 @@ interface JobPosting {
     applications: Application[];
     companyDetails: CompanyDetails;
     timestamp: Date;
+    location: string;
+    latitude: number;
+    longitude: number;
 }
 
 export const POST = async (req: NextRequest, res: NextResponse) => {

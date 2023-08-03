@@ -37,6 +37,7 @@ interface Post {
   contactPersonEmail: string;
   _id: string;
   timestamp: string;
+  location:string
   companyDetails: CompanyDetails;
 }
 
@@ -61,7 +62,7 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState("")
 
 
-  console.log(getSession())
+ /*  console.log(getSession()) */
 
 
   useEffect(() => {
@@ -71,7 +72,7 @@ export default function Home() {
 
 
         const response = await axios.post('/api/allPosts', { searchTerm: searchTerm });
-        console.log(response?.data?.jobPostings[0].companyDetails)
+        console.log(response?.data?.location)
         setPosts(response?.data?.jobPostings)
       } catch (err) {
         console.log(err)
@@ -113,13 +114,13 @@ export default function Home() {
       newBussinesUser();
     }, [session]);
    */
-  console.log(session)
+  
 
-
+/* 
   useEffect(() => {
     console.log(modalStatus, "STATUS MODAL")
   }, [modalStatus])
-
+ */
 
 
   /*   useEffect(() => {
@@ -154,7 +155,7 @@ export default function Home() {
         <main className='p-5'>
           <aside className=''>
             {posts && posts.map((post) => {
-              console.log(post)
+              console.log(post?.location)
               return (
                 <SmallPost
                   key={nanoid()}
@@ -163,7 +164,7 @@ export default function Home() {
                   setPostId={setPostId}
                   companyName={post?.companyDetails?.companyName}
                   companyImage={post?.companyDetails?.companyImage}
-                  companyLocation={post?.companyDetails?.companyLocation}
+                  companyLocation={post?.location}
                   yearFounded={post?.companyDetails?.yearFounded}
                   numberOfEmployees={post?.companyDetails?.numberOfEmployees}
                 />
@@ -180,7 +181,7 @@ export default function Home() {
     return (
       <div>
         <Navbar
-          currentPage={"user"}
+          currentPage={""}
         />
         <nav className='flex justify-between items-center p-2'>
 
