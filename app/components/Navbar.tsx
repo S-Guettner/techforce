@@ -76,14 +76,14 @@ const Navbar: FC<NavbarProps> = ({ currentPage }) => {
                         <button onClick={() => buttonHandler()}>
                             <p className='font-light text-white p-2 rounded-3xl bg-[#66af99]'>Sign out</p>
                         </button>}
-                        
+
                 </div>
 
 
             </nav>
         )
 
-    } else {
+    } else if (currentPage === "user") {
         return (
             <nav className='flex items-center p-5 justify-between'>
                 <Link href={'/'}>
@@ -103,6 +103,29 @@ const Navbar: FC<NavbarProps> = ({ currentPage }) => {
 
             </nav>
         )
+    } else if (currentPage === "registration") {
+        return (
+            <nav className='flex items-center p-5 justify-between'>
+                <Link href={'/'}>
+                    <Image
+                        src={logo}
+                        width={170}
+                        height={170}
+                        alt='logo'
+                    />
+                </Link>
+
+                <Link className='underline hover:no-underline' href='/bussines/registrationPage'>
+                    <button className='font-light text-white p-2 rounded-3xl bg-[#66af99]'>
+                        Anmelden
+                    </button>
+                </Link>
+
+            </nav>
+        )
+    }
+    else {
+        return null
     }
 
 }

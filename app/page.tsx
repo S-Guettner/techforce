@@ -133,7 +133,7 @@ export default function Home() {
     return (
       <div>
         <Navbar
-          currentPage={""}
+          currentPage={"user"}
         />
         <nav className='flex justify-between items-center p-2'>
 
@@ -180,7 +180,7 @@ export default function Home() {
     return (
       <div>
         <Navbar
-          currentPage={""}
+          currentPage={"user"}
         />
         <nav className='flex justify-between items-center p-2'>
 

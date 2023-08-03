@@ -45,6 +45,7 @@ const page: FC<pageProps> = ({ }) => {
         if (result?.error) {
             setSignInError("Eingabe nicht korrekt");
         } else {
+
             router.push(result?.url || callbackUrl);
         }
     }
@@ -63,7 +64,7 @@ const page: FC<pageProps> = ({ }) => {
     return (
         <main>
             <Navbar
-                currentPage=''
+                currentPage='user'
             />
             <section className='flex justify-center items-end pt-10'>
                 <div className='border h-96 p-10 rounded-2xl'>

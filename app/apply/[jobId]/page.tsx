@@ -59,7 +59,7 @@ const Page: FC<PageProps> = ({ params }) => {
     return (
         <div>
             <Navbar 
-                currentPage={""}
+                currentPage={"user"}
             />
             <main className="flex justify-center ">
                 <div>

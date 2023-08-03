@@ -50,29 +50,31 @@ const page: FC<pageProps> = ({ }) => {
   return (
     <div className='w-screen h-screen'>
       <Navbar
-        currentPage=''
+        currentPage='registration'
       />
       <main>
         <div className='h-[16.3rem]  w-full bg-hero-pattern bg-no-repeat bg-contain'>
           <h2 className='text-white py-3 text-center pb-4 text-[2.5rem] font-extrabold '>Finden Sie IT-Talente, die den Unterschied machen</h2>
         </div>
-        
+        <section className='my-6'>
+          <p className='text-center text-lg mb-3 px-8 font-medium'>Suchen Sie nach IT-Experten, die Ihr Unternehmen voranbringen können? Melden Sie sich heute  kostenlos an und schalten Sie Ihre Stellenanzeigen.</p>
+        </section>
         <section className=''>
-          
-          <div>
-            <h3 className='text-center py-6 text-lg p-4 font-medium mb-3 '>
-              Suchen Sie nach IT-Experten, die Ihr Unternehmen voranbringen können? Melden Sie sich heute  kostenlos an und schalten Sie Ihre Stellenanzeigen.
+
+          <div className='bg-[#66ae9c] text-white'>
+            <h3 className='text-center py-6  p-4  mb-7 '>
+              Verbinden Sie sich mit qualifizierten Fachkräften, die bereit sind, Ihre Herausforderungen zu meistern und Ihr Geschäft zu transformieren.
             </h3>
-            <section className='bg-[#66ae9c] text-white mb-5 pt-5 text-center text-lg pb-1'>
+            {/*             <section className='bg-[#66ae9c] text-white mb-5 pt-5 text-center text-lg pb-1'>
               <p className='mb-5'>
                 Verbinden Sie sich mit qualifizierten Fachkräften, die bereit sind, Ihre Herausforderungen zu meistern und Ihr Geschäft zu transformieren.
               </p>
 
-            </section>
+            </section> */}
           </div>
-          <p className='text-center text-lg mb-3 px-8 font-medium'>Jetzt registrieren und die Zukunft gestalten!</p>
+          <p className='text-center  mb-5 px-4 '>Jetzt registrieren und die Zukunft gestalten!</p>
         </section>
-{/* 
+        {/* 
         {modalStatus && <RegistrationModal
           currentPage={"/bussines/bussines-dashboard"}
           setModalStatus={setModalStatus}
