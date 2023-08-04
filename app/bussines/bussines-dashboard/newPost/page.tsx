@@ -40,7 +40,7 @@ const page: FC<pageProps> = ({ }) => {
     const [location, setLocation] = useState("")
     const [locationSuggestions, setLocationSuggestions] = useState([])
 
-    const debouncedSearchTerm = _.debounce(() => getGeolocation(location), 200);
+    const debouncedSearchTerm = _.debounce(() => getGeolocation(location), 400);
 
     const [suggestions, setSuggestions] = useState<Array<string>>([]);  
 

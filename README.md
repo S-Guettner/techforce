@@ -29,6 +29,7 @@
 
  -->
 - [x] bussines registration
+
 - [x] different page instead of modal ?
 - [] change font
 <!-- - [] email sign in magic link -->
@@ -40,8 +41,7 @@
 - [] show missing or wrong input in form as error
 - [] protecting user only routes 
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!
-- [] search for job location
 
-
-- [] search function for location !!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+- [] search function for location 
+- [] input at filter comp bugged 

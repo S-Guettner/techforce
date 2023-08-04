@@ -32,6 +32,9 @@ const DashboardPost: FC<DashboardPostProps> = ({ postId, jobTitle, timestamp, ap
 
     const [openApplications, setOpenApplications] = useState(false)
 
+    const openHandler = () => {
+        
+    }
 
     return (
         <main className='px-4'>
@@ -39,7 +42,7 @@ const DashboardPost: FC<DashboardPostProps> = ({ postId, jobTitle, timestamp, ap
                 <div className='flex justify-between'>
                     <p className='mb-4'>{jobTitle}</p>
                     <div >
-                        <div onClick={() => setOpenApplications(prev => !prev)} className='flex items-center cursor-pointer'>
+                        <div onClick={() => setOpenApplications(prev => !prev)} className='flex items-center cursor-pointer border p-2 rounded-3xl mb-4'>
                             <svg className={`${openApplications && applications.length > 0 ? 'transform rotate-180' : ''} transition duration-500`} stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 4H18V6H6zM12 20.414L18.707 13.707 17.293 12.293 13 16.586 13 8 11 8 11 16.586 6.707 12.293 5.293 13.707z"></path></svg>
                             <p>Bewerbungen</p>
                             <p className='flex justify-center ml-1'>{applications.length} </p>

@@ -56,10 +56,19 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
             })
             .flat();
 
-        // Wenn ein Suchbegriff vorhanden ist, filtern von Job-Postings
+        // If a search term exists, filter job postings
         if (searchTerm) {
             const lowerCaseSearchTerm = searchTerm.toLowerCase();
             allJobPostings = allJobPostings.filter((posting: JobPosting) => posting.jobTitle.toLowerCase().includes(lowerCaseSearchTerm));
+        }
+
+        // If geolocation data exists, filter job postings within radius
+        if (longitude && latitude && radius) {
+            const radiusInRadians = radius / 6371;
+            allJobPostings = allJobPostings.filter((posting: JobPosting) => {
+                const coordinatesDifference = Math.sqrt((posting.longitude - longitude) ** 2 + (posting.latitude - latitude) ** 2);
+                return coordinatesDifference <= radiusInRadians;
+            });
         }
 
         console.log('Job postings:', allJobPostings);
