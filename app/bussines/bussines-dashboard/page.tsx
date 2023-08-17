@@ -111,7 +111,7 @@ const page: FC<pageProps> = ({ }) => {
   const [selectedAction, setSelectedAction] = useState("overview")
 
   return (
-    <main>
+    <main className='font-roboto'>
       <Navbar
         currentPage={"bussines"}
       />

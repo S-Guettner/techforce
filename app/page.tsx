@@ -140,7 +140,7 @@ export default function Home() {
 
   if (postId.length == 0) {
     return (
-      <div>
+      <div className='font-roboto'>
         <Navbar
           currentPage={"user"}
         />
@@ -164,7 +164,7 @@ export default function Home() {
 
         </div>
 
-        <main className='p-5 md:px-20'>
+        <main className='p-5 md:px-20 lg:px-36 xl:px-64 2xl:px-[40rem]'>
           <aside className=''>
             {posts && posts.map((post) => {
               return (

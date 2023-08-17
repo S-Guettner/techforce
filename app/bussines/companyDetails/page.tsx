@@ -48,7 +48,7 @@ const page: FC<pageProps> = ({ }) => {
     };
 
     return (
-        <main>
+        <main className='font-roboto'>
             <nav>
                 <Navbar
                     currentPage='bussines'

@@ -14,7 +14,7 @@ interface SmallPostProps {
 
 const SmallPost: FC<SmallPostProps> = ({ jobTitle, setPostId, postId, companyName, companyImage, companyLocation, yearFounded, numberOfEmployees }) => {
     return (
-        <div className='border rounded-3xl p-2 my-5 cursor-pointer' onClick={() => { setPostId(postId) }}>
+        <div className='border rounded-3xl p-2 my-5 cursor-pointer font-roboto' onClick={() => { setPostId(postId) }}>
             <div className='flex justify-between items-center mb-5'>
                 <h2>{jobTitle}</h2>
                 <Image

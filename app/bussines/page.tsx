@@ -48,24 +48,24 @@ const page: FC<pageProps> = ({ }) => {
 
 
   return (
-    <div className='w-screen h-screen'>
+    <div className='w-screen h-screen font-roboto'>
       <Navbar
         currentPage='registration'
       />
-      <main>
-        <div className='md:flex justify-center items-center md:gap-5'>
-          <div className='h-[16.3rem]  w-full md:w-1/2 bg-hero-pattern bg-no-repeat bg-contain '>
+      <main >
+        <div className='md:flex justify-center items-center md:gap-5 xl:mx-46'>
+          <div className='h-[16.3rem]  w-full md:w-1/2 xl:w-1/3 2xl:w-1/4 bg-hero-pattern bg-no-repeat bg-contain '>
             <h2 className='text-white py-3 text-center pb-4 text-[2.5rem] font-extrabold md:hidden'>Finden Sie IT-Talente, die den Unterschied machen</h2>
           </div>
-          <h2 className='hidden md:block text-2xl font-bold w-1/3'>Finden Sie IT-Talente, die den Unterschied machen</h2>
+          <h2 className='hidden md:block text-2xl font-bold w-1/3 2xl:w-1/4'>Finden Sie IT-Talente, die den Unterschied machen</h2>
         </div>
         <section className='my-8'>
-          <p className='text-center mb-3 px-8 md:w-2/3 md:mx-auto'>Suchen Sie nach IT-Experten, die Ihr Unternehmen voranbringen können? Melden Sie sich heute  kostenlos an und schalten Sie Ihre Stellenanzeigen.</p>
+          <p className='text-center mb-3 px-8 md:w-2/3 md:mx-auto lg:w-2/4 lg:pt-5 lg:mb-10 2'>Suchen Sie nach IT-Experten, die Ihr Unternehmen voranbringen können? Melden Sie sich heute  kostenlos an und schalten Sie Ihre Stellenanzeigen.</p>
         </section>
         <section className=''>
 
           <div className='bg-[#66ae9c] text-white'>
-            <h3 className='text-center py-8  p-4  mb-8 md:px-20'>
+            <h3 className='text-center py-8  p-4  mb-8 md:px-20 lg:mb-10 xl:mx-52'>
               Verbinden Sie sich mit qualifizierten Fachkräften, die bereit sind, Ihre Herausforderungen zu meistern und Ihr Geschäft zu transformieren.
             </h3>
             {/*             <section className='bg-[#66ae9c] text-white mb-5 pt-5 text-center text-lg pb-1'>
