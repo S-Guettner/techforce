@@ -162,7 +162,7 @@ const page: FC<pageProps> = ({ }) => {
                 <div>
                     <div>
                         <input type='text' value={location} onChange={(e) => setLocation(e.target.value)} className='block border mb-5 p-2 w-5/6  mx-auto rounded-xl' placeholder='Ort'  name="location" id="location" list="location-suggestions" />
-                        <datalist id="location-suggestions">
+                        <datalist id="location-suggestion">
                             {suggestions.map((suggestion, index) => <option key={index}>{suggestion}</option>)}
                         </datalist>
                     </div>

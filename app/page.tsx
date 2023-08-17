@@ -60,6 +60,7 @@ export default function Home() {
   const { data: session } = useSession()
 
   const [searchTerm, setSearchTerm] = useState("")
+  const [location, setLocation] = useState("")
   
   
   const [longitude, setLongitude] = useState(0)
@@ -153,6 +154,7 @@ export default function Home() {
           <PostsFilter
             key={nanoid()}
             setSearchTerm={setSearchTerm}
+            setLocation={setLocation}
             setLongitude={setLongitude}
             setLatitude={setLatitude}
             setRadius={setRadius}
