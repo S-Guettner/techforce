@@ -118,11 +118,11 @@ const page: FC<pageProps> = ({ }) => {
       {/*       <div className='flex justify-center'>
         <Link href={'/bussines/bussines-dashboard/overviewPosts'} className='text-center inline  w-[90%] mt-10 rounded-2xl border border-x-stone-100 p-5 shadow-lg'>Übersicht</Link>
       </div> */}
-      <div className='flex justify-center'>
+      <div className='flex justify-center md:mx-36'>
         <Link href={`${detailsRedirect}`} className='text-center inline  w-[90%] mt-10 rounded-2xl border border-x-stone-100 p-5 shadow-lg'>Stelle erstellen</Link>
       </div>
       <section>
-        <section>
+        <section className='md:mx-36'>
           {postsState && postsState.map((post) => {
             console.log(post?.applications)
             return (

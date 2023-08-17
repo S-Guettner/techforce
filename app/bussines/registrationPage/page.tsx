@@ -66,7 +66,7 @@ const page: FC<pageProps> = ({ }) => {
             <Navbar
                 currentPage='user'
             />
-            <section className='flex justify-center items-end pt-10'>
+            <section className='flex justify-center items-end pt-10 md:px-44 md:mb-10'>
                 <div className='border h-96 p-10 rounded-2xl'>
                     <div>
                         {signInError && <p className="text-red-600">{signInError}</p>}
@@ -74,7 +74,7 @@ const page: FC<pageProps> = ({ }) => {
                         <input onChange={(e) => setEmail(e.target.value)} value={email} className='border py-2 shadow-lg rounded-md w-full' type="email" name="" id="" />
                         <label htmlFor="password">Passwort</label>
                         <input onChange={(e) => setPassword(e.target.value)} className='border py-2 shadow-lg rounded-md w-full' type="password" name="password" id="password" />
-                        <div onClick={handleSignIn} className='mb-10 flex justify-between shadow-lg cursor-pointer border  rounded-md p-2 my-2' >
+                        <div onClick={handleSignIn} className='mb-5 flex justify-between shadow-lg cursor-pointer border  rounded-md p-2 my-2' >
                             <p >registrieren / anmelden</p>
                             <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         </div>

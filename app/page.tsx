@@ -164,7 +164,7 @@ export default function Home() {
 
         </div>
 
-        <main className='p-5'>
+        <main className='p-5 md:px-20'>
           <aside className=''>
             {posts && posts.map((post) => {
               return (
@@ -199,7 +199,7 @@ export default function Home() {
           <div>
           </div>
         </nav>
-        <main className='p-5'>
+        <main className='p-5 '>
           <aside>
 
             {singlePost && (
