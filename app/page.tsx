@@ -80,8 +80,8 @@ export default function Home() {
 
 
         const response = await axios.post('/api/allPosts', { searchTerm: searchTerm, longitude: longitude, latitude: latitude, radius: radius });
-        console.log(response?.data?.location)
         setPosts(response?.data?.jobPostings)
+        console.log(radius)
       } catch (err) {
         console.log(err)
       }
@@ -94,7 +94,7 @@ export default function Home() {
     const fetchSinglePost = async () => {
       try {
         const response = await axios.post('/api/singlePostApply', { jobId: postId });
-        console.log("single post", response?.data?.jobPosting)
+
         setSinglePost(response?.data?.jobPosting)
 
       } catch (err) {
@@ -104,7 +104,6 @@ export default function Home() {
     fetchSinglePost()
   }, [postId])
 
-  console.log(postId)
 
   /* 
     useEffect(() => {
@@ -166,7 +165,6 @@ export default function Home() {
         <main className='p-5'>
           <aside className=''>
             {posts && posts.map((post) => {
-              console.log(post?.location)
               return (
                 <SmallPost
                   key={nanoid()}
