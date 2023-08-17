@@ -80,7 +80,7 @@ export default function Home() {
         console.log(searchTerm)
 
 
-        const response = await axios.post('/api/allPosts', { searchTerm: searchTerm, longitude: longitude, latitude: latitude, radius: radius });
+        const response = await axios.post('/api/allPosts', { searchTerm: searchTerm, location: location, longitude: longitude, latitude: latitude, radius: radius });
         setPosts(response?.data?.jobPostings)
         console.log(radius)
       } catch (err) {

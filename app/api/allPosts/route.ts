@@ -43,7 +43,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     connectionToDB();
 
     try {
-        const { searchTerm, longitude, latitude, radius } = await req.json();
+        const { searchTerm, location } = await req.json();
         console.log('searchTerm', searchTerm);
 
         const users = await testUser.find().select('jobPostings companyDetails');
@@ -56,19 +56,16 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
             })
             .flat();
 
-        // If a search term exists, filter job postings
+        // If a search term exists, filter job postings by jobTitle
         if (searchTerm) {
             const lowerCaseSearchTerm = searchTerm.toLowerCase();
             allJobPostings = allJobPostings.filter((posting: JobPosting) => posting.jobTitle.toLowerCase().includes(lowerCaseSearchTerm));
         }
 
-        // If geolocation data exists, filter job postings within radius
-        if (longitude && latitude && radius) {
-            const radiusInRadians = radius / 6371;
-            allJobPostings = allJobPostings.filter((posting: JobPosting) => {
-                const coordinatesDifference = Math.sqrt((posting.longitude - longitude) ** 2 + (posting.latitude - latitude) ** 2);
-                return coordinatesDifference <= radiusInRadians;
-            });
+        // If location exists, filter job postings by location
+        if (location) {
+            const lowerCaseLocation = location.toLowerCase();
+            allJobPostings = allJobPostings.filter((posting: JobPosting) => posting.location.toLowerCase().includes(lowerCaseLocation));
         }
 
         console.log('Job postings:', allJobPostings);
