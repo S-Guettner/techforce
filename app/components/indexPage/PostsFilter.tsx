@@ -103,11 +103,11 @@ const PostsFilter: FC<PostsFilterProps> = ({ setSearchTerm, setLocation, setLong
         <section>
             <section className=''>
 
-                <div className='flex'>
-                    <input onChange={(e) => setSearchInput(e.target.value)} value={searchInput} className='mr-2 mb-2 shadow-inner shadow-gray-400 rounded-3xl p-1 pl-2 focus:outline-none focus:ring-2 focus:ring-[#67ae9a] md:mb-5' placeholder='Stellenbezeichnug' type="text" name="search" id="search" />
+                <div className=''>
+                    <input onChange={(e) => setSearchInput(e.target.value)} value={searchInput} className='mr-2 mb-2  shadow-inner shadow-gray-400 rounded-3xl p-1 pl-2 focus:outline-none focus:ring-2 focus:ring-[#67ae9a] md:mb-5' placeholder='Stellenbezeichnug' type="text" name="search" id="search" />
                     <form className='mb-5'>
                         <input
-                            value={locationInput} onChange={(e) => setLocationInput(e.target.value)} className='mr-2 shadow-inner shadow-gray-400 rounded-3xl p-1 pl-2 focus:outline-none focus:ring-2 focus:ring-[#67ae9a]' placeholder='Ort' type="text" name="locationPost" id="locationPost" list="location-suggestions" />
+                            value={locationInput} onChange={(e) => setLocationInput(e.target.value)} className='mr-2   shadow-inner shadow-gray-400 rounded-3xl p-1 pl-2 focus:outline-none focus:ring-2 focus:ring-[#67ae9a]' placeholder='Ort' type="text" name="locationPost" id="locationPost" list="location-suggestions" />
 
                     </form>
                 </div>
