@@ -33,7 +33,7 @@ const page: FC<pageProps> = ({ }) => {
     const handleSignIn = async (e: any) => {
         e.preventDefault();
 
-        const callbackUrl = 'https://code-career.vercel.app//bussines/bussines-dashboard';
+        const callbackUrl = 'https://code-career.vercel.app/bussines/bussines-dashboard';
 
         const result = await signIn('credentials', {
             email: email,
