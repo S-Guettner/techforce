@@ -17,6 +17,7 @@ const page: FC<pageProps> = ({ }) => {
 
 
     const customSignIn = async (provider: string, callbackUrl: string) => {
+        console.log("callbackUrl:", callbackUrl);
         return await signIn(provider, { callbackUrl }); // Pass the callbackUrl as part of the options object
     };
 
